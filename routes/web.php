@@ -510,6 +510,8 @@ Route::get('ventas', 'VentasController@index')->name('ventas.index');
 Route::get('ventas-create', 'VentasController@create')->name('ventas.create')->middleware('auth');
 Route::post('ventas/create', 'VentasController@store')->middleware('auth');
 Route::get('ventas-delete-{id}','VentasController@delete');
+Route::get('ventas-ticket-{id}','VentasController@ticket');
+
 
 
 Route::get('creditos_b', 'CreditosController@creditosb')->name('creditos.b')->middleware('auth');

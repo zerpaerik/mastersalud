@@ -208,39 +208,37 @@ class VentasController extends Controller
 
     public function ticket($id)
     {
-        $pedido = Equipos::find($id);
-
-        $pedidos = DB::table('pedidos as a')
-        ->select('a.id','a.solicitud','a.descripcion','a.monto','a.created_at','a.estatus','b.huesped','b.habitacion','an.nombre as habita','h.nombre as nompac','h.responsable as apepac')
-        ->join('solicitudes as b','b.id','a.solicitud')
-        ->join('analisis as an','an.id','b.habitacion')
-        ->join('clientes as h','h.id','b.huesped')
-        ->where('a.solicitud','=',$id)
-        ->get(); 
+        $venta = Ventas::find($id);
 
 
+        $ventas_detalle = DB::table('ventas as a')
+        ->select('a.*','b.id_venta','b.id_producto','b.cantidad','b.cliente','b.tipop','b.monto','p.nombre as producto')
+        ->join('ventas_detalle as b','b.id_venta','a.id')
+        ->join('productos as p','p.id','b.id_producto')
+        ->where('b.id_venta','=',$id)
+        ->get();
 
-                                    $ped = DB::table('pedidos as a')
-                                    ->select('a.id','a.solicitud','a.descripcion','a.monto','a.created_at','a.estatus','b.huesped','b.habitacion','an.nombre as habita','h.nombre as nompac','h.responsable as apepac')
-                                    ->join('solicitudes as b','b.id','a.solicitud')
-                                    ->join('analisis as an','an.id','b.habitacion')
-                                    ->join('clientes as h','h.id','b.huesped')
-                                    ->where('a.solicitud','=',$id)
-                                    ->first(); 
-
-        $productos = Productos::where('estatus','=',1)->get();
-        $cli = Clientes::where('id','=',$ped->huesped)->first();
+        $ventas_detalled = DB::table('ventas as a')
+        ->select('a.*','b.id_venta','b.id_producto','b.cantidad','b.cliente','b.tipop','b.monto','p.nombre as producto')
+        ->join('ventas_detalle as b','b.id_venta','a.id')
+        ->join('productos as p','p.id','b.id_producto')
+        ->where('b.id_venta','=',$id)
+        ->first();
 
 
 
-        $view = \View::make('pedidos.ticket', compact('pedidos','ped','cli'));
+
+
+        $view = \View::make('ventas.ticket', compact('ventas_detalled','ventas_detalle'));
         $customPaper = array(0,0,500.00,190.00);
 
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view)->setPaper($customPaper, 'landscape');
      
        
-        return $pdf->stream('ticket-pedido'.'.pdf');    }
+        return $pdf->stream('ticket-venta'.'.pdf');    
+    
+    }
 
    
 

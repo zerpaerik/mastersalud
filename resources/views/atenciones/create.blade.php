@@ -626,7 +626,7 @@
   <div class="tab-pane container fade" id="con">  
   <div class="card-body">
                     <div class="row" width="100%">
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                   <label>Tipo</label>
                         <select class="form-control" name="tipo_con">
 						              	<option value="" disabled>Seleccione</option>
@@ -634,7 +634,7 @@
                             <option value="2">Control</option>
                         </select>
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-md-2">
                   <label>Especialista</label>
                         <select class="form-control" name="esp_con">
                           <option value="">Seleccione</option>
@@ -643,11 +643,20 @@
                           @endforeach
                         </select>
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-md-2">
+                  <label>Tipo de Consulta</label>
+                        <select class="form-control" name="tipo_consulta">
+                          <option value="">Seleccione</option>
+                          @foreach($tipo_consultas as $tp)
+                          <option value="{{$p->id}}">{{$tp->detalle}} Precio:{{$tp->precio}}</option>
+                          @endforeach
+                        </select>
+                  </div>
+                  <div class="col-md-2">
                     <label for="exampleInputEmail1">Precio</label>
                     <input type="float" class="form-control monto abono" id="email" name="precio_con" placeholder="Precio" onchange="sumar();sumar_ab()" >
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-md-2">
                   <label>TipoPago</label>
                         <select class="form-control" name="tipop_con">
 						              	<option value="" disabled>Seleccione</option>

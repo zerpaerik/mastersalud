@@ -129,10 +129,7 @@
                     <label for="exampleInputEmail1">Yape</label>
                     <input type="text" disabled class="form-control" value="{{$total_yp->monto}} S/">
                     </div>
-                    <div class="col-md-2">
-                    <label for="exampleInputEmail1">Plin</label>
-                    <input type="text" disabled class="form-control" value="{{$total_pl->monto}} S/">
-                    </div>
+                   
 
 
 
@@ -165,8 +162,8 @@
                     @if(Auth::user()->rol == 1)
 
                       
-                          <a class="btn btn-info btn-sm" href="">
-                              <i class="fas fa-print">
+                          <a class="btn btn-info btn-sm" href="ventas-ticket-{{$an->id}}">
+                              <i class="fas fa-print" >
                               </i>
                               Ticket
                           </a>

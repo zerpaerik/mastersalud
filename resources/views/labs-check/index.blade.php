@@ -127,7 +127,7 @@
                     <td>{{$an->nombre}}</td>
                     <td>
                     @if(Auth::user()->rol == 1)
-                    <a class="btn btn-danger btn-sm" href="laboratorios-chequear-{{$an->id}}" onclick="return confirm('¿Desea chequear este Analisis?')">
+                    <a class="btn btn-danger btn-sm" href="laboratorios-chequear-{{$an->lab}}" onclick="return confirm('¿Desea chequear este Analisis?')">
                     <i class="fa fa-money" aria-hidden="true">
                               </i>
                               Chequear

@@ -26,6 +26,7 @@ use App\CreditosB;
 use App\Sesiones;
 use App\ResultadosServicios;
 use App\ResultadosLaboratorio;
+use App\TipoConsultas;
 
 use Auth;
 use Illuminate\Http\Request;
@@ -560,6 +561,7 @@ class AtencionesController extends Controller
         $met = MetoPro::where('estatus','=',1)->orderBy('nombre','ASC')->get();
 
         $personal = User::where('estatus','=',1)->where('tipo','=',1)->where('tipo_personal','=','Especialista')->orderBy('name','ASC')->get();
+        $tipo_consultas = TipoConsultas::orderBy('detalle','ASC')->get();
 
 
         if(!is_null($request->pac)){
@@ -570,7 +572,7 @@ class AtencionesController extends Controller
             $res = 'NO';
             }
 
-        return view('atenciones.create', compact('paquetes','personal','ecografias','rayos','otros','analisis','paciente','res','met','salud'));
+        return view('atenciones.create', compact('paquetes','personal','ecografias','rayos','otros','analisis','paciente','res','met','salud','tipo_consultas'));
     }
 
     public function getServicio($id)
