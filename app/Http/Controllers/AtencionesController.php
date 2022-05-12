@@ -2855,7 +2855,14 @@ return view('atenciones.particular');
             $cb->save();
         }
 
-        $placas_u = PlacasUsadas::where('atencion','=',$id)->first();
+        $labscheck = LaboratoriosCheck::where('atencion','=',$id)->first();
+
+        if ($labscheck != null) {
+          $lsss = LaboratoriosCheck::where('atencion', '=', $id)->first();
+          $lsss->delete();
+        }
+
+      /*  $placas_u = PlacasUsadas::where('atencion','=',$id)->first();
 
         if ($placas_u != null) {
           $pu = PlacasUsadas::where('atencion', '=', $id)->first();
@@ -2867,7 +2874,7 @@ return view('atenciones.particular');
         if ($placas_m != null) {
           $pm = PlacasMalogradas::where('atencion', '=', $id)->first();
           $pm->delete();
-        }
+        }*/
 
 
         $sesio = Sesiones::where('id_atencion','=',$id)->get();

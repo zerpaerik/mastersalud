@@ -76,7 +76,7 @@
       <div class="container-fluid">
       <div class="card">
               <div class="card-header">
-              <form method="get" action="comisiones">					
+              <form method="get" action="laboratorios_ppgar">					
                   <label for="exampleInputEmail1">Filtros de Busqueda</label>
 
                     <div class="row">
@@ -90,12 +90,17 @@
                     <input type="date" class="form-control" value="{{$f2}}" name="fin">
                   </div>
 
-                  
-                  
-                
                   <div class="col-md-2" style="margin-top: 30px;">
                   <button type="submit" class="btn btn-primary">Buscar</button>
 
+                  </div>
+                  <div class="col-md-2">
+                    <label for="exampleInputEmail1">Items</label>
+                    <input type="text" disabled class="form-control" value="{{$total->items}}" name="inicio" placeholder="Buscar por dni" onsubmit="datapac()">
+                  </div>
+                  <div class="col-md-2">
+                    <label for="exampleInputEmail1">Total</label>
+                    <input type="text" disabled class="form-control" value="{{$total->costo}}" name="inicio" placeholder="Buscar por dni" onsubmit="datapac()">
                   </div>
                   </form>
               
@@ -123,7 +128,7 @@
                   <tr>
                    <td><input value="{{$an->lab}}" type="checkbox" name="com[]"></td>
                     <td>{{$an->lab}}</td>
-                    <td>{{$an->created_at}}</td>
+                    <td>{{$an->creacion}}</td>
                     <td>{{$an->apellidos}} {{$an->nombres}}</td>
                     <td>{{$an->nombre}}</td>
                     <td>{{$an->costo}}</td>

@@ -31,7 +31,21 @@ class LaboratoriosCheckController extends Controller
     public function index(Request $request)
     {
 
+      
+      if ($request->inicio) {
+        $f1 = $request->inicio;
+        $f2 = $request->fin;
 
+        $labs = DB::table('laboratorios_check as  a')
+        ->select('a.*','a.id as lab','b.*','c.*')
+        ->join('analisis as b','b.id','a.analisis')
+        ->join('pacientes as c','c.id','a.paciente')
+        ->where('a.estatus', '=', 0)
+        ->whereBetween('a.created_at', [$f1,$f2])
+        ->get();
+
+
+      } else {
         $labs = DB::table('laboratorios_check as  a')
         ->select('a.*','a.id as lab','b.*','c.*')
         ->join('analisis as b','b.id','a.analisis')
@@ -43,15 +57,46 @@ class LaboratoriosCheckController extends Controller
         $f1 = date('Y-m-d');
         $f2 = date('Y-m-d');
 
+      }
+
+
+      
+
         return view('labs-check.index',compact('labs','f1','f2'));
     }
 
     public function index1(Request $request)
     {
 
+      if ($request->inicio) {
+        $f1 = $request->inicio;
+        $f2 = $request->fin;
 
         $labs = DB::table('laboratorios_check as  a')
-        ->select('a.*','a.id as lab','b.*','c.*')
+        ->select('a.*','a.created_at as creacion','a.id as lab','b.*','c.*')
+        ->join('analisis as b','b.id','a.analisis')
+        ->join('pacientes as c','c.id','a.paciente')
+        ->where('a.estatus', '=', 1)
+        ->whereBetween('a.created_at', [$f1,$f2])
+        ->get();
+
+        $total = DB::table('laboratorios_check as a')
+        ->select('a.*','a.id as lab','b.*','c.*',DB::raw('SUM(b.costo) as costo'), DB::raw('COUNT(DISTINCT a.id) as items'))
+        ->join('analisis as b','b.id','a.analisis')
+        ->join('pacientes as c','c.id','a.paciente')
+        ->where('a.estatus', '=', 1)
+        ->whereBetween('a.created_at', [$f1,$f2])
+        ->first();
+  
+
+
+
+
+      } else {
+
+
+        $labs = DB::table('laboratorios_check as  a')
+        ->select('a.*','a.id as lab','a.created_at as creacion','b.*','c.*')
         ->join('analisis as b','b.id','a.analisis')
         ->join('pacientes as c','c.id','a.paciente')
         ->where('a.estatus', '=', 1)
@@ -61,7 +106,17 @@ class LaboratoriosCheckController extends Controller
         $f1 = date('Y-m-d');
         $f2 = date('Y-m-d');
 
-        return view('labs-check.index1',compact('labs','f1','f2'));
+        $total = DB::table('laboratorios_check as a')
+        ->select('a.*','a.id as lab','b.*','c.*',DB::raw('SUM(b.costo) as costo'), DB::raw('COUNT(DISTINCT a.id) as items'))
+        ->join('analisis as b','b.id','a.analisis')
+        ->join('pacientes as c','c.id','a.paciente')
+        ->where('a.estatus', '=', 1)
+        ->whereBetween('a.created_at', [$f1,$f2])
+        ->first();
+
+      }
+
+        return view('labs-check.index1',compact('labs','f1','f2','total'));
     }
 
     public function index2(Request $request)
@@ -109,27 +164,14 @@ class LaboratoriosCheckController extends Controller
 
 
        $labs = DB::table('laboratorios_check as  a')
-        ->select('a.*','a.id as lab','b.*','c.*')
+        ->select('a.*','a.id as lab','b.*','c.*','at.created_at as fecha_atencion')
         ->join('analisis as b','b.id','a.analisis')
         ->join('pacientes as c','c.id','a.paciente')
+        ->join('atenciones as at','at.id','a.atencion')
         ->where('a.estatus', '=', 2)
         ->whereBetween('a.fecha_pago', [$f1,$f2])
         ->get();
 
-
-     /* $total_sobres = DB::table('comisiones as a')
-      ->select('a.id', 'a.estatus','a.recibo', 'a.id_atencion','a.fecha_pago','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu',DB::raw('SUM(a.monto) as totalrecibo'), DB::raw('COUNT(DISTINCT a.recibo) as total'))
-      ->join('atenciones as at', 'at.id', 'a.id_atencion')
-      ->join('pacientes as b', 'b.id', 'at.id_paciente')
-      ->join('users as c', 'c.id', 'at.id_origen')
-      ->join('users as d', 'd.id', 'a.usuario')
-      ->where('a.estatus', '=', 2)
-      ->where('at.tipo_origen', '=', 1)
-      ->where('at.sede', '=', $request->session()->get('sede'))
-     // ->where('at.id_origen','=',$request->origen)
-      ->whereBetween('a.fecha_pago', [$request->f1, $request->f2])
-      //->groupBy('a.recibo')      
-      ->first();*/
 
       $total_sobres = DB::table('laboratorios_check as a')
       ->select('a.*','a.id as lab','b.*','c.*',DB::raw('SUM(b.costo) as totalrecibo'), DB::raw('COUNT(DISTINCT a.id) as total'))

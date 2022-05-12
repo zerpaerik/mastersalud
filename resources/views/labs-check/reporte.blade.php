@@ -45,7 +45,6 @@
 		padding: 8px 5px;
 	}
 </style>
-<img src="master.png" style="width: 20%; color: black;"/>
 
 <div>
 	<div class="text-center title-header col-12">
@@ -67,16 +66,18 @@
 	<table style="">
 		<tr>
 			<th style="width: 30%;">PACIENTE</th>
-			<th>ANALISIS</th>
-			<th>FECHA PAGO</th>
+			<th style="width: 30%;">ANALISIS</th>
+			<th>F.ATEC</th>
+			<th>F.PAG</th>
 		    <th>COSTO</th>
 			
 		</tr>
 		@foreach ($pagadas as $atec)
 			<tr>
 				<td style="padding: 0;text-overflow: ellipsis;">{{$atec->apellidos}} {{$atec->nombres}}</td>
-				<td style="padding: 0;text-overflow: ellipsis;width: 40%;text-align: left;">{{$atec->nombre}}</td>
-				<td style="padding: 0;text-overflow: ellipsis;">{{$atec->fecha_pago}}</td>
+				<td style="padding: 0;text-overflow: ellipsis;width: 30%;text-align: left;">{{$atec->nombre}}</td>
+				<td style="padding: 0;text-overflow: ellipsis;">{{date('Y-m-d', strtotime($atec->fecha_atencion))}}</td>
+				<td style="padding: 0;text-overflow: ellipsis;">{{date('Y-m-d', strtotime($atec->fecha_pago))}}</td>
 				<td style="padding: 0;text-overflow: ellipsis;">{{$atec->costo}}</td>
 			</tr>
 		@endforeach
