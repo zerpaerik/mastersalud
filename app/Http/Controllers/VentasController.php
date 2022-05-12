@@ -225,11 +225,16 @@ class VentasController extends Controller
         ->where('b.id_venta','=',$id)
         ->first();
 
+         
+        $total = VentasDetalle::where('id_venta', '=',$id)
+        ->select(DB::raw('SUM(total) as monto'))
+        ->first();
 
 
 
 
-        $view = \View::make('ventas.ticket', compact('ventas_detalled','ventas_detalle'));
+
+        $view = \View::make('ventas.ticket', compact('ventas_detalled','ventas_detalle','total'));
         $customPaper = array(0,0,500.00,190.00);
 
         $pdf = \App::make('dompdf.wrapper');

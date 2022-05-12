@@ -198,9 +198,7 @@
     <a class="nav-link" data-toggle="tab" href="#eco">Ecografias</a>
     
   </li>
-  <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#ray">Rayos X</a>
-  </li>
+
   <li class="nav-item">
     <a class="nav-link" data-toggle="tab" href="#sal">Salud Mental</a>
   </li>
@@ -213,9 +211,7 @@
   <li class="nav-item">
     <a class="nav-link" data-toggle="tab" href="#con">Consultas/Controles</a>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#met">Métodos Anticonceptivos</a>
-  </li>
+ 
 </ul>
 
 <!-- Tab panes -->

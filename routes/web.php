@@ -314,6 +314,8 @@ Route::get('laboratorios-reversarp-{id}', 'LaboratoriosCheckController@reversar_
 Route::get('laboratorios-reversar-check-{id}', 'LaboratoriosCheckController@reversar_check');
 Route::post('checkmultiple', 'LaboratoriosCheckController@checkmultiple');
 Route::post('pagarmultiplelab', 'LaboratoriosCheckController@pagarmultiplelab');
+Route::get('reporte/labpagadas', 'LaboratoriosCheckController@reporte_pagadas');
+
 
 
 

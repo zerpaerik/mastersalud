@@ -68,19 +68,89 @@ class LaboratoriosCheckController extends Controller
     {
 
 
+      if ($request->inicio) {
+        $f1 = $request->inicio;
+        $f2 = $request->fin;
+
         $labs = DB::table('laboratorios_check as  a')
         ->select('a.*','a.id as lab','b.*','c.*')
         ->join('analisis as b','b.id','a.analisis')
         ->join('pacientes as c','c.id','a.paciente')
         ->where('a.estatus', '=', 2)
-        ->groupBy('a.recibo')      
+        ->whereBetween('a.fecha_pago', [$f1,$f2])
+        ->get();
+
+
+      } else {
+
+        $labs = DB::table('laboratorios_check as  a')
+        ->select('a.*','a.id as lab','b.*','c.*')
+        ->join('analisis as b','b.id','a.analisis')
+        ->join('pacientes as c','c.id','a.paciente')
+        ->where('a.estatus', '=', 2)
+        ->whereDate('a.fecha_pago', date('Y-m-d 00:00:00', strtotime(date('Y-m-d'))))
         ->get();
 
         $f1 = date('Y-m-d');
         $f2 = date('Y-m-d');
 
+      }
+
+
+     
+
         return view('labs-check.index2',compact('labs','f1','f2'));
     }
+
+    public function reporte_pagadas(Request $request){
+
+      $f1 = $request->f1;
+      $f2 = $request->f2;
+
+
+       $labs = DB::table('laboratorios_check as  a')
+        ->select('a.*','a.id as lab','b.*','c.*')
+        ->join('analisis as b','b.id','a.analisis')
+        ->join('pacientes as c','c.id','a.paciente')
+        ->where('a.estatus', '=', 2)
+        ->whereBetween('a.fecha_pago', [$f1,$f2])
+        ->get();
+
+
+     /* $total_sobres = DB::table('comisiones as a')
+      ->select('a.id', 'a.estatus','a.recibo', 'a.id_atencion','a.fecha_pago','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu',DB::raw('SUM(a.monto) as totalrecibo'), DB::raw('COUNT(DISTINCT a.recibo) as total'))
+      ->join('atenciones as at', 'at.id', 'a.id_atencion')
+      ->join('pacientes as b', 'b.id', 'at.id_paciente')
+      ->join('users as c', 'c.id', 'at.id_origen')
+      ->join('users as d', 'd.id', 'a.usuario')
+      ->where('a.estatus', '=', 2)
+      ->where('at.tipo_origen', '=', 1)
+      ->where('at.sede', '=', $request->session()->get('sede'))
+     // ->where('at.id_origen','=',$request->origen)
+      ->whereBetween('a.fecha_pago', [$request->f1, $request->f2])
+      //->groupBy('a.recibo')      
+      ->first();*/
+
+      $total_sobres = DB::table('laboratorios_check as a')
+      ->select('a.*','a.id as lab','b.*','c.*',DB::raw('SUM(b.costo) as totalrecibo'), DB::raw('COUNT(DISTINCT a.id) as total'))
+      ->join('analisis as b','b.id','a.analisis')
+      ->join('pacientes as c','c.id','a.paciente')
+      ->where('a.estatus', '=', 2)
+      ->whereBetween('a.fecha_pago', [$f1,$f2])
+      ->first();
+
+  
+ 
+ 
+         $view = \View::make('labs-check.reporte')->with('pagadas', $labs)->with('total_sobres', $total_sobres);
+         $pdf = \App::make('dompdf.wrapper');
+         $pdf->loadHTML($view);
+         return $pdf->stream('laboratorios_pagados');
+ 
+   }
+
+
+
 
     public function checkmultiple(Request $request)
     {
@@ -167,28 +237,11 @@ class LaboratoriosCheckController extends Controller
     {
 
 
+      $p = LaboratoriosCheck::find($id);
+      $p->estatus =1;
+      $p->fecha_pago = NULL;
+      $res = $p->update();
 
-     
-      $at = LaboratoriosCheck::where('recibo','=',$id)->get();
-      if ($at != null) {
-          foreach ($at as $rs) {
-              $id_at = $rs->id;
-              if (!is_null($id_at)) {
-                $p = LaboratoriosCheck::find($id_at);
-                $p->estatus =1;
-                $p->fecha_pago = NULL;
-                $res = $p->update();
-                 /* $rsf = Sesiones::where('id', '=', $id_rs)->first();
-                  $rsf->delete();*/
-              }
-          }
-      }
-     
-
-
-
-
-    
       return back();
 
         //

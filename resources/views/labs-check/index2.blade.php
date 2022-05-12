@@ -76,7 +76,7 @@
       <div class="container-fluid">
       <div class="card">
               <div class="card-header">
-              <form method="get" action="comisiones">					
+              <form method="get" action="laboratorios_ppgados">					
                   <label for="exampleInputEmail1">Filtros de Busqueda</label>
 
                     <div class="row">
@@ -100,17 +100,28 @@
                   </form>
               
               </div>
+              @if($f1 != null)
+              <div class="row">
+              <form action="reporte/labpagadas" method="get" target="_blank">
+
+                <input type="hidden" value="{{$f1}}" name="f1">
+                  <input type="hidden" value="{{$f2}}" name="f2">
+                  
+                  <button style="margin-left:8px;margin-top: 5px;" type="submit" class="btn btn-primary">Generar Reporte</button>
+              </form>
+
+              </div>
+              @endif
               <!-- /.card-header -->
               <div class="card-body">
-              <label><input type="checkbox" id="checkTodos" />Seleccionar Todos</label>
 
                 <table id="example1" class="table table-bordered table-striped">
-                <form action="/pagarmultiplelab" method="post">
                   <thead>
                   <tr>
-                    <th>Recibo</th>
                     <th>Fecha</th>
                     <th>Pac.</th>
+                    <th>Analisis</th>
+                    <th>Costo</th>
                     <th></th>
                   </tr>
                   </thead>
@@ -118,12 +129,13 @@
 
                   @foreach($labs as $an)
                   <tr>
-                    <td>{{$an->recibo}}</td>
-                    <td>{{$an->fecha_pago}}</td>
+                    <td>{{$an->created_at}}</td>
                     <td>{{$an->apellidos}} {{$an->nombres}}</td>
+                    <td>{{$an->nombre}}</td>
+                    <td>{{$an->costo}}</td>
                     <td>
                     @if(Auth::user()->rol == 1)
-                    <a class="btn btn-danger btn-sm" href="laboratorios-reversarp-{{$an->recibo}}" onclick="return confirm('¿Desea reversar este Pago?')">
+                    <a class="btn btn-danger btn-sm" href="laboratorios-reversarp-{{$an->lab}}" onclick="return confirm('¿Desea reversar este Pago?')">
                     <i class="fa fa-money" aria-hidden="true">
                               </i>
                               Reversar
@@ -137,14 +149,13 @@
                   </tbody>
                   <tfoot>
                   <tr>
-                    <th>Recibo</th>
-                    <th>Fecha</th>
+                   <th>Fecha</th>
                     <th>Pac.</th>
+                    <th>Analisis</th>
+                    <th>Costo</th>
                     <th></th>
                   </tr>
                   <th>
-								{{ csrf_field() }}
-								<button style="margin-left: -5px;" type="submit" onclick="return confirm('¿Desea Pagar estos Analisis?')" class="btn btn-xs btn-danger">Pagar.Selecc.</button>
 
 							    
 							</th>

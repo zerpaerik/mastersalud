@@ -129,7 +129,7 @@
                     <td>{{$an->costo}}</td>
                     <td>
                     @if(Auth::user()->rol == 1)
-                    <a class="btn btn-danger btn-sm" href="laboratorios-reversar-check-{{$an->id}}" onclick="return confirm('¿Desea reversar este Analisis?')">
+                    <a class="btn btn-danger btn-sm" href="laboratorios-reversar-check-{{$an->lab}}" onclick="return confirm('¿Desea reversar este Analisis?')">
                     <i class="fa fa-money" aria-hidden="true">
                               </i>
                               Reversar
