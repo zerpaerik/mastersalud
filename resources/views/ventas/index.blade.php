@@ -167,6 +167,12 @@
                               </i>
                               Ticket
                           </a>
+
+                          @endif
+
+                          @if(Auth::user()->rol == 1 || Auth::user()->rol == 2)
+
+
                           <a class="btn btn-danger btn-sm" href="ventas-delete-{{$an->id}}" onclick="return confirm('¿Desea Eliminar este registro?')">
                               <i class="fas fa-trash">
                               </i>
@@ -175,7 +181,9 @@
 
 
                        
-                          @endif</td>
+                          @endif
+                        
+                        </td>
                   </tr>
                   @endforeach
                  
