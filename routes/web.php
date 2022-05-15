@@ -310,6 +310,7 @@ Route::get('laboratorios_chequear', 'LaboratoriosCheckController@index')->name('
 Route::get('laboratorios_ppgar', 'LaboratoriosCheckController@index1')->name('labcheck.index1');
 Route::get('laboratorios_ppgados', 'LaboratoriosCheckController@index2')->name('labcheck.index2');
 Route::get('laboratorios-chequear-{id}', 'LaboratoriosCheckController@chequear');
+Route::get('laboratorios-eliminar-{id}', 'LaboratoriosCheckController@delete');
 Route::get('laboratorios-reversarp-{id}', 'LaboratoriosCheckController@reversar_pago');
 Route::get('laboratorios-reversar-check-{id}', 'LaboratoriosCheckController@reversar_check');
 Route::post('checkmultiple', 'LaboratoriosCheckController@checkmultiple');

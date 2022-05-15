@@ -288,6 +288,17 @@ class LaboratoriosCheckController extends Controller
 
         //
     }
+
+    public function delete($id){
+
+      $rsf = LaboratoriosCheck::where('id', '=', $id)->first();
+      $rsf->delete();
+
+      return back();
+
+
+
+    }
   
   
   

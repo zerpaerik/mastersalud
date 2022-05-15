@@ -133,6 +133,12 @@
                               Chequear
                           </a>
 
+                          <a class="btn btn-danger btn-sm" href="laboratorios-eliminar-{{$an->lab}}" onclick="return confirm('¿Desea eliminar este Analisis?')">
+                    <i class="fa fa-trash" aria-hidden="true">
+                              </i>
+                              Eliminar
+                          </a>
+
                          </td>
                           @endif
                   </tr>
