@@ -32,9 +32,11 @@
     <br><br>
 
     <div  style="font-size: 15px; text-align: center;margin-bottom:-60px;margin-top: -30px;">
-		<p><strong>GRUPO MASTER SALUD</strong></p>
-        <p style="margin-top: -20px;"><strong>RUC: 20600665562</strong></p>
-         <p style="margin-top: -10px;"><strong>Dirección: Av Jose Carlos Mariategui, 1768, Ave 15491</strong></p>	
+    <p><strong>GRUPO MASTER SALUD</strong></p>
+		<p style="margin-top: -20px;"><strong>RUC: 20600665562</strong></p>
+    <p style="margin-top: -20px;"><strong>Telèfono: 01 3519855</strong></p>
+    <p style="margin-top: -10px;"><strong>Dirección:Av. José Carlos Mariategui 1768 urb San Gregorio Ate Vitarte</strong></p>
+  
 	     <p style="margin-top: -20px;"><strong>NÚMERO DE RECIBO ELECTRÓNICO:{{$ventas_detalled->id}}</strong></p>
 
 	</div>

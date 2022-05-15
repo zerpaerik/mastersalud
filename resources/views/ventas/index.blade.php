@@ -162,7 +162,7 @@
                     @if(Auth::user()->rol == 1)
 
                       
-                          <a class="btn btn-info btn-sm" href="ventas-ticket-{{$an->id}}">
+                          <a class="btn btn-info btn-sm" target="_blank" href="ventas-ticket-{{$an->id}}">
                               <i class="fas fa-print" >
                               </i>
                               Ticket

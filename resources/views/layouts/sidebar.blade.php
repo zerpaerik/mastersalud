@@ -1999,7 +1999,7 @@
            
 
               <li class="nav-item">
-                <a href="{{route('labcheck.index1')}}" class="nav-link">
+                <a href="{{route('labcheck.index')}}" class="nav-link">
                   <i class="fas fa-hand-holding-usd nav-icon"></i>
                   <p>Laboratorios por Chequear</p>
                 </a>

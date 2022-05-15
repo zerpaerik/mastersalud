@@ -111,11 +111,7 @@
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $eco->cantidad }}</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $eco->monto }}</td>
 		</tr>
-		<tr>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">RayosX</td>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $rayos->cantidad }}</td>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $rayos->monto }}</td>
-		</tr>
+	
 		<tr>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Laboratorios</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->cantidad }}</td>
@@ -131,17 +127,19 @@
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $consultas->cantidad }}</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $consultas->monto }}</td>
 		</tr>
+
+		<tr>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Ventas</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ventas->cantidad }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ventas->monto }}</td>
+		</tr>
 	
 		<tr>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Cuentas por Cobrar</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $cuentasXcobrar->cantidad }}</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $cuentasXcobrar->monto }}</td>
 		</tr>
-		<tr>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Métodos Anticonceptivos</td>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $metodos->cantidad }}</td>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $metodos->monto }}</td>
-		</tr>
+	
 
 		<tr>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Otros Ingresos</td>

@@ -181,6 +181,16 @@ class CajaController extends Controller
             if ($otros->cantidad == 0) {
             $otros->monto = 0;
             }
+
+            $ventas = Creditos::where('origen', 'VENTAS')
+            ->whereRaw("fecha > ? AND fecha <= ?", 
+              array($caja->fecha_init, $caja->fecha_fin))
+            ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+            ->first();
+    
+            if ($ventas->cantidad == 0) {
+            $ventas->monto = 0;
+            }
     
             $pedido = Creditos::where('origen', 'PEDIDO')
             ->whereRaw("fecha > ? AND fecha <= ?", 
@@ -192,7 +202,7 @@ class CajaController extends Controller
             $pedido->monto = 0;
             }
     
-            $totalIngresos = $ingresos->monto + $otros->monto + $pedido->monto;
+            $totalIngresos = $ingresos->monto + $otros->monto + $pedido->monto + $ventas->monto;
     
             $egresos = Debitos::whereRaw("fecha > ? AND fecha <= ?", 
             array($caja->fecha_init, $caja->fecha_fin))
@@ -231,7 +241,7 @@ class CajaController extends Controller
 
 
 
-        $view = \View::make('caja.ticket', compact('ingresos','otros','totalIngresos','egresos','efectivo','tarjeta','totalEgresos','pedido','caja'));
+        $view = \View::make('caja.ticket', compact('ingresos','otros','totalIngresos','egresos','ventas','efectivo','tarjeta','totalEgresos','pedido','caja'));
 
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
@@ -442,6 +452,16 @@ class CajaController extends Controller
         $ingresos->monto = 0;
         }
 
+        $ventas = Creditos::where('origen', 'VENTAS')
+        ->where('sede','=', $request->session()->get('sede'))
+        ->whereRaw("created_at >= ? AND created_at <= ?", 
+         array($fechainic, $fecha))
+        ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+        ->first();
+        if ($ventas->cantidad == 0) {
+        $ventas->monto = 0;
+        }
+
 
        
 
@@ -499,12 +519,12 @@ class CajaController extends Controller
             $totalEgresos += $egreso->monto;
         }
     
-         $totalIngresos = $servicios->monto + $consultas->monto + $eco->monto + $rayos->monto + $cuentasXcobrar->monto + $metodos->monto + $paq->monto  + $lab->monto + $ingresos->monto;
+         $totalIngresos = $servicios->monto + $consultas->monto + $eco->monto + $rayos->monto + $ventas->monto + $cuentasXcobrar->monto + $metodos->monto + $paq->monto  + $lab->monto + $ingresos->monto;
 
         
  
        
-       $view = \View::make('caja.consolidado', compact('servicios', 'consultas','eco','rayos', 'cuentasXcobrar','metodos','serv','lab','paq','caja','egresos','ingresos','efectivo','tarjeta','deposito','yape','totalEgresos','totalIngresos'));
+       $view = \View::make('caja.consolidado', compact('servicios', 'consultas','eco','rayos','ventas', 'cuentasXcobrar','metodos','servicios','lab','paq','caja','egresos','ingresos','efectivo','tarjeta','deposito','yape','totalEgresos','totalIngresos'));
       
        //$view = \View::make('reportes.cierre_caja_ver')->with('caja', $caja);
        $pdf = \App::make('dompdf.wrapper');

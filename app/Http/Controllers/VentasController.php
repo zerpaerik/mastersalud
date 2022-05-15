@@ -181,6 +181,27 @@ class VentasController extends Controller
                 $pedidos->usuario =Auth::user()->id;
                 $pedidos->save();
 
+                $cre = new Creditos();
+                $cre->origen = 'VENTAS';
+                $cre->descripcion = 'VENTA DE PRODUCTOS';
+                $cre->monto = $request->monto_abol['laboratorios'][$key]['abono'] * $request->monto_l['laboratorios'][$key]['monto'];
+                $cre->usuario = Auth::user()->id;
+                $cre->tipopago = $request->tipop;
+                $cre->id_venta_detalle = $pedidos->id;
+                if ($request->tipop == 'EF') {
+                    $cre->efectivo = $request->monto_abol['laboratorios'][$key]['abono'] * $request->monto_l['laboratorios'][$key]['monto'];
+                  } elseif($request->tipop == 'TJ') {
+                    $cre->tarjeta = $request->monto_abol['laboratorios'][$key]['abono'] * $request->monto_l['laboratorios'][$key]['monto'];
+                  } elseif($request->tipop == 'DP') {
+                    $cre->dep = $request->monto_abol['laboratorios'][$key]['abono'] * $request->monto_l['laboratorios'][$key]['monto'];
+                  } else {
+                    $cre->yap = $request->monto_abol['laboratorios'][$key]['abono'] * $request->monto_l['laboratorios'][$key]['monto'];
+                  }
+                $cre->sede = $request->session()->get('sede');
+                $cre->fecha = date('Y-m-d');
+                $cre->save();
+
+
                    $produc = Productos::where('id','=',$lab['laboratorio'])->first();
 
                     $p = Productos::find($produc->id);
@@ -271,6 +292,10 @@ class VentasController extends Controller
 
                     $rsf = VentasDetalle::where('id', '=', $id_rs)->first();
                     $rsf->delete();
+
+                    $cred_de = Creditos::where('id_venta_detalle', '=', $id_rs)->first();
+                    $cred_de->delete();
+
                 }
             }
         }
