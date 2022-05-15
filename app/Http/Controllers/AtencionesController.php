@@ -682,7 +682,7 @@ return view('atenciones.particular');
 
                   $lab = new Atenciones();
                   $lab->tipo_origen =  3;
-                  $lab->id_origen = 1;
+                  $lab->id_origen = $request->esp_con;
                   $lab->id_atec =  $atec->id;
                   $lab->id_paciente =  $request->paciente;
                   $lab->tipo_atencion = 5;
