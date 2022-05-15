@@ -159,7 +159,7 @@
                     <td>{{$an->created_at}}</td>
 
                     <td>
-                    @if(Auth::user()->rol == 1)
+                    @if(Auth::user()->rol == 1 || Auth::user()->rol == 2 || Auth::user()->rol == 7)
 
                       
                           <a class="btn btn-info btn-sm" target="_blank" href="ventas-ticket-{{$an->id}}">
