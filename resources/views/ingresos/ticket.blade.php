@@ -34,6 +34,10 @@
 
     <body style="width:100%; position:fixed: top: 1px; ">
 
+    <div class="" style="font-size: 35px; text-align: center;margin-bottom: 15px;">
+		<img src="/var/www/html/mastersalud/public/logo_negro.png"  style="width: 40%; color: black;"/>
+	</div>
+
     <br><br>
 
     <div  style="font-size: 15px; text-align: center;margin-bottom:-60px;margin-top: -30px;">
