@@ -455,6 +455,12 @@
                 </a>
               </li>
 
+              <li class="nav-item">
+                <a href="{{route('ingproductos.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Ingresos</p>
+                </a>
+              </li>
 
               <li class="nav-item">
                 <a href="{{route('ventas.index')}}" class="nav-link">
@@ -1403,6 +1409,13 @@
                 <a href="{{route('productos.index')}}" class="nav-link">
                   <i class="fas fa-hand-holding-usd nav-icon"></i>
                   <p>Productos</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{route('ingproductos.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Ingresos</p>
                 </a>
               </li>
 
