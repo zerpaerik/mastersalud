@@ -90,6 +90,7 @@
                 <table id="example" class="table table-bordered table-striped">
                   <thead>
                   <tr>
+                  <th>Id</th>
                     <th>Nombre</th>
                     <th>Medida</th>
                     <th>Categoria</th>
@@ -104,6 +105,7 @@
 
                   @foreach($productos as $an)
                   <tr>
+                  <td>{{$an->id}}</td>
                     <td>{{$an->nombre}}</td>
                     <td>{{$an->medida}}</td>
                     <td>{{$an->categoria}}</td>
@@ -141,7 +143,8 @@
                   </tbody>
                   <tfoot>
                   <tr>
-                  <th>Nombre</th>
+                  <th>Id</th>
+                    <th>Nombre</th>
                     <th>Medida</th>
                     <th>Categoria</th>
                     <th>Stock Minimo</th>
