@@ -126,12 +126,14 @@
                     <td>{{$an->apellidos}} {{$an->nombres}}</td>
                     <td>{{$an->nombre}}</td>
                     <td>
-                    @if(Auth::user()->rol == 1)
+                    @if(Auth::user()->rol == 1 || Auth::user()->rol == 13)
                     <a class="btn btn-danger btn-sm" href="laboratorios-chequear-{{$an->lab}}" onclick="return confirm('¿Desea chequear este Analisis?')">
                     <i class="fa fa-money" aria-hidden="true">
                               </i>
                               Chequear
                           </a>
+
+                          
 
                           <a class="btn btn-danger btn-sm" href="laboratorios-eliminar-{{$an->lab}}" onclick="return confirm('¿Desea eliminar este Analisis?')">
                     <i class="fa fa-trash" aria-hidden="true">
