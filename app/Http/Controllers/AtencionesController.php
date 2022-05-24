@@ -304,6 +304,7 @@ class AtencionesController extends Controller
 
         //->get(); 
 
+
      
 
         $atenciones = DB::table('atenciones as a')

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>MasterSalud | Admin</title>
+  <title>MadreTeresa | Admin</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -211,7 +211,9 @@
   <li class="nav-item">
     <a class="nav-link" data-toggle="tab" href="#con">Consultas/Controles</a>
   </li>
- 
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#met">Métodos Anticonceptivos</a>
+  </li>
 </ul>
 
 <!-- Tab panes -->
@@ -631,20 +633,20 @@
                         </select>
                   </div>
                   <div class="col-md-2">
+              <label>Tipo de Consulta</label>
+                    <select class="form-control" name="tipo_consulta">
+                      <option value="">Seleccione</option>
+                      @foreach($tipo_consultas as $tp)
+                      <option value="{{$tp->id}}">{{$tp->detalle}} Precio:{{$tp->precio}}</option>
+                      @endforeach
+                    </select>
+              </div>
+                  <div class="col-md-2">
                   <label>Especialista</label>
                         <select class="form-control" name="esp_con">
                           <option value="">Seleccione</option>
                           @foreach($personal as $p)
                           <option value="{{$p->id}}">{{$p->lastname}} {{$p->name}}</option>
-                          @endforeach
-                        </select>
-                  </div>
-                  <div class="col-md-2">
-                  <label>Tipo de Consulta</label>
-                        <select class="form-control" name="tipo_consulta">
-                          <option value="">Seleccione</option>
-                          @foreach($tipo_consultas as $tp)
-                          <option value="{{$tp->id}}">{{$tp->detalle}} Precio:{{$tp->precio}}</option>
                           @endforeach
                         </select>
                   </div>

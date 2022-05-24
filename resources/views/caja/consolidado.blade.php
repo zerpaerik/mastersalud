@@ -139,6 +139,12 @@
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $cuentasXcobrar->cantidad }}</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $cuentasXcobrar->monto }}</td>
 		</tr>
+
+		<tr>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Mètodos Anticonceptivos</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $metodos->cantidad }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $metodos->monto }}</td>
+		</tr>
 	
 
 		<tr>
