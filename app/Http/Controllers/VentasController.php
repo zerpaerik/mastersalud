@@ -283,8 +283,8 @@ class VentasController extends Controller
                 $id_rs = $rs->id;
                 if (!is_null($id_rs)) {
 
-                    $rsfp = VentasDetalle::where('id', '=', $id_rs)->first();
-                    $produc = VentasDetalle::where('id', '=', $rsfp->id_producto)->first();
+                    $rsfp = VentasDetalle::where('id_venta', '=', $id_rs)->first();
+                    $produc = VentasDetalle::where('id_venta', '=', $rsfp->id_producto)->first();
 
                     $p = Productos::find($rsfp->id_producto);
                     $p->cantidad =$produc->cantidad + $rsfp->cantidad;
