@@ -278,6 +278,7 @@ class VentasController extends Controller
     {
 
         $sesio = VentasDetalle::where('id_venta','=',$id)->get();
+        dd($sesio);
         if ($sesio != null) {
             foreach ($sesio as $rs) {
                 $id_rs = $rs->id;
