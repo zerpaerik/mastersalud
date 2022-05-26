@@ -284,6 +284,7 @@ class VentasController extends Controller
                 if (!is_null($id_rs)) {
 
                     $rsfp = VentasDetalle::where('id_venta', '=', $id_rs)->first();
+                    dd($rsfp);
                     $produc = VentasDetalle::where('id_producto', '=', $rsfp->id_producto)->first();
 
                     $p = Productos::find($rsfp->id_producto);
