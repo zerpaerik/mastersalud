@@ -37,7 +37,7 @@ class LaboratoriosCheckController extends Controller
         $f2 = $request->fin;
 
         $labs = DB::table('laboratorios_check as  a')
-        ->select('a.*','a.id as lab','b.*','c.*')
+        ->select('a.*','a.created_at as fecha','a.id as lab','b.*','c.*')
         ->join('analisis as b','b.id','a.analisis')
         ->join('pacientes as c','c.id','a.paciente')
         ->where('a.estatus', '=', 0)
@@ -47,7 +47,7 @@ class LaboratoriosCheckController extends Controller
 
       } else {
         $labs = DB::table('laboratorios_check as  a')
-        ->select('a.*','a.id as lab','b.*','c.*')
+        ->select('a.*','a.created_at as fecha','a.id as lab','b.*','c.*')
         ->join('analisis as b','b.id','a.analisis')
         ->join('pacientes as c','c.id','a.paciente')
         ->where('a.estatus', '=', 0)

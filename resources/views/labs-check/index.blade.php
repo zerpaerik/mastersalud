@@ -122,7 +122,7 @@
                   <tr>
                    <td><input value="{{$an->lab}}" type="checkbox" name="com[]"></td>
                     <td>{{$an->lab}}</td>
-                    <td>{{$an->created_at}}</td>
+                    <td>{{$an->fecha}}</td>
                     <td>{{$an->apellidos}} {{$an->nombres}}</td>
                     <td>{{$an->nombre}}</td>
                     <td>
