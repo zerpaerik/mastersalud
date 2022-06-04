@@ -334,7 +334,7 @@ var botonDisabled = true;
         allowRemoveLast: true,
 
         // Limits
-        maxFormsCount: 10,
+        maxFormsCount: 15,
         minFormsCount: 1,
         iniFormsCount: 0,
 
@@ -356,7 +356,7 @@ var botonDisabled = true;
         allowRemoveLast: true,
 
         // Limits
-        maxFormsCount: 10,
+        maxFormsCount: 15,
         minFormsCount: 1,
         iniFormsCount: 0,
 
