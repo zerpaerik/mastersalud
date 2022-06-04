@@ -652,6 +652,8 @@ return view('atenciones.particular');
         ->first();  
 
 
+
+
         /*if($validator->fails()) {
           $request->session()->flash('error', 'El Personal ya está REGISTRADO - DNI y EMAIL deben ser únicos.');
           return redirect()->action('PersonalController@create', ['errors' => $validator->errors()]);
@@ -1388,6 +1390,18 @@ return view('atenciones.particular');
 
              
                               while ($contador < $cantidad) {
+
+                                if($request->origen_usuario == 'PARTICULAR'){
+                                  $con = new Consultas();
+                                  $con->id_paciente =  $request->paciente;
+                                  $con->id_especialista =  99;
+                                  $con->id_atencion =  $lab->id;
+                                  $con->tipo =  1;
+                                  $con->monto = 0;
+                                  $con->usuario = Auth::user()->id;
+                                  $con->sede = $request->session()->get('sede');
+                                  $con->save();
+                                } else {
                                   $con = new Consultas();
                                   $con->id_paciente =  $request->paciente;
                                   $con->id_especialista =  $searchUsuarioID->id;
@@ -1397,6 +1411,8 @@ return view('atenciones.particular');
                                   $con->usuario = Auth::user()->id;
                                   $con->sede = $request->session()->get('sede');
                                   $con->save();
+
+                                }
  
                                   $contador++;
                               }
