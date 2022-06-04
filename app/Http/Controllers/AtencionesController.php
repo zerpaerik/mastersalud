@@ -654,6 +654,7 @@ return view('atenciones.particular');
 
 
 
+
         /*if($validator->fails()) {
           $request->session()->flash('error', 'El Personal ya está REGISTRADO - DNI y EMAIL deben ser únicos.');
           return redirect()->action('PersonalController@create', ['errors' => $validator->errors()]);
@@ -1391,7 +1392,7 @@ return view('atenciones.particular');
              
                               while ($contador < $cantidad) {
 
-                                if($request->origen_usuario == 'PARTICULAR'){
+                                if($request->origen == 3){
                                   $con = new Consultas();
                                   $con->id_paciente =  $request->paciente;
                                   $con->id_especialista =  99;
