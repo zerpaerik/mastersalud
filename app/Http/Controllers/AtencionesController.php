@@ -1338,7 +1338,7 @@ return view('atenciones.particular');
 
 
                 
-                              if (! is_null($id_servicio) && $servdetalle->estatus != 0) {
+                              if (! is_null($id_servicio) && $servdetalle->estatus != 0 && $servdetalle->informe != 0) {
                                       $rs = new ResultadosServicios();
                                       $rs->id_atencion =  $lab->id;
                                       $rs->id_servicio = $id_servicio;
@@ -1425,7 +1425,7 @@ return view('atenciones.particular');
                               while ($contador < $cantidad) {
                                   $con = new Consultas();
                                   $con->id_paciente =  $request->paciente;
-                                  $con->id_especialista =  39;
+                                  $con->id_especialista =  $searchUsuarioID->id;
                                   $con->id_atencion =  $lab->id;
                                   $con->tipo =  2;
                                   $con->monto = 0;

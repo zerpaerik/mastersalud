@@ -15,7 +15,7 @@ class Servicios extends Model
     protected $table="servicios";
 
     protected $fillable = [
-        'nombre','tipo','precio','porcentaje','porcentaje1','porcentaje2','estatus'
+        'nombre','tipo','precio','porcentaje','porcentaje1','porcentaje2','estatus','informe'
     ];
 
     
