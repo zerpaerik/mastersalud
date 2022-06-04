@@ -1327,8 +1327,8 @@ return view('atenciones.particular');
                                   while ($contador < $servdetalle->sesiones) {
                                       $ses = new Sesiones();
                                       $ses->id_paciente =   $request->paciente;
-                                      $ses->id_atencion =  $lab->id;
-                                      $ses->monto =  '50';
+                                      $ses->id_atencion =  $id_servicio;
+                                     // $ses->monto =  '50';
                                       $ses->save();
        
                                       $contador++;
@@ -2467,13 +2467,13 @@ return view('atenciones.particular');
     {
 
       if ($request->id_paciente != null) {
+
       
 
         $sesiones = DB::table('sesiones as a')
-        ->select('a.id', 'a.id_atencion','a.created_at', 'a.estatus','at.id_tipo','at.id_paciente','b.nombres','b.apellidos','b.dni','s.nombre as servicio')
-        ->join('atenciones as at', 'at.id', 'a.id_atencion')
-        ->join('pacientes as b', 'b.id', 'at.id_paciente')
-        ->join('servicios as s', 's.id', 'at.id_tipo')
+        ->select('a.id', 'a.id_atencion','a.id_paciente','a.created_at', 'a.estatus','b.nombres','b.apellidos','b.dni','s.nombre as servicio')
+        ->join('pacientes as b', 'b.id', 'a.id_paciente')
+        ->join('servicios as s', 's.id', 'a.id_atencion')
         ->where('a.estatus', '=',0)
         ->where('a.id_paciente','=', $request->id_paciente)
         ->get();
@@ -2523,10 +2523,9 @@ return view('atenciones.particular');
       
 
         $sesiones = DB::table('sesiones as a')
-        ->select('a.id', 'a.id_atencion','a.created_at', 'a.id_personal','a.estatus','at.id_tipo','at.id_paciente','b.nombres','b.apellidos','b.dni','s.nombre as servicio','u.name','u.lastname')
-        ->join('atenciones as at', 'at.id', 'a.id_atencion')
-        ->join('pacientes as b', 'b.id', 'at.id_paciente')
-        ->join('servicios as s', 's.id', 'at.id_tipo')
+        ->select('a.id', 'a.id_atencion','a.id_paciente','a.created_at', 'a.id_personal','a.estatus','b.nombres','b.apellidos','b.dni','s.nombre as servicio','u.name','u.lastname')
+        ->join('pacientes as b', 'b.id', 'a.id_paciente')
+        ->join('servicios as s', 's.id', 'a.id_atencion')
         ->join('users as u', 'u.id', 'a.id_personal')
         ->where('a.estatus', '=',1)
         ->where('a.id_paciente','=', $request->id_paciente)
