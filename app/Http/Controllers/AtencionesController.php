@@ -1339,13 +1339,12 @@ return view('atenciones.particular');
 
                 
                               if (! is_null($id_servicio)) {
-                                  if ($servdetalle->tipo != 'OTROS') {
                                       $rs = new ResultadosServicios();
                                       $rs->id_atencion =  $lab->id;
                                       $rs->id_servicio = $id_servicio;
                                       $rs->monto = $servdetalle->precio;
                                       $rs->save();
-                                  }
+                                  
                               }
                           }
 
@@ -1373,9 +1372,9 @@ return view('atenciones.particular');
                           // VERIFICANDO CANTIDAD DE CONSULTAS EN PAQUETE
 
                           $searchConsPaq = DB::table('paquetes_c')
-            ->select('*')
-            ->where('paquete', '=', $paq['paquete'])
-            ->get();
+                          ->select('*')
+                          ->where('paquete', '=', $paq['paquete'])
+                          ->get();
     
                           if (count($searchConsPaq) > 0) {
                               foreach ($searchConsPaq as $cons) {
@@ -1390,7 +1389,7 @@ return view('atenciones.particular');
                               while ($contador < $cantidad) {
                                   $con = new Consultas();
                                   $con->id_paciente =  $request->paciente;
-                                  $con->id_especialista =  39;
+                                  $con->id_especialista =  $searchUsuarioID->id;
                                   $con->id_atencion =  $lab->id;
                                   $con->tipo =  1;
                                   $con->monto = 0;
