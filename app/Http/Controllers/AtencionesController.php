@@ -1338,7 +1338,7 @@ return view('atenciones.particular');
 
 
                 
-                              if (! is_null($id_servicio)) {
+                              if (! is_null($id_servicio) && $servdetalle->estatus != 0) {
                                       $rs = new ResultadosServicios();
                                       $rs->id_atencion =  $lab->id;
                                       $rs->id_servicio = $id_servicio;
