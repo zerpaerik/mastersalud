@@ -1328,6 +1328,7 @@ return view('atenciones.particular');
                                       $ses = new Sesiones();
                                       $ses->id_paciente =   $request->paciente;
                                       $ses->id_atencion =  $id_servicio;
+                                      $ses->id_atec =  $lab->id;
                                      // $ses->monto =  '50';
                                       $ses->save();
        
@@ -2863,7 +2864,7 @@ return view('atenciones.particular');
           $lsss->delete();
         }
 
-      /*  $placas_u = PlacasUsadas::where('atencion','=',$id)->first();
+       /*$placas_u = PlacasUsadas::where('atencion','=',$id)->first();
 
         if ($placas_u != null) {
           $pu = PlacasUsadas::where('atencion', '=', $id)->first();
@@ -2878,7 +2879,7 @@ return view('atenciones.particular');
         }*/
 
 
-        $sesio = Sesiones::where('id_atencion','=',$id)->get();
+        $sesio = Sesiones::where('id_atec','=',$id)->get();
         if ($sesio != null) {
             foreach ($sesio as $rs) {
                 $id_rs = $rs->id;
