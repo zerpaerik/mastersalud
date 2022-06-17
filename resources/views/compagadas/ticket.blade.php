@@ -55,7 +55,7 @@
 </head>
 <body>
 
-    <img src="/var/www/html/sistemaMasterSalud/public/image.png"  style="width: 20%; color: black;"/>
+    <img src="/var/www/html/sistemaMasterSalud/public/image.png"  style="width: 80%; color: black;"/>
 
 
 	<p style="margin-left: 550px;margin-top: -100px;"><strong>SEDE:</strong>{{ Session::get('sedeName') }}</p>
