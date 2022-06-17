@@ -62,7 +62,7 @@
     <div  style="font-size: 15px; text-align: left;margin-bottom:-20px;margin-top: 20px;">
 		<p style="margin-left: -40px;"><strong>PACIENTE:</strong> {{ $header->apellidos}},{{ $header->nombres}}</p>
     <p style="margin-left: -40px;margin-top: -10px;"><strong>DNI:</strong> {{ $header->dni}}</p>
-    <p style="margin-left: -40px;margin-top: -10px;"><strong>ORIGGEN:</strong> {{ $header->lasto}}, {{ $header->nameo}}</p>
+    <p style="margin-left: -40px;margin-top: -10px;"><strong>ORIGEN:</strong> {{ $header->lasto}}, {{ $header->nameo}}</p>
 
 
 	
