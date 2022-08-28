@@ -409,7 +409,7 @@
                   </div>
                   <div class="col-md-2">
                     <label for="exampleInputEmail1">Fecha</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_vih" placeholder="" value="{{$cont->fec_vih}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_vih" placeholder="" disabled value="{{$cont->fec_vih}}">
                   </div>
                   </div>
                   <br>
