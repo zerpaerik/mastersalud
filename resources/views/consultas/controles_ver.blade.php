@@ -232,7 +232,7 @@
                         </div>
                         <div class="col-md-2">
                         <label for="exampleInputEmail1">Fecha Orina</label>
-                        <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled  value="{{$ant->fec_orina}}"  name="fec_orina" placeholder="">
+                        <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled  value="{{$ant->fec_orina}}"  name="fec_orina" placeholder="">
                         </div>
                         <div class="col-md-2">
                         <label for="exampleInputEmail1">Urea</label>
@@ -241,7 +241,7 @@
                         </div>
                         <div class="col-md-2">
                         <label for="exampleInputEmail1">Fecha Urea</label>
-                        <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled  value="{{$ant->fec_urea}}" name="fec_urea" placeholder="">
+                        <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled  value="{{$ant->fec_urea}}" name="fec_urea" placeholder="">
                         </div>
                         <div class="col-md-2">
                         <label for="exampleInputEmail1">Creatinina</label>
@@ -249,7 +249,7 @@
                         </div>
                         <div class="col-md-2">
                         <label for="exampleInputEmail1">Fecha Creatinina</label>
-                        <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled  value="{{$ant->fec_creati}}" name="fec_creati" placeholder="">
+                        <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled  value="{{$ant->fec_creati}}" name="fec_creati" placeholder="">
                         </div>
                        
 
@@ -264,7 +264,7 @@
                         </div>
                         <div class="col-md-2">
                         <label for="exampleInputEmail1">Fecha BK</label>
-                        <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled  value="{{$ant->fec_bk}}" name="fec_bk" placeholder="">
+                        <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled  value="{{$ant->fec_bk}}" name="fec_bk" placeholder="">
                         </div>
                         <div class="col-md-2">
                         <label for="exampleInputEmail1">Torch</label>
@@ -273,7 +273,7 @@
 
                         <div class="col-md-2">
                         <label for="exampleInputEmail1">Fecha Torch</label>
-                        <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled  value="{{$ant->fec_torch}}"  name="fec_torch" placeholder="">
+                        <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled  value="{{$ant->fec_torch}}"  name="fec_torch" placeholder="">
                         </div>
                        
                        
@@ -391,7 +391,7 @@
                   </div>
                   <div class="col-md-2">
                     <label for="exampleInputEmail1">Fecha</label>
-                    <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_sero" placeholder="" disabled  value="{{$cont->fec_sero}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_sero" placeholder="" disabled  value="{{$cont->fec_sero}}">
                   </div>
                   <div class="col-md-2">
                     <label for="exampleInputEmail1">Glucosa</label>
@@ -400,7 +400,7 @@
                   </div>
                   <div class="col-md-2">
                     <label for="exampleInputEmail1">Fecha</label>
-                    <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_gluco" placeholder="" disabled  value="{{$cont->fec_gluco}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_gluco" placeholder="" disabled  value="{{$cont->fec_gluco}}">
                   </div>
                   <div class="col-md-2">
                     <label for="exampleInputEmail1">VIH</label>
@@ -409,7 +409,7 @@
                   </div>
                   <div class="col-md-2">
                     <label for="exampleInputEmail1">Fecha</label>
-                    <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_vih" placeholder="">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_vih" placeholder="">
                   </div>
                   </div>
                   <br>
@@ -422,7 +422,7 @@
                   </div>
                   <div class="col-md-2">
                     <label for="exampleInputEmail1">Fecha</label>
-                    <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_hemo" placeholder="" disabled  value="{{$cont->fec_hemo}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_hemo" placeholder="" disabled  value="{{$cont->fec_hemo}}">
                   </div>
                  
 
@@ -430,7 +430,7 @@
                     <div class="row">
                      <div class="col-md-12">
                     <label for="exampleInputEmail1">Amnemesis</label>
-                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="3"  name="observaciones" placeholder="Observaciones" value="{{$cont->anem}}">></textarea>
+                    <p>{{$cont->anem}}</p>
                    </div>
                     </div>
                     <br>
