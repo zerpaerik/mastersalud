@@ -427,6 +427,12 @@
                  
 
                     </div>
+                    <div class="row">
+                     <div class="col-md-12">
+                    <label for="exampleInputEmail1">Amnemesis</label>
+                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="3"  name="observaciones" placeholder="Observaciones" value="{{$cont->anem}}">></textarea>
+                   </div>
+                    </div>
                     <br>
                         <label for="exampleInputEmail1">Examen Físico y Regional</label>
                         <div class="row">

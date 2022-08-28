@@ -311,6 +311,7 @@ class ConsultasController extends Controller
       $con->fec_gluco = $request->fec_gluco;
       $con->vih= $request->vih;
       $con->fec_vih = $request->fec_vih;
+      $con->anem = $request->anem;
       $con->hemo = $request->hemo;
       $con->fec_hemo = $request->fec_hemo;
       $con->piel = $request->piel;

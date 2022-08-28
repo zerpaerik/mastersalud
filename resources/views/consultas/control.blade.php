@@ -549,7 +549,7 @@
                         </div>
                         <div class="col-md-2">
                         <label for="exampleInputEmail1">Fecha</label>
-                        <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="ex_aux" placeholder="" value="{{$control->fec_sero}}">
+                        <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="ex_aux" placeholder="" value="{{$control->fec_sero}}">
                         </div>
                         <div class="col-md-2">
                         <label for="exampleInputEmail1">Glucosa</label>
@@ -772,7 +772,7 @@
                   </div>
                   <div class="col-md-2">
                     <label for="exampleInputEmail1">Fecha</label>
-                    <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_sero" placeholder="">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_sero" placeholder="">
                   </div>
                   <div class="col-md-2">
                     <label for="exampleInputEmail1">Glucosa</label>
@@ -784,7 +784,7 @@
                   </div>
                   <div class="col-md-2">
                     <label for="exampleInputEmail1">Fecha</label>
-                    <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_gluco" placeholder="">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_gluco" placeholder="">
                   </div>
                   <div class="col-md-2">
                     <label for="exampleInputEmail1">VIH</label>
@@ -796,7 +796,7 @@
                   </div>
                   <div class="col-md-2">
                     <label for="exampleInputEmail1">Fecha</label>
-                    <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_vih" placeholder="">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_vih" placeholder="">
                   </div>
                   </div>
                   <br>
@@ -809,11 +809,19 @@
                   </div>
                   <div class="col-md-2">
                     <label for="exampleInputEmail1">Fecha</label>
-                    <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_hemo" placeholder="">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_hemo" placeholder="">
                   </div>
                  
 
                     </div>
+
+                    <div class="row">
+                     <div class="col-md-12">
+                    <label for="exampleInputEmail1">Amnemesis</label>
+                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="3"  name="anem"></textarea>
+                   </div>
+                    </div>
+
                     <br>
                         <label for="exampleInputEmail1">Examen Físico y Regional</label>
                         <div class="row">

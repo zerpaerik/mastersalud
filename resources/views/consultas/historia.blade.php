@@ -248,7 +248,7 @@
                    <div class="row">
                      <div class="col-md-2">
                     <label for="exampleInputEmail1">FUR</label>
-                    <input type="date"  class="form-control" id="nombre" name="fur" placeholder="" disabled  value="{{$hist->fur}}">
+                    <input type="text"  class="form-control" id="nombre" name="fur" placeholder="" disabled  value="{{$hist->fur}}">
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">PAP</label>
@@ -467,7 +467,7 @@
                    <div class="row">
                      <div class="col-md-2">
                     <label for="exampleInputEmail1">FUR</label>
-                    <input type="date"  class="form-control" id="nombre" name="fur" placeholder="">
+                    <input type="text"  class="form-control" id="nombre" name="fur" placeholder="">
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">PAP</label>
