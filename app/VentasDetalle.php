@@ -15,7 +15,7 @@ class VentasDetalle extends Model
     protected $table="ventas_detalle";
 
     protected $fillable = [
-        'id_venta','id_producto','cantidad','monto','total','usuario','cliente','archivo','usuario_archivo'
+        'id_venta','id_producto','cantidad','monto','total','usuario','cliente','archivo','usuario_archivo','sede'
     ];
 
     
