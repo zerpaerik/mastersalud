@@ -52,7 +52,7 @@ class VentasController extends Controller
 
         
         $total_ef = VentasDetalle::whereBetween('created_at', [$f1, $f2])
-        ->where('b.sede', '=', $request->session()->get('sede'))
+        ->where('sede', '=', $request->session()->get('sede'))
         ->where('tipop', '=', 'EF')
         ->select(DB::raw('COUNT(*) as cantidad, SUM(total) as monto'))
         ->first();
