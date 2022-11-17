@@ -90,6 +90,8 @@
                   <label for="exampleInputEmail1">Sede</label>
                   <select class="form-control" name="sede">
                     <option value="1">PRINCIPAL</option>
+                    <option value="2">MASTER TRABAJO</option>
+
                   
 
                   </select>
