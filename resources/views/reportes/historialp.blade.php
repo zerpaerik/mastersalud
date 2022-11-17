@@ -139,19 +139,7 @@
                   @foreach($atenciones as $an)
                   <tr>
                     <td>{{date('d-M-y H:i', strtotime($an->created_at))}}</td>
-                    @if($an->sede == 1)
-                    <td>PROCERES</td>
-                    @elseif($an->sede == 2)
-                    <td>CANTO REY</td>
-                    @elseif($an->sede == 3)
-                    <td>VIDA FELIZ</td>
-                    @elseif($an->sede == 4)
-                    <td>ZARATE</td>
-                    @elseif($an->sede == 5)
-                    <td>INDEPENDENCIA</td>
-                    @else
-                    <td>LOS OLIVOS</td>
-                    @endif
+                    <td>PRINCIPAL</td>
                     <td>{{$an->apellidos}} {{$an->nombres}}</td>
                     <td>{{$an->lasto}} {{$an->nameo}}</td>
                     <td>{{$an->detalle}}</td>
