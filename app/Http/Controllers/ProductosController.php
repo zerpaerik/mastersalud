@@ -448,6 +448,7 @@ class ProductosController extends Controller
         $productos = Productos::find($request->id);
         $productos->nombre =$request->nombre;
         $productos->medida =$request->medida;
+        $productos->precio =$request->precio;
         $productos->categoria =$request->categoria;
         $productos->minimo =$request->minimo;
         $productos->minimol =$request->minimol;
