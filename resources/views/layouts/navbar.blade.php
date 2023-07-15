@@ -3,7 +3,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       
-      <li class="nav-item d-none d-sm-inline-block">
+      <li class="nav-item d-none d-sm-inline-block" style="background-color: yellow;font-size: 30px;">
       Sede: {{Session::get('sedeName')}}
       </li>
     </ul>
