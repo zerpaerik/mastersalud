@@ -80,7 +80,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form method="post" action="ingresos/create">					
+              <form method="post" action="oingresos/create">					
               {{ csrf_field() }}                
                     <div class="card-body">
                     <div class="row">

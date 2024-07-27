@@ -187,7 +187,7 @@ Route::get('solicitudes/view/{id}', 'SolicitudesController@ver');
 
 Route::get('ingresos', 'IngresosController@index')->name('ingresos.index');
 Route::get('ingresos-create', 'IngresosController@create')->name('ingresos.create')->middleware('auth');
-Route::post('ingresos/create', 'IngresosController@store')->middleware('auth');
+Route::post('oingresos/create', 'IngresosController@store')->middleware('auth');
 Route::get('ingresos-delete-{id}', 'IngresosController@delete')->middleware('auth');
 Route::get('ingresos-edit-{id}', 'IngresosController@edit')->name('ingresos.edit');
 Route::post('ingresos/edit', 'IngresosController@update');
