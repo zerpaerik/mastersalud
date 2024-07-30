@@ -49,7 +49,7 @@ class AtencionesController extends Controller
       
 
         $serv = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -62,7 +62,7 @@ class AtencionesController extends Controller
        // ->get(); 
 
         $eco = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones', 'a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones', 'a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -74,7 +74,7 @@ class AtencionesController extends Controller
         ->where('a.sede', '=', $request->session()->get('sede'));
 
         $cons = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -86,7 +86,7 @@ class AtencionesController extends Controller
         ->where('a.sede', '=', $request->session()->get('sede'));
 
         $meto = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -98,7 +98,7 @@ class AtencionesController extends Controller
         ->where('a.sede', '=', $request->session()->get('sede'));
 
         $salud = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -110,7 +110,7 @@ class AtencionesController extends Controller
         ->where('a.sede', '=', $request->session()->get('sede'));
 
         $ana = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -122,7 +122,7 @@ class AtencionesController extends Controller
         ->where('a.sede', '=', $request->session()->get('sede'));
 
         $paq = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -135,7 +135,7 @@ class AtencionesController extends Controller
 
 
         $metodos = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -147,7 +147,7 @@ class AtencionesController extends Controller
         ->where('a.sede', '=', $request->session()->get('sede'));
 
         $consultas = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -162,7 +162,7 @@ class AtencionesController extends Controller
      
 
         $atenciones = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -188,7 +188,7 @@ class AtencionesController extends Controller
         $f1 = date('Y-m-d');
 
         $serv = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -202,7 +202,7 @@ class AtencionesController extends Controller
      
 
         $eco = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -215,7 +215,7 @@ class AtencionesController extends Controller
 
 
         $cons = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -228,7 +228,7 @@ class AtencionesController extends Controller
 
 
         $meto = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -240,7 +240,7 @@ class AtencionesController extends Controller
         ->orderBy('a.id','desc');
 
         $salud = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -253,7 +253,7 @@ class AtencionesController extends Controller
 
 
         $ana = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -266,7 +266,7 @@ class AtencionesController extends Controller
 
 
         $paq = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -278,7 +278,7 @@ class AtencionesController extends Controller
         ->orderBy('a.id','desc');
 
         $metodos = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -291,7 +291,7 @@ class AtencionesController extends Controller
 
         
         $consultas = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -308,7 +308,7 @@ class AtencionesController extends Controller
      
 
         $atenciones = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -672,7 +672,8 @@ return view('atenciones.particular');
               $atec = new Atec();
               $atec->save();
 
-        
+              $totalabono = $request->abo_con + $request->abo1_con;
+
               if (!is_null($request->precio_con)) {
 
                 if($request->esp_con == null){
@@ -691,9 +692,13 @@ return view('atenciones.particular');
                   $lab->id_paciente =  $request->paciente;
                   $lab->tipo_atencion = 5;
                   $lab->id_tipo = $request->tipo_con;
-                  $lab->monto = $request->precio_con;
-                  $lab->abono = $request->precio_con;
+                  $lab->resta = $request->precio_con - $totalabono;
+                  $lab->monto = $totalabono;
+                  $lab->abono = $totalabono;
+                  $lab->abono1 = $request->abo_con;
+                  $lab->abono2 = $request->abo1_con;
                   $lab->tipo_pago = $request->tipop_con;
+                  $lab->tipo_pago1 = $request->tipop1_con;
                   $lab->observaciones = $request->observaciones;
                   $lab->usuario = Auth::user()->id;
                   $lab->sede = $request->session()->get('sede');
@@ -703,21 +708,46 @@ return view('atenciones.particular');
                   $cre->origen = 'CONSULTAS';
                   $cre->descripcion = 'INGRESO POR CONSULTA';
                   $cre->id_atencion =  $lab->id;
-                  $cre->monto = $request->precio_con;
+                  $cre->monto = $request->abo_con;
                   $cre->usuario = Auth::user()->id;
                   $cre->tipopago = $request->tipop_con;
                   if ($request->tipop_con == 'EF') {
-                    $cre->efectivo = $request->precio_con;
+                    $cre->efectivo = $request->abo_con;
                   } elseif($request->tipop_con == 'TJ') {
-                    $cre->tarjeta = $request->precio_con;
+                    $cre->tarjeta = $request->abo_con;
                   } elseif($request->tipop_con == 'DP') {
-                    $cre->dep = $request->precio_con;
+                    $cre->dep = $request->abo_con;
                   } else {
-                    $cre->yap = $request->precio_con;
+                    $cre->yap = $request->abo_con;
                   }
                   $cre->sede = $request->session()->get('sede');
                   $cre->fecha = date('Y-m-d');
                   $cre->save();
+
+                  
+                  if ($request->abo1_con != null) {
+                    $cre1 = new Creditos();
+                    $cre1->origen = 'CONSULTAS';
+                    $cre1->descripcion = 'INGRESO POR CONSULTA';
+                    $cre1->id_atencion =  $lab->id;
+                    $cre1->monto = $request->abo1_con;
+                    $cre1->usuario = Auth::user()->id;
+                    $cre1->tipopago = $request->tipop1_con;
+                    if ($request->tipop1_con == 'EF') {
+                      $cre1->efectivo = $request->abo1_con;
+                    } elseif($request->tipop1_con == 'TJ') {
+                      $cre1->tarjeta = $request->abo1_con;
+                    } elseif($request->tipop1_con == 'DP') {
+                      $cre1->dep = $request->abo1_con;
+                    } else {
+                      $cre1->yap = $request->abo1_con;
+                    }
+                    $cre1->sede = $request->session()->get('sede');
+                    $cre1->fecha = date('Y-m-d');
+                    $cre1->horatime = now();
+                    $cre1->save();
+                  }
+
 
                   $cre = new CreditosB();
                   $cre->origen = 'CONSULTAS';
@@ -766,6 +796,15 @@ return view('atenciones.particular');
       
                 }
 
+                $totalabono = $request->abo_met + $request->abo1_met;
+
+                             
+                if($totalabono > $request->precio_met){
+                  $request->session()->flash('error', 'El monto del abono de pagos mixto es mayor al item de la consulta/control.');
+                  return back();
+                } 
+
+
 
 
                   $lab = new Atenciones();
@@ -780,8 +819,12 @@ return view('atenciones.particular');
                   $lab->id_atec =  $atec->id;
                   $lab->id_tipo = $request->metodo;
                   $lab->monto = $request->precio_met;
-                  $lab->abono = $request->precio_met;
+                  $lab->abono = $totalabono;
+                  $lab->abono1 = $request->abo_met;
+                  $lab->abono2 = $request->abo1_met;
+                  $lab->resta = $request->precio_met - $totalabono;
                   $lab->tipo_pago = $request->tipop_met;
+                  $lab->tipo_pago1 = $request->tipop1_met;
                   $lab->observaciones = $request->observaciones;
                   $lab->usuario = Auth::user()->id;
                   $lab->sede = $request->session()->get('sede');
@@ -791,42 +834,46 @@ return view('atenciones.particular');
                   $cre->origen = 'METODO';
                   $cre->descripcion = 'INGRESO POR METODO';
                   $cre->id_atencion =  $lab->id;
-                  $cre->monto = $request->precio_met;
+                  $cre->monto = $request->abo_met;
                   $cre->tipopago = $request->tipop_met;
                   if ($request->tipop_met == 'EF') {
-                    $cre->efectivo = $request->precio_met;
+                    $cre->efectivo = $request->abo_met;
                   } elseif($request->tipop_met == 'TJ') {
-                    $cre->tarjeta = $request->precio_met;
+                    $cre->tarjeta = $request->abo_met;
                   } elseif($request->tipop_met == 'DP') {
-                    $cre->dep = $request->precio_met;
+                    $cre->dep = $request->abo_met;
                   } else {
-                    $cre->yap = $request->precio_met;
+                    $cre->yap = $request->abo_met;
                   }
                   $cre->usuario = Auth::user()->id;
                   $cre->sede = $request->session()->get('sede');
                   $cre->fecha = date('Y-m-d');
                   $cre->save();
 
-                  $cre = new CreditosB();
-                  $cre->origen = 'METODO';
-                  $cre->descripcion = 'INGRESO POR METODO';
-                  $cre->id_atencion =  $lab->id;
-                  $cre->monto = $request->precio_met;
-                  $cre->tipopago = $request->tipop_met;
-                  if ($request->tipop_met == 'EF') {
-                    $cre->efectivo = $request->precio_met;
-                  } elseif($request->tipop_met == 'TJ') {
-                    $cre->tarjeta = $request->precio_met;
-                  } elseif($request->tipop_met == 'DP') {
-                    $cre->dep = $request->precio_met;
-                  } else {
-                    $cre->yap = $request->precio_met;
-                  }
-                  $cre->usuario = Auth::user()->id;
-                  $cre->sede = $request->session()->get('sede');
-                  $cre->fecha = date('Y-m-d');
-                  $cre->save();
+                  if($request->abo1_met != null){
 
+                    $cre1 = new Creditos();
+                    $cre1->origen = 'METODO';
+                    $cre1->descripcion = 'INGRESO POR METODO';
+                    $cre1->id_atencion =  $lab->id;
+                    $cre1->monto = $request->abo1_met;
+                    $cre1->tipopago = $request->tipop1_met;
+                    if ($request->tipop1_met == 'EF') {
+                      $cre1->efectivo = $request->abo1_met;
+                    } elseif($request->tipop1_met == 'TJ') {
+                      $cre1->tarjeta = $request->abo1_met;
+                    } elseif($request->tipop1_met == 'DP') {
+                      $cre1->dep = $request->abo1_met;
+                    } else {
+                      $cre1->yap = $request->abo1_met;
+                    }
+                    $cre1->usuario = Auth::user()->id;
+                    $cre1->sede = $request->session()->get('sede');
+                    $cre1->save();
+
+                  }
+
+             
 
                   $met = new Metodos();
                   $met->id_paciente =  $request->paciente;
@@ -985,6 +1032,8 @@ return view('atenciones.particular');
               foreach ($request->id_salu['salud'] as $key => $serv) {
                   if (!is_null($serv['salu'])) {
                       $servicio = Servicios::where('id', '=', $serv['salu'])->first();
+                      $totalabono = (float)$request->monto_abol['salud'][$key]['abono'] + (float)$request->monto_abol['salud'][$key]['abono1'];
+
 
 
                       //TIPO ATENCION SERVICIOS= 1
@@ -1140,6 +1189,8 @@ return view('atenciones.particular');
                   foreach ($request->id_analisi['analisis'] as $key => $laboratorio) {
                       if (!is_null($laboratorio['analisi'])) {
                           $analisis = Analisis::where('id', '=', $laboratorio['analisi'])->first();
+                          $totalabono = (float)$request->monto_abol['analisis'][$key]['abono'] + (float)$request->monto_abol['analisis'][$key]['abono1'];
+
 
 
                           //TIPO ATENCION LABORATORIO= 4
@@ -1263,6 +1314,8 @@ return view('atenciones.particular');
                   foreach ($request->id_paquete['paquetes_'] as $key => $paq) {
                       if (!is_null($paq['paquete'])) {
                           $paquetes = Paquetes::where('id', '=', $paq['paquete'])->first();
+                          $totalabono = (float)$request->monto_abol['paquetes'][$key]['abono'] + (float)$request->monto_abol['paquetes'][$key]['abono1'];
+
 
                           //TIPO ATENCION PAQUETE= 7
                           $lab = new Atenciones();
@@ -1518,6 +1571,8 @@ return view('atenciones.particular');
                   foreach ($request->id_ecografia['ecografias'] as $key => $eco) {
                       if (!is_null($eco['ecografia'])) {
                           $servicio = Servicios::where('id', '=', $eco['ecografia'])->first();
+                          $totalabono = (float)$request->monto_abol['ecografias'][$key]['abono'] + (float)$request->monto_abol['ecografias'][$key]['abono1'];
+
 
                           //TIPO ATENCION ECOGRAFIA= 2
                           $lab = new Atenciones();

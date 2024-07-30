@@ -136,7 +136,7 @@
                     <td>{{$an->detalle}}</td>
                     <td>{{round($an->monto,2)}}</td>
                     <td>{{round($an->abono,2)}}</td>
-                    <td >{{$an->tipo_pago}}</td>
+                    <td>@if($an->abono2 != 0){{round($an->abono1,2)}} <span class="badge bg-success">{{$an->tipo_pago}}</span> {{round($an->abono2,2)}} <span class="badge bg-success">{{$an->tipo_pago1}}</span>@else{{round($an->abono,2)}} <span class="badge bg-success">{{$an->tipo_pago}}</span> @endif</td>
                     @if($an->pagado == 1)
                     <td><span class="badge bg-danger">NO</span></td>
                     @else
