@@ -3020,13 +3020,22 @@ return view('atenciones.particular');
                 }
             }
         }
+
+        $creditosa = Creditos::where('id_atencion','=',$id)->get();
+
+
+      //ELIMINAR CREDITOS
+
+          foreach ($creditosa as $cred) {
+            $id_credito = $cred->id;
+            if (!is_null($id_credito)) {
+                $rsf = Creditos::where('id', '=', $id_credito)->first();
+                $rsf->delete();
+            }
+        }
+        
+
        
-
-        $creditos = Creditos::where('id_atencion','=',$id)->first();
-        $creditos->delete();
-
-        $creditos = CreditosB::where('id_atencion','=',$id)->first();
-        $creditos->delete();
 /*
         $rs = ResultadosServicios::where('id_atencion','=',$id)->first();
         $rs->estatus = 0;
