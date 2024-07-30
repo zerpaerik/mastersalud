@@ -127,7 +127,7 @@
                   <tr>
                     <td>{{$an->id}}</td>
                     <td>{{date('d-M-y H:i', strtotime($an->created_at))}}</td>
-                    @if($an->monto > $an->abono)
+                    @if($an->monto > $an->abono + $an->abono1)
                     <td style="background: yellow;" title="ESTE PACIENTE TIENE DEUDA PENDIENTE">{{$an->apellidos}} {{$an->nombres}}</td>
                     @else
                     <td>{{$an->apellidos}} {{$an->nombres}}</td>
