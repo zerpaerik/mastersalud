@@ -1978,7 +1978,14 @@ return view('atenciones.particular');
     public function updates(Request $request)
     {
 
+      $totalabono = $request->abono1 + $request->abono2;
 
+      if($totalabono > $request->monto){
+        $request->session()->flash('error', 'El monto del abono es mayor al monto total.');
+        return back();
+      } 
+
+     // dd($request->monto);
 
       $serv = Servicios::where('id','=',$request->id_tipo)->first();
       $rsfd = ResultadosServicios::where('id_atencion','=',$request->id)->first();
@@ -2028,25 +2035,43 @@ return view('atenciones.particular');
           $cobf->delete();
       }
 
-      $creditosa = Creditos::where('id_atencion','=',$request->id)->first();
+      $creditosa = Creditos::where('id_atencion','=',$request->id)->get();
 
 
-      $creditos = Creditos::where('id_atencion','=',$request->id)->first();
-      $creditos->monto = $request->abono;
+      //ELIMINAR CREDITOS
+
+      foreach ($creditosa as $cred) {
+        $id_credito = $cred->id;
+        if (!is_null($id_credito)) {
+            $rsf = Creditos::where('id', '=', $id_credito)->first();
+            $rsf->delete();
+        }
+    }
+
+    //GUARDANDO CREDITOS
+
+      $creditos =  new Creditos();
+      $creditos->monto = $request->abono1;
       $creditos->tipopago =$request->tipo_pago;
-      $creditos->created_at =$creditosa->created_at;
+      $creditos->id_atencion =$request->id;
+      $creditos->usuario =Auth::user()->id;
+      $creditos->sede =$request->session()->get('sede');
+      $creditos->origen = 'SERVICIO';
+      $creditos->descripcion = 'INGRESO POR SERVICIO';
+      $creditos->fecha = $atenciod->created_at;
+      $creditos->created_at = $atenciod->created_at;
       if ($request->tipo_pago == 'EF') {
-        $creditos->efectivo = $request->abono;
+        $creditos->efectivo = $request->abono1;
         $creditos->tarjeta = '0';
         $creditos->dep = '0';
         $creditos->yap = '0';
       } elseif($request->tipo_pago == 'TJ') {
-        $creditos->tarjeta = $request->abono;
+        $creditos->tarjeta = $request->abono1;
         $creditos->efectivo = '0';
         $creditos->dep = '0';
         $creditos->yap = '0';
       } elseif($request->tipo_pago == 'DP') {
-        $creditos->dep = $request->abono;
+        $creditos->dep = $request->abono1;
         $creditos->efectivo = '0';
         $creditos->tarjeta = '0';
         $creditos->yap = '0';
@@ -2054,44 +2079,47 @@ return view('atenciones.particular');
         $creditos->efectivo = '0';
         $creditos->tarjeta = '0';
         $creditos->dep = '0';
-        $creditos->yap = $request->abono;
+        $creditos->yap = $request->abono1;
       }
       $creditos->save();
 
-      $creditosbb = CreditosB::where('id_atencion','=',$request->id)->first();
-
-      if($creditosbb != null){
-      $creditosb = CreditosB::where('id_atencion','=',$request->id)->first();
-      $creditosb->monto = $request->abono;
-      $creditosb->tipopago =$request->tipo_pago;
-      $creditosb->created_at =$creditosa->created_at;
-      if ($request->tipo_pago == 'EF') {
-        $creditosb->efectivo = $request->abono;
-        $creditosb->tarjeta = '0';
-        $creditosb->dep = '0';
-        $creditosb->yap = '0';
-      } elseif($request->tipo_pago == 'TJ') {
-        $creditosb->tarjeta = $request->abono;
-        $creditosb->efectivo = '0';
-        $creditosb->dep = '0';
-        $creditosb->yap = '0';
-      } elseif($request->tipo_pago == 'DP') {
-        $creditosb->dep = $request->abono;
-        $creditosb->efectivo = '0';
-        $creditosb->tarjeta = '0';
-        $creditosb->yap = '0';
+      if($request->abono2 != null){
+        $creditos2 =  new Creditos();
+      $creditos2->monto = $request->abono2;
+      $creditos2->tipopago =$request->tipo_pago1;
+      $creditos2->usuario =Auth::user()->id;
+      $creditos2->sede =$request->session()->get('sede');
+      $creditos2->fecha = $atenciod->created_at;
+      $creditos2->created_at = $atenciod->created_at;
+      $creditos2->origen = 'SERVICIO';
+      $creditos2->descripcion = 'INGRESO POR SERVICIO';
+      $creditos2->id_atencion =$request->id;
+      if ($request->tipo_pago1 == 'EF') {
+        $creditos2->efectivo = $request->abono2;
+        $creditos2->tarjeta = '0';
+        $creditos2->dep = '0';
+        $creditos2->yap = '0';
+      } elseif($request->tipo_pago1 == 'TJ') {
+        $creditos2->tarjeta = $request->abono2;
+        $creditos2->efectivo = '0';
+        $creditos2->dep = '0';
+        $creditos2->yap = '0';
+      } elseif($request->tipo_pago1 == 'DP') {
+        $creditos2->dep = $request->abono2;
+        $creditos2->efectivo = '0';
+        $creditos2->tarjeta = '0';
+        $creditos->yap = '0';
       } else {
-        $creditosb->efectivo = '0';
-        $creditosb->tarjeta = '0';
-        $creditosb->dep = '0';
-        $creditosb->yap = $request->abono;
+        $creditos2->efectivo = '0';
+        $creditos2->tarjeta = '0';
+        $creditos2->dep = '0';
+        $creditos2->yap = $request->abono2;
       }
-      $creditosb->save();
+      $creditos2->save();
 
-    }
+      }
 
-   
-      
+
       $csf1 = Comisiones::where('id_atencion','=',$request->id)->where('tecnologo','=',0)->get();
       if ($csf1 != null) {
          /* $csf = Comisiones::where('id_atencion', '=', $request->id)->first();
@@ -2158,24 +2186,24 @@ return view('atenciones.particular');
       }
 
       
-      if($request->monto > $request->abono){
+      if($request->monto > $totalabono){
 
         $cb = new Cobrar();
         $cb->id_atencion =  $request->id;
         $cb->detalle =  $serv->nombre;
-        $cb->resta =$request->monto - $request->abono;
+        $cb->resta =$request->monto - $totalabono;
         $cb->save();
     
       }
 
-
-
-
       $p = Atenciones::find($request->id);
       $p->monto =$request->monto;
-      $p->abono =$request->abono;
-      $p->resta =$request->monto - $request->abono;
+      $p->abono =$totalabono;
+      $p->abono1 =$request->abono1;
+      $p->abono2 =$request->abono2;
+      $p->resta =$request->monto - $totalabono;
       $p->tipo_pago =$request->tipo_pago;
+      $p->tipo_pago1 =$request->tipo_pago1;
       $p->tipo_origen =$request->tipo_origen;
       if($request->tipo_origen == 3){
         $p->id_origen =99;
@@ -2188,76 +2216,117 @@ return view('atenciones.particular');
       return redirect()->action('AtencionesController@index')
       ->with('success','Modificado Exitosamente!');
 
-        //
     }
 
     public function updatel(Request $request)
     {
 
+      $totalabono = $request->abono1 + $request->abono2;
+
+      if($totalabono > $request->monto){
+        $request->session()->flash('error', 'El monto del abono es mayor al monto total.');
+        return back();
+      } 
+
 
       $serv = Analisis::where('id','=',$request->id_tipo)->first();
+      $atenciod = Atenciones::where('id','=',$request->id)->first();
 
       $rsf = ResultadosLaboratorio::where('id_atencion','=',$request->id)->first();
       $rsf->id_laboratorio = $request->id_tipo;
       $rsf->save();
 
-      $creditos = Creditos::where('id_atencion','=',$request->id)->first();
-      $creditos->monto = $request->abono;
-      $creditos->tipopago =$request->tipo_pago;
-      if ($request->tipo_pago == 'EF') {
-        $creditos->efectivo = $request->abono;
-        $creditos->tarjeta = '0';
-        $creditos->dep = '0';
-        $creditos->yap = '0';
-      } elseif($request->tipo_pago == 'TJ') {
-        $creditos->tarjeta = $request->abono;
-        $creditos->efectivo = '0';
-        $creditos->dep = '0';
-        $creditos->yap = '0';
-      } elseif($request->tipo_pago == 'DP') {
-        $creditos->dep = $request->abono;
-        $creditos->efectivo = '0';
-        $creditos->tarjeta = '0';
-        $creditos->yap = '0';
-      } else {
-        $creditos->efectivo = '0';
-        $creditos->tarjeta = '0';
-        $creditos->dep = '0';
-        $creditos->yap = $request->abono;
-      }
-      $creditos->save();
-
-      $creditos = CreditosB::where('id_atencion','=',$request->id)->first();
-      $creditos->monto = $request->abono;
-      $creditos->tipopago =$request->tipo_pago;
-      if ($request->tipo_pago == 'EF') {
-        $creditos->efectivo = $request->abono;
-        $creditos->tarjeta = '0';
-        $creditos->dep = '0';
-        $creditos->yap = '0';
-      } elseif($request->tipo_pago == 'TJ') {
-        $creditos->tarjeta = $request->abono;
-        $creditos->efectivo = '0';
-        $creditos->dep = '0';
-        $creditos->yap = '0';
-      } elseif($request->tipo_pago == 'DP') {
-        $creditos->dep = $request->abono;
-        $creditos->efectivo = '0';
-        $creditos->tarjeta = '0';
-        $creditos->yap = '0';
-      } else {
-        $creditos->efectivo = '0';
-        $creditos->tarjeta = '0';
-        $creditos->dep = '0';
-        $creditos->yap = $request->abono;
-      }
-      $creditos->save();
+     
 
       $csf1 = Comisiones::where('id_atencion','=',$request->id)->first();
 
       if($csf1 != null){
         $csf = Comisiones::where('id_atencion','=',$request->id)->first();
         $csf->delete();
+
+      }
+
+      $creditosa = Creditos::where('id_atencion','=',$request->id)->get();
+
+
+      //ELIMINAR CREDITOS
+
+      foreach ($creditosa as $cred) {
+        $id_credito = $cred->id;
+        if (!is_null($id_credito)) {
+            $rsf = Creditos::where('id', '=', $id_credito)->first();
+            $rsf->delete();
+        }
+    }
+
+    //GUARDANDO CREDITOS
+
+      $creditos =  new Creditos();
+      $creditos->monto = $request->abono1;
+      $creditos->tipopago =$request->tipo_pago;
+      $creditos->id_atencion =$request->id;
+      $creditos->usuario =Auth::user()->id;
+      $creditos->sede =$request->session()->get('sede');
+      $creditos->origen = 'ANALISIS';
+      $creditos->descripcion = 'INGRESO POR ANALISIS';
+      $creditos->fecha = $atenciod->created_at;
+      $creditos->created_at = $atenciod->created_at;
+      if ($request->tipo_pago == 'EF') {
+        $creditos->efectivo = $request->abono1;
+        $creditos->tarjeta = '0';
+        $creditos->dep = '0';
+        $creditos->yap = '0';
+      } elseif($request->tipo_pago == 'TJ') {
+        $creditos->tarjeta = $request->abono1;
+        $creditos->efectivo = '0';
+        $creditos->dep = '0';
+        $creditos->yap = '0';
+      } elseif($request->tipo_pago == 'DP') {
+        $creditos->dep = $request->abono1;
+        $creditos->efectivo = '0';
+        $creditos->tarjeta = '0';
+        $creditos->yap = '0';
+      } else {
+        $creditos->efectivo = '0';
+        $creditos->tarjeta = '0';
+        $creditos->dep = '0';
+        $creditos->yap = $request->abono1;
+      }
+      $creditos->save();
+
+      if($request->abono2 != null){
+        $creditos2 =  new Creditos();
+      $creditos2->monto = $request->abono2;
+      $creditos2->tipopago =$request->tipo_pago1;
+      $creditos2->usuario =Auth::user()->id;
+      $creditos2->sede =$request->session()->get('sede');
+      $creditos2->fecha = $atenciod->created_at;
+      $creditos2->created_at = $atenciod->created_at;
+      $creditos2->origen = 'ANALISIS';
+      $creditos2->descripcion = 'INGRESO POR ANALISIS';
+      $creditos2->id_atencion =$request->id;
+      if ($request->tipo_pago1 == 'EF') {
+        $creditos2->efectivo = $request->abono2;
+        $creditos2->tarjeta = '0';
+        $creditos2->dep = '0';
+        $creditos2->yap = '0';
+      } elseif($request->tipo_pago1 == 'TJ') {
+        $creditos2->tarjeta = $request->abono2;
+        $creditos2->efectivo = '0';
+        $creditos2->dep = '0';
+        $creditos2->yap = '0';
+      } elseif($request->tipo_pago1 == 'DP') {
+        $creditos2->dep = $request->abono2;
+        $creditos2->efectivo = '0';
+        $creditos2->tarjeta = '0';
+        $creditos->yap = '0';
+      } else {
+        $creditos2->efectivo = '0';
+        $creditos2->tarjeta = '0';
+        $creditos2->dep = '0';
+        $creditos2->yap = $request->abono2;
+      }
+      $creditos2->save();
 
       }
      
@@ -2289,12 +2358,12 @@ return view('atenciones.particular');
           $cobf->delete();
       }
 
-      if($request->monto > $request->abono){
+      if($request->monto > $totalabono){
 
         $cb = new Cobrar();
         $cb->id_atencion =  $request->id;
         $cb->detalle =  $serv->nombre;
-        $cb->resta =$request->monto - $request->abono;
+        $cb->resta =$request->monto - $totalabono;
         $cb->save();
     
       }
@@ -2302,9 +2371,12 @@ return view('atenciones.particular');
 
       $p = Atenciones::find($request->id);
       $p->monto =$request->monto;
-      $p->abono =$request->abono;
-      $p->resta =$request->monto - $request->abono;
+      $p->abono =$totalabono;
+      $p->abono1 =$request->abono1;
+      $p->abono2 =$request->abono2;
+      $p->resta =$request->monto - $totalabono;
       $p->tipo_pago =$request->tipo_pago;
+      $p->tipo_pago1 =$request->tipo_pago1;
       $p->tipo_origen =$request->tipo_origen;
       if($request->tipo_origen == 3){
         $p->id_origen =99;
@@ -2323,25 +2395,59 @@ return view('atenciones.particular');
     public function updatep(Request $request)
     {
 
+      $totalabono = $request->abono1 + $request->abono2;
+
+      if($totalabono > $request->monto){
+        $request->session()->flash('error', 'El monto del abono es mayor al monto total.');
+        return back();
+      } 
+
+
+      $atenciod = Atenciones::where('id','=',$request->id)->first();
+
+
       $com = Comisiones::where('id_atencion','=',$request->id)->first();
+
       $serv = Paquetes::where('id','=',$request->id_tipo)->first();
 
 
-      $creditos = Creditos::where('id_atencion','=',$request->id)->first();
-      $creditos->monto = $request->abono;
+      $creditosa = Creditos::where('id_atencion','=',$request->id)->get();
+
+
+      //ELIMINAR CREDITOS
+
+      foreach ($creditosa as $cred) {
+        $id_credito = $cred->id;
+        if (!is_null($id_credito)) {
+            $rsf = Creditos::where('id', '=', $id_credito)->first();
+            $rsf->delete();
+        }
+    }
+
+    //GUARDANDO CREDITOS
+
+      $creditos =  new Creditos();
+      $creditos->monto = $request->abono1;
       $creditos->tipopago =$request->tipo_pago;
+      $creditos->id_atencion =$request->id;
+      $creditos->usuario =Auth::user()->id;
+      $creditos->sede =$request->session()->get('sede');
+      $creditos->origen = 'PAQUETES';
+      $creditos->descripcion = 'INGRESO POR PAQUETE';
+      $creditos->fecha = $atenciod->created_at;
+      $creditos->created_at = $atenciod->created_at;
       if ($request->tipo_pago == 'EF') {
-        $creditos->efectivo = $request->abono;
+        $creditos->efectivo = $request->abono1;
         $creditos->tarjeta = '0';
         $creditos->dep = '0';
         $creditos->yap = '0';
       } elseif($request->tipo_pago == 'TJ') {
-        $creditos->tarjeta = $request->abono;
+        $creditos->tarjeta = $request->abono1;
         $creditos->efectivo = '0';
         $creditos->dep = '0';
         $creditos->yap = '0';
       } elseif($request->tipo_pago == 'DP') {
-        $creditos->dep = $request->abono;
+        $creditos->dep = $request->abono1;
         $creditos->efectivo = '0';
         $creditos->tarjeta = '0';
         $creditos->yap = '0';
@@ -2349,9 +2455,76 @@ return view('atenciones.particular');
         $creditos->efectivo = '0';
         $creditos->tarjeta = '0';
         $creditos->dep = '0';
-        $creditos->yap = $request->abono;
+        $creditos->yap = $request->abono1;
       }
       $creditos->save();
+
+      if($request->abono2 != null){
+      $creditos2 =  new Creditos();
+      $creditos2->monto = $request->abono2;
+      $creditos2->tipopago =$request->tipo_pago1;
+      $creditos2->usuario =Auth::user()->id;
+      $creditos2->sede =$request->session()->get('sede');
+      $creditos2->fecha = $atenciod->created_at;
+      $creditos2->created_at = $atenciod->created_at;
+      $creditos2->origen = 'PAQUETES';
+      $creditos2->descripcion = 'INGRESO POR PAQUETE';
+      $creditos2->id_atencion =$request->id;
+      if ($request->tipo_pago1 == 'EF') {
+        $creditos2->efectivo = $request->abono2;
+        $creditos2->tarjeta = '0';
+        $creditos2->dep = '0';
+        $creditos2->yap = '0';
+      } elseif($request->tipo_pago1 == 'TJ') {
+        $creditos2->tarjeta = $request->abono2;
+        $creditos2->efectivo = '0';
+        $creditos2->dep = '0';
+        $creditos2->yap = '0';
+      } elseif($request->tipo_pago1 == 'DP') {
+        $creditos2->dep = $request->abono2;
+        $creditos2->efectivo = '0';
+        $creditos2->tarjeta = '0';
+        $creditos2->yap = '0';
+      } else {
+        $creditos2->efectivo = '0';
+        $creditos2->tarjeta = '0';
+        $creditos2->dep = '0';
+        $creditos2->yap = $request->abono2;
+      }
+      $creditos2->save();
+
+      }
+     
+
+
+   /*   if($atenciod->created_at->format('Y-m-d') == date('Y-m-d')){
+          $creditos = Creditos::where('id_atencion','=',$request->id)->first();
+          $creditos->monto = $request->abono;
+          $creditos->tipopago =$request->tipo_pago;
+          if ($request->tipo_pago == 'EF') {
+            $creditos->efectivo = $request->abono;
+            $creditos->tarjeta = '0';
+            $creditos->dep = '0';
+            $creditos->yap = '0';
+          } elseif($request->tipo_pago == 'TJ') {
+            $creditos->tarjeta = $request->abono;
+            $creditos->efectivo = '0';
+            $creditos->dep = '0';
+            $creditos->yap = '0';
+          } elseif($request->tipo_pago == 'DP') {
+            $creditos->dep = $request->abono;
+            $creditos->efectivo = '0';
+            $creditos->tarjeta = '0';
+            $creditos->yap = '0';
+          } else {
+            $creditos->efectivo = '0';
+            $creditos->tarjeta = '0';
+            $creditos->dep = '0';
+            $creditos->yap = $request->abono;
+          }
+          $creditos->save();
+
+    }
 
       $creditos = CreditosB::where('id_atencion','=',$request->id)->first();
       $creditos->monto = $request->abono;
@@ -2377,24 +2550,27 @@ return view('atenciones.particular');
         $creditos->dep = '0';
         $creditos->yap = $request->abono;
       }
-      $creditos->save();
+      $creditos->save();*/
 
 
       if($request->tipo_origen == 1){
-
+        if($com != null){
         $csf = Comisiones::where('id_atencion','=',$request->id)->first();
         $csf->monto = $request->monto * $com->porcentaje / 100;
         $csf->id_responsable = $request->origen_usuario != null ? $request->origen_usuario : $request->origen_usuario2;
         $csf->id_origen = $request->tipo_origen;
         $csf->save();
+      }
 
       } else if($request->tipo_origen == 2){
 
+        if($com != null){
         $csf = Comisiones::where('id_atencion','=',$request->id)->first();
         $csf->monto =  $request->monto * $com->porcentaje / 100;
         $csf->id_origen = $request->tipo_origen;
         $csf->id_responsable = $request->origen_usuario != null ? $request->origen_usuario : $request->origen_usuario2;
         $csf->save();
+      }
 
       } else {
 
@@ -2411,12 +2587,12 @@ return view('atenciones.particular');
           $cobf->delete();
       }
 
-      if($request->monto > $request->abono){
+      if($request->monto > $totalabono){
 
         $cb = new Cobrar();
         $cb->id_atencion =  $request->id;
         $cb->detalle =  $serv->nombre;
-        $cb->resta =$request->monto - $request->abono;
+        $cb->resta =$request->monto - $totalabono;
         $cb->save();
     
       }
@@ -2425,9 +2601,12 @@ return view('atenciones.particular');
 
       $p = Atenciones::find($request->id);
       $p->monto =$request->monto;
-      $p->abono =$request->abono;
-      $p->resta =$request->monto - $request->abono;
+      $p->abono =$totalabono;
+      $p->abono1 =$request->abono1;
+      $p->abono2 =$request->abono2;
+      $p->resta =$request->monto - $totalabono;
       $p->tipo_pago =$request->tipo_pago;
+      $p->tipo_pago1 =$request->tipo_pago1;
       $p->tipo_origen =$request->tipo_origen;
       if($request->tipo_origen == 3){
         $p->id_origen =99;
@@ -2445,28 +2624,58 @@ return view('atenciones.particular');
     public function updatec(Request $request)
     {
 
+      $totalabono = $request->abono1 + $request->abono2;
+
+      if($totalabono > $request->monto){
+        $request->session()->flash('error', 'El monto del abono es mayor al monto total.');
+        return back();
+      } 
+
 
       $p = Consultas::where('id_atencion','=',$request->id)->first();
       $p->id_especialista =$request->especialista;
       $p->monto =$request->monto;
       $p->tipo =$request->tipo;
       $res = $p->update();
+      
+      $atenciod = Atenciones::where('id','=',$request->id)->first();
+      $creditosa = Creditos::where('id_atencion','=',$request->id)->get();
 
-      $creditos = Creditos::where('id_atencion','=',$request->id)->first();
-      $creditos->monto = $request->abono;
+
+      //ELIMINAR CREDITOS
+
+      foreach ($creditosa as $cred) {
+        $id_credito = $cred->id;
+        if (!is_null($id_credito)) {
+            $rsf = Creditos::where('id', '=', $id_credito)->first();
+            $rsf->delete();
+        }
+    }
+
+    //GUARDANDO CREDITOS
+
+      $creditos =  new Creditos();
+      $creditos->monto = $request->abono1;
       $creditos->tipopago =$request->tipo_pago;
+      $creditos->id_atencion =$request->id;
+      $creditos->usuario =Auth::user()->id;
+      $creditos->sede =$request->session()->get('sede');
+      $creditos->origen = 'CONSULTAS';
+      $creditos->descripcion = 'INGRESO POR CONSULTA';
+      $creditos->fecha = $atenciod->created_at;
+      $creditos->created_at = $atenciod->created_at;
       if ($request->tipo_pago == 'EF') {
-        $creditos->efectivo = $request->abono;
+        $creditos->efectivo = $request->abono1;
         $creditos->tarjeta = '0';
         $creditos->dep = '0';
         $creditos->yap = '0';
       } elseif($request->tipo_pago == 'TJ') {
-        $creditos->tarjeta = $request->abono;
+        $creditos->tarjeta = $request->abono1;
         $creditos->efectivo = '0';
         $creditos->dep = '0';
         $creditos->yap = '0';
       } elseif($request->tipo_pago == 'DP') {
-        $creditos->dep = $request->abono;
+        $creditos->dep = $request->abono1;
         $creditos->efectivo = '0';
         $creditos->tarjeta = '0';
         $creditos->yap = '0';
@@ -2474,41 +2683,80 @@ return view('atenciones.particular');
         $creditos->efectivo = '0';
         $creditos->tarjeta = '0';
         $creditos->dep = '0';
-        $creditos->yap = $request->abono;
+        $creditos->yap = $request->abono1;
       }
       $creditos->save();
 
-      $creditos = CreditosB::where('id_atencion','=',$request->id)->first();
-      $creditos->monto = $request->abono;
-      $creditos->tipopago =$request->tipo_pago;
-      if ($request->tipo_pago == 'EF') {
-        $creditos->efectivo = $request->abono;
-        $creditos->tarjeta = '0';
-        $creditos->dep = '0';
-        $creditos->yap = '0';
-      } elseif($request->tipo_pago == 'TJ') {
-        $creditos->tarjeta = $request->abono;
-        $creditos->efectivo = '0';
-        $creditos->dep = '0';
-        $creditos->yap = '0';
-      } elseif($request->tipo_pago == 'DP') {
-        $creditos->dep = $request->abono;
-        $creditos->efectivo = '0';
-        $creditos->tarjeta = '0';
+      if($request->abono2 != null){
+        $creditos2 =  new Creditos();
+      $creditos2->monto = $request->abono2;
+      $creditos2->tipopago =$request->tipo_pago1;
+      $creditos2->usuario =Auth::user()->id;
+      $creditos2->sede =$request->session()->get('sede');
+      $creditos2->fecha = $atenciod->created_at;
+      $creditos2->created_at = $atenciod->created_at;
+      $creditos2->origen = 'CONSULTAS';
+      $creditos2->descripcion = 'INGRESO POR CONSULTA';
+      $creditos2->id_atencion =$request->id;
+      if ($request->tipo_pago1 == 'EF') {
+        $creditos2->efectivo = $request->abono2;
+        $creditos2->tarjeta = '0';
+        $creditos2->dep = '0';
+        $creditos2->yap = '0';
+      } elseif($request->tipo_pago1 == 'TJ') {
+        $creditos2->tarjeta = $request->abono2;
+        $creditos2->efectivo = '0';
+        $creditos2->dep = '0';
+        $creditos2->yap = '0';
+      } elseif($request->tipo_pago1 == 'DP') {
+        $creditos2->dep = $request->abono2;
+        $creditos2->efectivo = '0';
+        $creditos2->tarjeta = '0';
         $creditos->yap = '0';
       } else {
-        $creditos->efectivo = '0';
-        $creditos->tarjeta = '0';
-        $creditos->dep = '0';
-        $creditos->yap = $request->abono;
+        $creditos2->efectivo = '0';
+        $creditos2->tarjeta = '0';
+        $creditos2->dep = '0';
+        $creditos2->yap = $request->abono2;
       }
-      $creditos->save();
+      $creditos2->save();
 
+      }
+
+      //CUENTAS POR COBRAR
+
+      $cob = Cobrar::where('id_atencion','=',$request->id)->first();
+      if($cob != null){
+        $hcob = HistorialCobros::where('id_cobro', '=', $request->id)->first();
+        if ($hcob != null) {
+            $hcobf = HistorialCobros::where('id_cobro', '=', $request->id)->first();
+            $hcobf->delete();
+        }
+          $cobf = Cobrar::where('id_atencion', '=', $request->id)->first();
+          $cobf->delete();
+      }
+
+      if($request->monto > $totalabono){
+
+        $cb = new Cobrar();
+        $cb->id_atencion =  $request->id;
+        $cb->detalle =  "CONSULTA";
+        $cb->resta =$request->monto - $totalabono;
+        $cb->save();
+    
+      }
+
+
+  
 
       $p = Atenciones::find($request->id);
       $p->monto =$request->monto;
-      $p->abono =$request->abono;
+      $p->abono =$totalabono;
+      $p->abono1 =$request->abono1;
+      $p->abono2 =$request->abono2;
+      $p->resta =$request->monto - $totalabono;
       $p->tipo_pago =$request->tipo_pago;
+      $p->tipo_pago1 =$request->tipo_pago1;
       $p->id_tipo =$request->tipo;
       $res = $p->update();
     
@@ -2521,29 +2769,56 @@ return view('atenciones.particular');
     public function updatem(Request $request)
     {
 
+      $totalabono = $request->abono1 + $request->abono2;
 
+      if($totalabono > $request->monto){
+        $request->session()->flash('error', 'El monto del abono es mayor al monto total.');
+        return back();
+      } 
 
-      
       $m = Metodos::where('id_atencion','=',$request->id)->first();
       $m->id_producto =$request->metodo;
       $m->monto =$request->monto;
       $resm = $m->update();
 
-      $creditos = Creditos::where('id_atencion','=',$request->id)->first();
-      $creditos->monto = $request->monto;
+      $atenciod = Atenciones::where('id','=',$request->id)->first();
+      $creditosa = Creditos::where('id_atencion','=',$request->id)->get();
+
+
+      //ELIMINAR CREDITOS
+
+      foreach ($creditosa as $cred) {
+        $id_credito = $cred->id;
+        if (!is_null($id_credito)) {
+            $rsf = Creditos::where('id', '=', $id_credito)->first();
+            $rsf->delete();
+        }
+    }
+
+    //GUARDANDO CREDITOS
+
+      $creditos =  new Creditos();
+      $creditos->monto = $request->abono1;
       $creditos->tipopago =$request->tipo_pago;
+      $creditos->id_atencion =$request->id;
+      $creditos->usuario =Auth::user()->id;
+      $creditos->sede =$request->session()->get('sede');
+      $creditos->origen = 'METODO';
+      $creditos->descripcion = 'INGRESO POR METODO';
+      $creditos->fecha = $atenciod->created_at;
+      $creditos->created_at = $atenciod->created_at;
       if ($request->tipo_pago == 'EF') {
-        $creditos->efectivo = $request->monto;
+        $creditos->efectivo = $request->abono1;
         $creditos->tarjeta = '0';
         $creditos->dep = '0';
         $creditos->yap = '0';
       } elseif($request->tipo_pago == 'TJ') {
-        $creditos->tarjeta = $request->monto;
+        $creditos->tarjeta = $request->abono1;
         $creditos->efectivo = '0';
         $creditos->dep = '0';
         $creditos->yap = '0';
       } elseif($request->tipo_pago == 'DP') {
-        $creditos->dep = $request->monto;
+        $creditos->dep = $request->abono1;
         $creditos->efectivo = '0';
         $creditos->tarjeta = '0';
         $creditos->yap = '0';
@@ -2551,41 +2826,81 @@ return view('atenciones.particular');
         $creditos->efectivo = '0';
         $creditos->tarjeta = '0';
         $creditos->dep = '0';
-        $creditos->yap = $request->monto;
+        $creditos->yap = $request->abono1;
       }
       $creditos->save();
 
-      $creditos = CreditosB::where('id_atencion','=',$request->id)->first();
-      $creditos->monto = $request->monto;
-      $creditos->tipopago =$request->tipo_pago;
-      if ($request->tipo_pago == 'EF') {
-        $creditos->efectivo = $request->monto;
-        $creditos->tarjeta = '0';
-        $creditos->dep = '0';
-        $creditos->yap = '0';
-      } elseif($request->tipo_pago == 'TJ') {
-        $creditos->tarjeta = $request->monto;
-        $creditos->efectivo = '0';
-        $creditos->dep = '0';
-        $creditos->yap = '0';
-      } elseif($request->tipo_pago == 'DP') {
-        $creditos->dep = $request->monto;
-        $creditos->efectivo = '0';
-        $creditos->tarjeta = '0';
+      if($request->abono2 != null){
+        $creditos2 =  new Creditos();
+      $creditos2->monto = $request->abono2;
+      $creditos2->tipopago =$request->tipo_pago1;
+      $creditos2->usuario =Auth::user()->id;
+      $creditos2->sede =$request->session()->get('sede');
+      $creditos2->fecha = $atenciod->created_at;
+      $creditos2->created_at = $atenciod->created_at;
+      $creditos2->origen = 'METODO';
+      $creditos2->descripcion = 'INGRESO POR METODO';
+      $creditos2->id_atencion =$request->id;
+      if ($request->tipo_pago1 == 'EF') {
+        $creditos2->efectivo = $request->abono2;
+        $creditos2->tarjeta = '0';
+        $creditos2->dep = '0';
+        $creditos2->yap = '0';
+      } elseif($request->tipo_pago1 == 'TJ') {
+        $creditos2->tarjeta = $request->abono2;
+        $creditos2->efectivo = '0';
+        $creditos2->dep = '0';
+        $creditos2->yap = '0';
+      } elseif($request->tipo_pago1 == 'DP') {
+        $creditos2->dep = $request->abono2;
+        $creditos2->efectivo = '0';
+        $creditos2->tarjeta = '0';
         $creditos->yap = '0';
       } else {
-        $creditos->efectivo = '0';
-        $creditos->tarjeta = '0';
-        $creditos->dep = '0';
-        $creditos->yap = $request->monto;
+        $creditos2->efectivo = '0';
+        $creditos2->tarjeta = '0';
+        $creditos2->dep = '0';
+        $creditos2->yap = $request->abono2;
       }
-      $creditos->save();
+      $creditos2->save();
 
+      }
+
+       //CUENTAS POR COBRAR
+
+       $cob = Cobrar::where('id_atencion','=',$request->id)->first();
+       if($cob != null){
+         $hcob = HistorialCobros::where('id_cobro', '=', $request->id)->first();
+         if ($hcob != null) {
+             $hcobf = HistorialCobros::where('id_cobro', '=', $request->id)->first();
+             $hcobf->delete();
+         }
+           $cobf = Cobrar::where('id_atencion', '=', $request->id)->first();
+           $cobf->delete();
+       }
+ 
+       if($request->monto > $totalabono){
+ 
+         $cb = new Cobrar();
+         $cb->id_atencion =  $request->id;
+         $cb->detalle =  "MÈTODO ANTICONCEPTIVO";
+         $cb->resta =$request->monto - $totalabono;
+         $cb->save();
+     
+       }
+ 
+ 
+
+     
 
       $p = Atenciones::find($request->id);
       $p->monto =$request->monto;
-      $p->abono =$request->abono;
+      $p->abono =$totalabono;
+      $p->abono1 =$request->abono1;
+      $p->abono2 =$request->abono2;
+      $p->resta =$request->monto - $totalabono;
       $p->tipo_pago =$request->tipo_pago;
+      $p->tipo_pago1 =$request->tipo_pago1;
       $p->id_tipo = $request->metodo;
       $res = $p->update();
     
@@ -2594,6 +2909,10 @@ return view('atenciones.particular');
 
         //
     }
+
+   
+
+  
 
     public function sesiones1(Request $request)
     {
