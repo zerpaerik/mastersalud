@@ -174,7 +174,20 @@ class VentasController extends Controller
    
 
     public function store(Request $request)
-    {
+    {   
+
+
+        /*$totalabono = $request->abono + $request->abono1;
+
+        if($request->esp_con == null){
+          $request->session()->flash('error', 'Debe Seleccionar un Especialista para hacer el ingreso.');
+          return back();
+
+        }*/
+
+
+
+
 
         $venta = new Ventas();
         $venta->save();
@@ -184,14 +197,28 @@ class VentasController extends Controller
              foreach ($request->id_laboratorio['laboratorios'] as $key => $lab) {
                if (!is_null($lab['laboratorio'])) {
 
+                $totalabono = (float)$request->monto_abol1['laboratorios'][$key]['abo'] + (float)$request->monto_abol2['laboratorios'][$key]['abo1'];
+
+                $monto = $request->monto_l['laboratorios'][$key]['monto'];
+
+                if($totalabono > $monto){
+                  $request->session()->flash('error', 'El monto del abono de pagos mixto es mayor al item de producto.');
+                  return back();
+                } 
+
+
+
+               // dd($totalabono.' '.$request->monto_l['laboratorios'][$key]['monto']);
+
+
                 $pedidos = new VentasDetalle();
                 $pedidos->id_venta =$venta->id;
                 $pedidos->id_producto =$lab['laboratorio'];
-                $pedidos->monto =$request->monto_l['laboratorios'][$key]['monto'];
+                $pedidos->monto =$monto;
                 $pedidos->cantidad =$request->monto_abol['laboratorios'][$key]['abono'];
-                $pedidos->total =$request->monto_abol['laboratorios'][$key]['abono'] * $request->monto_l['laboratorios'][$key]['monto'];
+                $pedidos->total =$request->monto_abol['laboratorios'][$key]['abono'] * $monto;
                 $pedidos->cliente =$request->cliente;
-                $pedidos->tipop =$request->tipop;
+                $pedidos->tipop =$request->id_pago['laboratorios'][$key]['tipop'].' '.$request->id_pago['laboratorios'][$key]['tipop1'];
                 $pedidos->sede = $request->session()->get('sede');
                 $pedidos->usuario =Auth::user()->id;
                 $pedidos->save();
@@ -199,22 +226,45 @@ class VentasController extends Controller
                 $cre = new Creditos();
                 $cre->origen = 'VENTAS';
                 $cre->descripcion = 'VENTA DE PRODUCTOS';
-                $cre->monto = $request->monto_abol['laboratorios'][$key]['abono'] * $request->monto_l['laboratorios'][$key]['monto'];
+                $cre->monto = $request->monto_abol['laboratorios'][$key]['abono'] * (float)$request->monto_abol1['laboratorios'][$key]['abo'];
                 $cre->usuario = Auth::user()->id;
-                $cre->tipopago = $request->tipop;
+                $cre->tipopago = $request->id_pago['laboratorios'][$key]['tipop'];
                 $cre->id_venta_detalle = $pedidos->id;
-                if ($request->tipop == 'EF') {
-                    $cre->efectivo = $request->monto_abol['laboratorios'][$key]['abono'] * $request->monto_l['laboratorios'][$key]['monto'];
-                  } elseif($request->tipop == 'TJ') {
-                    $cre->tarjeta = $request->monto_abol['laboratorios'][$key]['abono'] * $request->monto_l['laboratorios'][$key]['monto'];
-                  } elseif($request->tipop == 'DP') {
-                    $cre->dep = $request->monto_abol['laboratorios'][$key]['abono'] * $request->monto_l['laboratorios'][$key]['monto'];
+                if ($request->id_pago['laboratorios'][$key]['tipop'] == 'EF') {
+                    $cre->efectivo = $request->monto_abol['laboratorios'][$key]['abono'] * $request->monto_abol1['laboratorios'][$key]['abo'];
+                  } elseif($request->id_pago['laboratorios'][$key]['tipop'] == 'TJ') {
+                    $cre->tarjeta = $request->monto_abol['laboratorios'][$key]['abono'] * $request->monto_abol1['laboratorios'][$key]['abo'];
+                  } elseif($request->id_pago['laboratorios'][$key]['tipop'] == 'DP') {
+                    $cre->dep = $request->monto_abol['laboratorios'][$key]['abono'] * $request->monto_abol1['laboratorios'][$key]['abo'];
                   } else {
-                    $cre->yap = $request->monto_abol['laboratorios'][$key]['abono'] * $request->monto_l['laboratorios'][$key]['monto'];
+                    $cre->yap = $request->monto_abol['laboratorios'][$key]['abono'] * $request->monto_abol1['laboratorios'][$key]['abo'];
                   }
                 $cre->sede = $request->session()->get('sede');
                 $cre->fecha = date('Y-m-d');
                 $cre->save();
+
+                if($request->monto_abol2['laboratorios'][$key]['abo1'] != null){
+                  $cre1 = new Creditos();
+                  $cre1->origen = 'VENTAS';
+                  $cre1->descripcion = 'VENTA DE PRODUCTOS';
+                  $cre1->monto = $request->monto_abol['laboratorios'][$key]['abono'] * (float)$request->monto_abol2['laboratorios'][$key]['abo1'];
+                  $cre1->usuario = Auth::user()->id;
+                  $cre1->tipopago = $request->id_pago['laboratorios'][$key]['tipop1'];
+                  $cre1->id_venta_detalle = $pedidos->id;
+                  if ($request->id_pago['laboratorios'][$key]['tipop1'] == 'EF') {
+                      $cre1->efectivo = $request->monto_abol['laboratorios'][$key]['abono'] * $request->monto_abol2['laboratorios'][$key]['abo1'];
+                    } elseif($request->id_pago['laboratorios'][$key]['tipop1'] == 'TJ') {
+                      $cre1->tarjeta = $request->monto_abol['laboratorios'][$key]['abono'] * $request->monto_abol2['laboratorios'][$key]['abo1'];
+                    } elseif($request->id_pago['laboratorios'][$key]['tipop1'] == 'DP') {
+                      $cre1->dep = $request->monto_abol['laboratorios'][$key]['abono'] * $request->monto_abol2['laboratorios'][$key]['abo1'];
+                    } else {
+                      $cre1->yap = $request->monto_abol['laboratorios'][$key]['abono'] * $request->monto_abol2['laboratorios'][$key]['abo1'];
+                    }
+                  $cre1->sede = $request->session()->get('sede');
+                  $cre1->fecha = date('Y-m-d');
+                  $cre1->save();
+
+                }
 
 
                    $produc = Productos::where('id','=',$lab['laboratorio'])->first();

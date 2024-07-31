@@ -83,6 +83,8 @@
               <div class="card-header">
                 <h3 class="card-title">Agregar</h3>
               </div>
+              @include('flash-message')
+
               <!-- /.card-header -->
               <!-- form start -->
                     <div class="card-body">
@@ -119,7 +121,7 @@
                 <div id="laboratorios_template" class="template row">
 
                     <label for="laboratorios_#index#_laboratorio" class="col-sm-1 control-label">Productos</label>
-                    <div class="col-sm-4">
+                    <div class="col-sm-1">
                       <select id="laboratorios_#index#_laboratorio" name="id_laboratorio[laboratorios][#index#][laboratorio]" class="selectLab form-control">
                         <option value="1">Seleccionar Producto</option>
                         @foreach($productos as $pac)
@@ -133,15 +135,15 @@
             
                  <label for="laboratorios_#index#_monto" class="col-sm-1 control-label">Monto</label>
                   @if(\Auth::user()->role_id == 6)             
-                    <div class="col-sm-2">
-                      <input id="laboratorios_#index#_montoHidden" name="monto_h[laboratorios][#index#][montoHidden]" class="number" type="hidden" value="">
+                  <div class="col-sm-1" style="margin-left:-40px;">
+                  <input id="laboratorios_#index#_montoHidden" name="monto_h[laboratorios][#index#][montoHidden]" class="number" type="hidden" value="">
 
                       <input id="laboratorios_#index#_monto" name="monto_l[laboratorios][#index#][monto] type="text" class="number form-control montol" placeholder="Monto" data-toggle="tooltip" data-placement="bottom" title="Monto" value="0.00" disabled="">
                     </div>
                     @elseif(\Auth::user()->role_id == 7) 
 
 
-                      <div class="col-sm-2">
+                    <div class="col-sm-1" style="margin-left:-40px;">
                       <input id="laboratorios_#index#_montoHidden" name="monto_h[laboratorios][#index#][montoHidden]" class="number" type="hidden" value="">
 
                       <input id="laboratorios_#index#_monto" name="monto_l[laboratorios][#index#][monto] type="text" class="number form-control montol" placeholder="Monto" data-toggle="tooltip" data-placement="bottom" title="Monto" value="0.00" disabled="">
@@ -150,7 +152,7 @@
 
                     @else
 
-                    <div class="col-sm-2">
+                    <div class="col-sm-1" style="margin-left:-40px;">
                       <input id="laboratorios_#index#_montoHidden" name="monto_h[laboratorios][#index#][montoHidden]" class="number" type="hidden" value="">
 
                       <input id="laboratorios_#index#_monto" name="monto_l[laboratorios][#index#][monto] type="text" class="number form-control montol" placeholder="Monto" data-toggle="tooltip" data-placement="bottom" title="Monto" value="0.00">
@@ -158,11 +160,56 @@
 
                     @endif
 
-                    <label for="laboratorios_#index#_abonoL" class="col-sm-1 control-label">Cantidad</label>
-                    <div class="col-sm-2">
+                    <label for="laboratorios_#index#_abonoL" class="col-sm-1 control-label">Cant.</label>
+                    <div class="col-sm-1" style="margin-left:-40px;">
 
                       <input id="laboratorios_#index#_abonoL" name="monto_abol[laboratorios][#index#][abono] type="text" class="number form-control abonoL" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" onkeyup="calcular()" title="Abono" value="0.00">
                     </div>
+
+
+
+                    <label for="laboratorios_#index#_abo" class="col-sm-1 control-label">Abono.</label>
+                    <div class="col-sm-1" style="margin-left:-40px;">
+
+                      <input id="laboratorios_#index#_abo" name="monto_abol1[laboratorios][#index#][abo]" type="float" class="number form-control abonoL abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
+                    </div>
+
+                    
+                    <label for="laboratorios_#index#_tipop" class="col-sm-1 control-label">TPago</label>
+                    <div class="col-sm-1" style="margin-left:-40px;">
+                      <select id="laboratorios_#index#_analisi" name="id_pago[laboratorios][#index#][tipop]" class="form-control">
+                      <option value="" disabled>Seleccione</option>
+                        <option value="EF">EF</option>
+                        <option value="TJ">TJ</option>
+                        <option value="DP">DP</option>
+                        <option value="YP">YP</option>
+
+                      </select>
+                    </div>
+
+                    <label for="laboratorios_#index#_abo1" class="col-sm-1 control-label">Abono.</label>
+                    <div class="col-sm-1" style="margin-left:-40px;">
+
+                      <input id="laboratorios_#index#_abo1" name="monto_abol2[laboratorios][#index#][abo1]" type="float" class="number form-control abonoL abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
+                    </div>
+
+                    
+                    <label for="laboratorios_#index#_tipop1" class="col-sm-1 control-label">TPago</label>
+                    <div class="col-sm-1" style="margin-left:-40px;">
+                      <select id="laboratorios_#index#_analisi" name="id_pago[laboratorios][#index#][tipop1]" class="form-control">
+                      <option value="" disabled>Seleccione</option>
+                        <option value="EF">EF</option>
+                        <option value="TJ">TJ</option>
+                        <option value="DP">DP</option>
+                        <option value="YP">YP</option>
+
+                      </select>
+                    </div>
+
+
+
+
+
 
                     <a id="laboratorios_remove_current" style="cursor: pointer;"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
                 </div>
@@ -188,21 +235,12 @@
                     <div class="row" style="margin-left: 10px;">
                  
 
-                 <div class="col-md-4">
+                 <div class="col-md-3">
                    <label for="exampleInputEmail1">Cliente</label>
                    <input onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" id="nombre" name="cliente" placeholder="Responsable de Compra" require>
                  </div>
-                
-                 <div class="col-md-3">
-                   <label for="exampleInputEmail1">Tipo de Pago</label>
-                   <select class="form-control" name="tipop">
-                   <option value="EF">Efectivo</option>
-                   <option value="TJ">Tarjeta</option>
-                   <option value="DP">Depósito</option>
-                   <option value="YP">Yape</option>
 
-                </select>
-                 </div>
+            
                
                  </div>
 
