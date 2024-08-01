@@ -110,6 +110,27 @@ class IngresosController extends Controller
         $cre->fecha = date('Y-m-d');
         $cre->save();
 
+        if($request->abono1 != null){
+          $cre1 = new Creditos();
+          $cre1->origen = 'INGRESOS';
+          $cre1->descripcion = $request->descripcion;
+          $cre1->monto = $request->abono1;
+          $cre1->usuario = Auth::user()->id;
+          $cre1->tipopago = $request->tipopago1;
+          if ($request->tipopago == 'EF') {
+              $cre1->efectivo = $request->abono1;
+            } elseif($request->tipopago == 'TJ') {
+              $cre1->tarjeta = $request->abono1;
+            } elseif($request->tipopago == 'DP') {
+              $cre1->dep = $request->abono1;
+            } else {
+              $cre1->yap = $request->abono1;
+            }
+          $cre1->sede = $request->session()->get('sede');
+          $cre1->fecha = date('Y-m-d');
+          $cre1->save();
+        }
+
 
         return redirect()->action('IngresosController@index');
 

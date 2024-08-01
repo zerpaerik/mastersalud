@@ -84,18 +84,33 @@
               {{ csrf_field() }}                
                     <div class="card-body">
                     <div class="row">
-                   
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Monto</label>
-                    <input type="number" class="form-control" id="name" name="monto" placeholder="Monto">
-                  </div>
+               
                   <div class="col-md-3">
                     <label for="exampleInputEmail1">Descripción</label>
                     <input type="text" class="form-control" id="email" name="descripcion" placeholder="Descripción">
                   </div>
-                  <div class="col-md-3">
-                  <label>Tipo de Ingreso</label>
+                      
+                  <div class="col-md-2">
+                    <label for="exampleInputEmail1">Monto</label>
+                    <input type="number" class="form-control" id="name" name="monto" placeholder="Monto">
+                  </div>
+                  <div class="col-md-2">
+                  <label>Tipo de Pago</label>
                         <select class="form-control" name="tipopago">
+						              	<option value="EF">EFECTIVO</option>
+                            <option value="TJ">TARJETA</option>
+                            <option value="DP">DEPOSITO</option>
+                            <option value="YP">YAPE</option>
+							
+                        </select>
+                  </div>
+                  <div class="col-md-2">
+                    <label for="exampleInputEmail1">Monto</label>
+                    <input type="number" class="form-control" id="name" name="abono1" placeholder="Monto">
+                  </div>
+                  <div class="col-md-2">
+                  <label>Tipo de Pago</label>
+                        <select class="form-control" name="tipopago1">
 						              	<option value="EF">EFECTIVO</option>
                             <option value="TJ">TARJETA</option>
                             <option value="DP">DEPOSITO</option>

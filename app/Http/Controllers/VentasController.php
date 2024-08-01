@@ -206,11 +206,6 @@ class VentasController extends Controller
                   return back();
                 } 
 
-
-
-               // dd($totalabono.' '.$request->monto_l['laboratorios'][$key]['monto']);
-
-
                 $pedidos = new VentasDetalle();
                 $pedidos->id_venta =$venta->id;
                 $pedidos->id_producto =$lab['laboratorio'];
