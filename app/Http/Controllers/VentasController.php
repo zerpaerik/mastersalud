@@ -201,7 +201,7 @@ class VentasController extends Controller
 
                 $monto = $request->monto_l['laboratorios'][$key]['monto'];
 
-                if($totalabono > $monto){
+                if($totalabono > $request->monto_abol['laboratorios'][$key]['abono'] * $monto){
                   $request->session()->flash('error', 'El monto del abono de pagos mixto es mayor al item de producto.');
                   return back();
                 } 
