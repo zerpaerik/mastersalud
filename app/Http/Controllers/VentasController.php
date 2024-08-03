@@ -221,18 +221,18 @@ class VentasController extends Controller
                 $cre = new Creditos();
                 $cre->origen = 'VENTAS';
                 $cre->descripcion = 'VENTA DE PRODUCTOS';
-                $cre->monto = $request->monto_abol['laboratorios'][$key]['abono'] * (float)$request->monto_abol1['laboratorios'][$key]['abo'];
+                $cre->monto =  (float)$request->monto_abol1['laboratorios'][$key]['abo'];
                 $cre->usuario = Auth::user()->id;
                 $cre->tipopago = $request->id_pago['laboratorios'][$key]['tipop'];
                 $cre->id_venta_detalle = $pedidos->id;
                 if ($request->id_pago['laboratorios'][$key]['tipop'] == 'EF') {
-                    $cre->efectivo = $request->monto_abol['laboratorios'][$key]['abono'] * $request->monto_abol1['laboratorios'][$key]['abo'];
+                    $cre->efectivo =  $request->monto_abol1['laboratorios'][$key]['abo'];
                   } elseif($request->id_pago['laboratorios'][$key]['tipop'] == 'TJ') {
-                    $cre->tarjeta = $request->monto_abol['laboratorios'][$key]['abono'] * $request->monto_abol1['laboratorios'][$key]['abo'];
+                    $cre->tarjeta =  $request->monto_abol1['laboratorios'][$key]['abo'];
                   } elseif($request->id_pago['laboratorios'][$key]['tipop'] == 'DP') {
-                    $cre->dep = $request->monto_abol['laboratorios'][$key]['abono'] * $request->monto_abol1['laboratorios'][$key]['abo'];
+                    $cre->dep =  $request->monto_abol1['laboratorios'][$key]['abo'];
                   } else {
-                    $cre->yap = $request->monto_abol['laboratorios'][$key]['abono'] * $request->monto_abol1['laboratorios'][$key]['abo'];
+                    $cre->yap = $request->monto_abol1['laboratorios'][$key]['abo'];
                   }
                 $cre->sede = $request->session()->get('sede');
                 $cre->fecha = date('Y-m-d');
@@ -242,18 +242,18 @@ class VentasController extends Controller
                   $cre1 = new Creditos();
                   $cre1->origen = 'VENTAS';
                   $cre1->descripcion = 'VENTA DE PRODUCTOS';
-                  $cre1->monto = $request->monto_abol['laboratorios'][$key]['abono'] * (float)$request->monto_abol2['laboratorios'][$key]['abo1'];
+                  $cre1->monto =  (float)$request->monto_abol2['laboratorios'][$key]['abo1'];
                   $cre1->usuario = Auth::user()->id;
                   $cre1->tipopago = $request->id_pago['laboratorios'][$key]['tipop1'];
                   $cre1->id_venta_detalle = $pedidos->id;
                   if ($request->id_pago['laboratorios'][$key]['tipop1'] == 'EF') {
-                      $cre1->efectivo = $request->monto_abol['laboratorios'][$key]['abono'] * $request->monto_abol2['laboratorios'][$key]['abo1'];
+                      $cre1->efectivo =  $request->monto_abol2['laboratorios'][$key]['abo1'];
                     } elseif($request->id_pago['laboratorios'][$key]['tipop1'] == 'TJ') {
-                      $cre1->tarjeta = $request->monto_abol['laboratorios'][$key]['abono'] * $request->monto_abol2['laboratorios'][$key]['abo1'];
+                      $cre1->tarjeta = $request->monto_abol2['laboratorios'][$key]['abo1'];
                     } elseif($request->id_pago['laboratorios'][$key]['tipop1'] == 'DP') {
-                      $cre1->dep = $request->monto_abol['laboratorios'][$key]['abono'] * $request->monto_abol2['laboratorios'][$key]['abo1'];
+                      $cre1->dep =  $request->monto_abol2['laboratorios'][$key]['abo1'];
                     } else {
-                      $cre1->yap = $request->monto_abol['laboratorios'][$key]['abono'] * $request->monto_abol2['laboratorios'][$key]['abo1'];
+                      $cre1->yap =  $request->monto_abol2['laboratorios'][$key]['abo1'];
                     }
                   $cre1->sede = $request->session()->get('sede');
                   $cre1->fecha = date('Y-m-d');
@@ -353,8 +353,16 @@ class VentasController extends Controller
                     $rsf = VentasDetalle::where('id', '=', $id_rs)->first();
                     $rsf->delete();
 
-                    $cred_de = Creditos::where('id_venta_detalle', '=', $id_rs)->first();
-                    $cred_de->delete();
+                    $creditosa = Creditos::where('id_venta_detalle','=',$id_rs)->get();
+                    //ELIMINAR CREDITOS
+              
+                        foreach ($creditosa as $cred) {
+                          $id_credito = $cred->id;
+                          if (!is_null($id_credito)) {
+                              $rsf = Creditos::where('id', '=', $id_credito)->first();
+                              $rsf->delete();
+                          }
+                      }
 
                 }
             }

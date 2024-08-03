@@ -104,6 +104,12 @@
                     <td>
                     @if(Auth::user()->rol == 1)
 
+                    <a class="btn btn-info btn-sm" href="paquetes-edit-{{$an->id}}">
+                              <i class="fas fa-pencil-alt">
+                              </i>
+                              Editar
+                          </a>
+
                     <a class="btn btn-success btn-sm" id="{{$an->id}}" onclick="view(this)">
                               <i class="fas fa-eye">
                               </i>

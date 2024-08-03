@@ -147,11 +147,37 @@ class PaquetesController extends Controller
      */
     public function edit($id)
     {
-        $material = Material::where('estatus','=',1)->get();
-        $tiempo = Tiempo::where('estatus','=',1)->get();
-        $servicio = Servicios::where('id','=',$id)->first();
+        $paquete = Paquetes::where('id','=',$id)->first();
+        // $servicios = PaqueteServ::where('paquete', $paquete->id)->with('servicio')->get();
+   
+         $servicios = DB::table('paquetes_s as a')
+         ->select('a.id','a.paquete','a.servicio', 'b.nombre as nombre')
+         ->join('servicios as b','b.id','a.servicio')
+         ->where('a.paquete', $paquete->id)
+         ->get(); 
+         
+         $laboratorios = DB::table('paquetes_l as a')
+         ->select('a.id','a.paquete','a.laboratorio', 'b.nombre as nombre')
+         ->join('analisis as b','b.id','a.laboratorio')
+         ->where('a.paquete', $paquete->id)
+         ->get(); 
+        // $laboratorios = PaqueteLab::where('paquete', $paquete->id)->with('laboratorio')->get();
+         $consultas = PaqueteCon::where('paquete', $paquete->id)->first();
+         $controles = PaqueteCont::where('paquete', $paquete->id)->first();
 
-        return view('servicios.edit', compact('material','tiempo','servicio')); //
+        return view('paquetes.edit', compact('paquete', 'servicios', 'laboratorios','consultas','controles')); //
+    }
+
+    public function additems($id)
+    {
+         $paquete = Paquetes::where('id','=',$id)->first();
+        // $servicios = PaqueteServ::where('paquete', $paquete->id)->with('servicio')->get();
+   
+        $servicios = Servicios::where('estatus','=',1)->get();
+        $analisis = Analisis::where('estatus','=',1)->get();
+       
+
+        return view('paquetes.edit-items', compact('paquete', 'servicios', 'analisis')); //
     }
 
     /**
@@ -164,24 +190,58 @@ class PaquetesController extends Controller
     public function update(Request $request, Analisis $analisis)
     {
 
-
-       
-
-      $p = Servicios::find($request->id);
+      $p = Paquetes::find($request->id);
       $p->nombre =$request->nombre;
-      $p->tipo =$request->tipo;
       $p->precio =$request->precio;
-      $p->porcentaje1 =$request->porcentaje1;
-      $p->porcentaje2 =$request->porcentaje2;
       $p->porcentaje =$request->porcentaje;
       $res = $p->update();
+
+
+      $paqcontrol = PaqueteCont::where('paquete','=',$request->id)->first();
+      $paqcontrol->cantidad = $request->controles;
+      $res = $paqcontrol->update();
+
+      
+      $paqconsult = PaqueteCon::where('paquete','=',$request->id)->first();
+      $paqconsult->cantidad = $request->consultas;
+      $res1 = $paqconsult->update();
     
     
-    return redirect()->action('ServiciosController@index')
+    return redirect()->action('PaquetesController@index')
     ->with('success','Modificado Exitosamente!');
 
         //
     }
+
+    public function updatei(Request $request)
+    {
+
+        if (isset($request->id_servicio)) {
+            foreach ($request->id_servicio['servicios'] as $servicio) {
+                $serv = New PaqueteServ;
+                $serv->paquete  = $request->paquete;
+                $serv->servicio = $servicio['servicio'];
+                $serv->save();
+            }
+            }
+        
+            if (isset($request->id_laboratorio)) {
+            foreach ($request->id_laboratorio['laboratorios'] as $laboratorio) {
+                $lab = new PaqueteLab;
+                $lab->paquete   = $request->paquete;
+                $lab->laboratorio = $laboratorio['laboratorio'];
+                $lab->save();
+            }
+            }
+
+    
+    
+    return redirect()->action('PaquetesController@index')
+    ->with('success','Modificado Exitosamente!');
+
+        //
+    }
+
 
   
    
@@ -203,5 +263,26 @@ class PaquetesController extends Controller
 
         //
     }
+
+    public function deletes($id)
+    {
+
+        $rsf = PaqueteServ::where('id', '=', $id)->first();
+        $rsf->delete();
+        return back();
+        //
+    }
+
+    public function deletel($id)
+    {
+
+        $rsf = PaqueteLab::where('id', '=', $id)->first();
+        $rsf->delete();
+        return back();
+
+        //
+    }
+
+
 }
 

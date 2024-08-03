@@ -133,10 +133,14 @@ Route::get('servicios/nada', 'ServiciosController@nada');
 
 Route::get('paquetes', 'PaquetesController@index')->name('paquetes.index');
 Route::get('paquetes-create', 'PaquetesController@create')->name('paquetes.create')->middleware('auth');
+Route::get('paquetes-create-items-{id}', 'PaquetesController@additems')->middleware('auth');
 Route::post('paquetes/create', 'PaquetesController@store')->middleware('auth');
+Route::get('paquetes-deletes-{id}', 'PaquetesController@deletes')->middleware('auth');
+Route::get('paquetes-deletel-{id}', 'PaquetesController@deletel')->middleware('auth');
 Route::get('paquetes-delete-{id}', 'PaquetesController@delete')->middleware('auth');
 Route::get('paquetes-edit-{id}', 'PaquetesController@edit')->name('paquetes.edit');
 Route::post('paquetes/edit', 'PaquetesController@update');
+Route::post('paquetes/editar', 'PaquetesController@updatei');
 Route::get('paquetes/ver/{id}', 'PaquetesController@ver')->middleware('auth');
 
 
