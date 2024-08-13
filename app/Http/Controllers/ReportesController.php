@@ -455,10 +455,10 @@ class ReportesController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('servicios as s','s.id','a.id_tipo')
+        ->orderBy('a.id','DESC')
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 1)
         ->where('a.monto', '!=', '0')
-        ->orderBy('a.id','DESC')
         ->where('a.id_paciente', '=', $request->id_paciente);
        // ->get(); 
 
@@ -468,10 +468,10 @@ class ReportesController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('servicios as s','s.id','a.id_tipo')
+        ->orderBy('a.id','DESC')
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 2)
         ->where('a.monto', '!=', '0')
-        ->orderBy('a.id','DESC')
         ->where('a.id_paciente', '=', $request->id_paciente);
 
         $cons = DB::table('atenciones as a')
@@ -480,10 +480,10 @@ class ReportesController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('servicios as s','s.id','a.id_tipo')
+        ->orderBy('a.id','DESC')
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 5)
         ->where('a.monto', '!=', '0')
-        ->orderBy('a.id','DESC')
         ->where('a.id_paciente', '=', $request->id_paciente);
 
         $meto = DB::table('atenciones as a')
@@ -492,10 +492,10 @@ class ReportesController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('servicios as s','s.id','a.id_tipo')
+        ->orderBy('a.id','DESC')
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 6)
         ->where('a.monto', '!=', '0')
-        ->orderBy('a.id','DESC')
         ->where('a.id_paciente', '=', $request->id_paciente);
 
         
@@ -505,10 +505,10 @@ class ReportesController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('servicios as s','s.id','a.id_tipo')
+        ->orderBy('a.id','DESC')
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 8)
         ->where('a.monto', '!=', '0')
-        ->orderBy('a.id','DESC')
         ->where('a.id_paciente', '=', $request->id_paciente);
 
         $ana = DB::table('atenciones as a')
@@ -517,10 +517,10 @@ class ReportesController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('analisis as s','s.id','a.id_tipo')
+        ->orderBy('a.id','DESC')
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 4)
         ->where('a.monto', '!=', '0')
-        ->orderBy('a.id','DESC')
         ->where('a.id_paciente', '=', $request->id_paciente);
 
         $paq = DB::table('atenciones as a')
@@ -529,10 +529,10 @@ class ReportesController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('paquetes as s','s.id','a.id_tipo')
+        ->orderBy('a.id','DESC')
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 7)
         ->where('a.monto', '!=', '0')
-        ->orderBy('a.id','DESC')
         ->where('a.id_paciente', '=', $request->id_paciente);
 
 
@@ -542,10 +542,10 @@ class ReportesController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('meto_pro as s','s.id','a.id_tipo')
+        ->orderBy('a.id','DESC')
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 6)
         ->where('a.monto', '!=', '0')
-        ->orderBy('a.id','DESC')
         ->where('a.id_paciente', '=', $request->id_paciente);
 
         $consultas = DB::table('atenciones as a')
@@ -554,10 +554,10 @@ class ReportesController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('tipo_con as s','s.id','a.id_tipo')
+        ->orderBy('a.id','DESC')
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 5)
         ->where('a.monto', '!=', '0')
-        ->orderBy('a.id','DESC')
         ->where('a.id_paciente', '=', $request->id_paciente);
         //->get(); 
 
