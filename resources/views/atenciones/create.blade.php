@@ -107,24 +107,7 @@
                   </div>
                   
 
-                  
-                  <div class="col-md-2">
-                    <label for="exampleInputEmail1">Total</label>
-
-                    <input class="number form-control" type="text" name="total" id="total" readonly="readonly" value="0.00">
-                    </div>
-                    
-                  <div class="col-md-2">
-                    <label for="exampleInputEmail1">Abono</label>
-
-                    <input class="form-control" type="text" name="abono" id="abono" readonly="readonly" value="0.00">
-                    </div>
-
-                    <div class="col-md-2">
-                      <label for="exampleInputEmail1">Resta</label>
-  
-                      <input class="form-control" type="text" name="resta" id="resta" readonly="readonly" value="0.00">
-                    </div>
+              
                       
                 
                  
