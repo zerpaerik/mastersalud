@@ -362,6 +362,9 @@ Route::get('historiam-crear-{id}', 'ConsultasController@historiam_crear');
 Route::get('historiam-ver-{id}', 'ConsultasController@historiam_ver');
 Route::get('historiap-crear-{id}', 'ConsultasController@historiap_ver');
 
+Route::get('historiape-crear-{id}', 'ConsultasController@historiape_crear');
+
+
 Route::get('control-crear-{id}', 'ConsultasController@control_crear');
 Route::post('historia/guardar', 'ConsultasController@guardar_historia');
 Route::post('historiab/guardar', 'ConsultasController@guardar_historiab');

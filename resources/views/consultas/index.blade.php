@@ -142,7 +142,7 @@
                     @if($an->tipo == 1)
 
                     @if($an->tipo_consulta == 6)
-                    <a class="btn btn-danger btn-sm" href="historiap-crear-{{$an->id}}">
+                    <a class="btn btn-danger btn-sm" href="historiape-crear-{{$an->id}}">
                               <i class="fas fa-pencil-alt">
                               </i>
                               Historia Pediatria

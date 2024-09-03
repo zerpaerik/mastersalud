@@ -82,33 +82,40 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <div class="row" style="margin-left:10px;">
+              <div class="row" style="margin-left:25px;">
                      <div class="col-md-3">
                     <label for="exampleInputEmail1">PACIENTE</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" value="MEZA LA ROSA JOSE LUIS " name="gestas" placeholder="">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" value="{{$paciente->apellidos}} {{$paciente->nombres}}" name="gestas" placeholder="">
                    </div>
                   
                     </div>
 
-    
+                            <br>
+                @foreach($historias as $hist)
+           
               
-                
+            
+                @endforeach
+
                 <!-- /.card-body -->
 
             </div>
             
-              
+
+
+              <form role="form" method="post" action="historiapp/guardar">
+              {{ csrf_field() }}     
                     <div class="card-body">
                     <br>
                    <label for="exampleInputEmail1">DATOS DE FILIACIÓN</label>
                    <div class="row">
                      <div class="col-md-6">
                     <label for="exampleInputEmail1">Apellidos y Nombres</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="nombre" placeholder="" disabled value="{{$hist->nombre}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="nombre" placeholder="">
                    </div>
                    <div class="col-md-6">
                     <label for="exampleInputEmail1">Domicilio</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="domicilio" placeholder="" disabled value="{{$hist->domicilio}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="domicilio" placeholder="">
                    </div>
                
                  
@@ -118,15 +125,15 @@
                    <div class="row">
                      <div class="col-md-4">
                     <label for="exampleInputEmail1">Sexo</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="sexo" placeholder="" disabled value="{{$hist->sexo}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="sexo" placeholder="">
                    </div>
                    <div class="col-md-4">
                     <label for="exampleInputEmail1">Fecha de Nacimiento</label>
-                    <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="nac" placeholder="" disabled value="{{$hist->nac}}">
+                    <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="nac" placeholder="">
                    </div>
                    <div class="col-md-4">
                     <label for="exampleInputEmail1">Edad</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="edad" placeholder="" disabled value="{{$hist->edad}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="edad" placeholder="">
                    </div>
             
                     </div>
@@ -134,11 +141,11 @@
                     <div class="row">
                      <div class="col-md-4">
                     <label for="exampleInputEmail1">Teléfono</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="telef" placeholder="" disabled value="{{$hist->telef}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="telef" placeholder="">
                    </div>
                    <div class="col-md-4">
                     <label for="exampleInputEmail1">Nombre de Madre o Padre</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="padres" placeholder="" disabled value="{{$hist->padres}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="padres" placeholder="">
                    </div>
                  
             
@@ -147,7 +154,7 @@
                     <div class="row">
                      <div class="col-md-12">
                     <label for="exampleInputEmail1">Motivo de Consulta</label>
-                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="2"  name="motivo" placeholder="Motivo de Consulta" disabled>{{$hist->motivo}}</textarea>
+                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="2"  name="motivo" placeholder="Motivo de Consulta"></textarea>
 
                    </div>
                     </div>
@@ -155,7 +162,7 @@
                     <div class="row">
                      <div class="col-md-12">
                     <label for="exampleInputEmail1">Relato</label>
-                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="2"  name="relato" placeholder="Relato" disabled>{{$hist->relato}}</textarea>
+                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="2"  name="relato" placeholder="Relato"></textarea>
 
                    </div>
                     </div>
@@ -190,11 +197,11 @@
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">Orina</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="orina" placeholder="" disabled value="{{$hist->orina}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="orina" placeholder="">
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">Heces</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="heces" placeholder="" disabled value="{{$hist->heces}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="heces" placeholder="">
                    </div>
                    
 
@@ -211,7 +218,7 @@
                    </div>
                    <div class="col-md-3">
                     <label for="exampleInputEmail1">Descrip.</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="desc_ram" placeholder="" disabled value="{{$hist->desc_ram}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="desc_ram" placeholder="">
                    </div>
                    <div class="col-md-1">
                     <label for="exampleInputEmail1">Hospitaliz.</label>
@@ -222,7 +229,7 @@
                    </div>
                    <div class="col-md-3">
                     <label for="exampleInputEmail1">Descrip.</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="desc_hosp" placeholder="" disabled disabled value="{{$hist->desc_hosp}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="desc_hosp" placeholder="">
                    </div>
                    <div class="col-md-1">
                     <label for="exampleInputEmail1">Cirugias</label>
@@ -233,7 +240,7 @@
                    </div>
                    <div class="col-md-3">
                     <label for="exampleInputEmail1">Descrip.</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="desc_cir" placeholder="" disabled value="{{$hist->desc_cir}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="desc_cir" placeholder="">
                    </div>
                 
     
@@ -249,12 +256,12 @@
                    </div>
                    <div class="col-md-3">
                     <label for="exampleInputEmail1">Descrip.</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="desc_vac" placeholder="" disabled value="{{$hist->desc_vac}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="desc_vac" placeholder="">
                    </div>
                   
                    <div class="col-md-8">
                     <label for="exampleInputEmail1">Antecedentes patológicos y edpidemiológicos.</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="ant_pat" placeholder="" disabled value="{{$hist->ant_pat}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="ant_pat" placeholder="">
                    </div>
                 
     
@@ -264,23 +271,23 @@
                    <div class="row">
                      <div class="col-md-2">
                     <label for="exampleInputEmail1">Peso</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"  class="form-control" id="nombre" name="peso" placeholder="" disabled value="{{$hist->peso}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"  class="form-control" id="nombre" name="peso" placeholder="">
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">Talla</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="talla" placeholder="" disabled value="{{$hist->talla}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="talla" placeholder="">
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">T</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="t" placeholder="" disabled value="{{$hist->t}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="t" placeholder="">
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">PA</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="pa" placeholder="" disabled value="{{$hist->pa}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="pa" placeholder="">
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">SAT</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="sat" placeholder="" disabled value="{{$hist->sat}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="sat" placeholder="">
                    </div>
                  
     
@@ -385,21 +392,21 @@
                     <div class="row">
                      <div class="col-md-12">
                     <label for="exampleInputEmail1">Hallazgos</label>
-                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="3"  name="hallazg" placeholder="Describir obligatoriamente los hallazgos descritos anormales." disabled>{{$hist->hallazg}}</textarea>
+                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="3"  name="hallazg" placeholder="Describir obligatoriamente los hallazgos descritos anormales."></textarea>
                   </div>
                     </div>
                    <br>
                    <div class="row">
                      <div class="col-md-12">
                     <label for="exampleInputEmail1">Diagnóstico</label>
-                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="3"  name="diag" placeholder="Diagnóstico" disabled>{{$hist->diag}}</textarea>
+                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="3"  name="diag" placeholder="Diagnóstico"></textarea>
                    </div>
                     </div>
                     <br>
                    <div class="row">
                      <div class="col-md-12">
                     <label for="exampleInputEmail1">Plan de Tratamiento</label>
-                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="3"  name="plan" placeholder="Plan de Tratamiento" disabled> {{$hist->plan}}</textarea>
+                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="3"  name="plan" placeholder="Plan de Tratamiento"></textarea>
 
                   </div>
                     </div>
@@ -412,27 +419,27 @@
                    <div class="row">
                      <div class="col-md-2">
                     <label for="exampleInputEmail1">MAT</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"  class="form-control" id="nombre" name="mat_a" placeholder="" disabled value="{{$hist->mat_a}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"  class="form-control" id="nombre" name="mat_a" placeholder="">
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">Edad</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="edad_a" placeholder="" disabled value="{{$hist->edad_a}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="edad_a" placeholder="">
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">Peso</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="peso_a" placeholder="" disabled value="{{$hist->peso_a}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="peso_a" placeholder="">
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">Talla</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="talla_a" placeholder="" disabled value="{{$hist->talla_a}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="talla_a" placeholder="">
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">T</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="t_a" placeholder="" disabled value="{{$hist->t_a}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="t_a" placeholder="">
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">PA</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="pa_a" placeholder="" disabled value="{{$hist->pa_a}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="pa_a" placeholder="">
                    </div>
                  
                  
@@ -536,14 +543,14 @@
                         <div class="row">
                             <div class="col-md-12">
                             <label for="exampleInputEmail1">Examenes Auxiliares</label>
-                            <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="2"  name="ex_aux_a" placeholder="Examenes Auxiliares" disabled>{{$hist->ex_aux_a}}</textarea>
+                            <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="2"  name="ex_aux_a" placeholder="Examenes Auxiliares"></textarea>
                         </div>
                             </div>
                             <br>
                         <div class="row">
                             <div class="col-md-12">
                             <label for="exampleInputEmail1">Plan de Tratamiento</label>
-                            <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="2"  name="plan_a" placeholder="Plan de Tratamiento" disabled>{{$hist->plan_a}}</textarea>
+                            <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="2"  name="plan_a" placeholder="Plan de Tratamiento"></textarea>
 
                         </div>
                             </div>
@@ -554,7 +561,7 @@
                                                       
 
                   <br>
-                  <input type="hidden" name="consulta" value="19748">
+                  <input type="hidden" name="consulta" value="{{$consulta->id}}">
 
 
                
@@ -565,6 +572,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
               </form>
             </div>
