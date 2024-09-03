@@ -117,7 +117,7 @@ class ConsultasController extends Controller
         return view('consultas.historia',compact('cie','cie1','consulta','hist','historias','paciente'));
     }
 
-    /*public function historiap_crear($consulta)
+    public function historiap_creacion($consulta)
 
     {
 
@@ -131,7 +131,7 @@ class ConsultasController extends Controller
        $paciente = Pacientes::where('id','=',$consulta->id_paciente)->first();
 
         return view('consultas.historiapssss',compact('cie','cie1','consulta','hist','historias','paciente'));
-    }*/
+    }
 
     public function ver_historiasp($id)
     {
