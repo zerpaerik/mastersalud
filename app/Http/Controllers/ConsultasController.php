@@ -117,7 +117,7 @@ class ConsultasController extends Controller
         return view('consultas.historia',compact('cie','cie1','consulta','hist','historias','paciente'));
     }
 
-    public function historiap_crear($consulta)
+    /*public function historiap_crear($consulta)
 
     {
 
@@ -128,10 +128,10 @@ class ConsultasController extends Controller
       $hist = HistoriaBase::where('id_paciente','=',$consulta->id_paciente)->first();
       $historias = HistoriaPediatria::where('id_paciente','=',$consulta->id_paciente)->get();
 
-      $paciente = Pacientes::where('id','=',$consulta->id_paciente)->first();
+       $paciente = Pacientes::where('id','=',$consulta->id_paciente)->first();
 
-        return view('consultas.historiap',compact('cie','cie1','consulta','hist','historias','paciente'));
-    }
+        return view('consultas.historiapssss',compact('cie','cie1','consulta','hist','historias','paciente'));
+    }*/
 
     public function ver_historiasp($id)
     {
