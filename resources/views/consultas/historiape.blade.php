@@ -139,6 +139,10 @@
                     </div>
                     <br>
                     <div class="row">
+                    <div class="col-md-4">
+                    <label for="exampleInputEmail1">Edad</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="telef" placeholder="" disabled value="{{$edad}}">
+                   </div>
                     
                    <div class="col-md-4">
                     <label for="exampleInputEmail1">Nombre de Madre o Padre</label>

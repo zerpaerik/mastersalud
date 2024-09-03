@@ -129,8 +129,10 @@ class ConsultasController extends Controller
       $historias = HistoriaPediatria::where('id_paciente','=',$consulta->id_paciente)->get();
 
        $paciente = Pacientes::where('id','=',$consulta->id_paciente)->first();
+       $edad = Carbon::parse($paciente->fechanac)->age;
 
-        return view('consultas.historiape',compact('cie','cie1','consulta','hist','historias','paciente'));
+
+        return view('consultas.historiape',compact('cie','cie1','consulta','hist','historias','paciente','edad'));
     }
 
     public function ver_historiasp($id)
