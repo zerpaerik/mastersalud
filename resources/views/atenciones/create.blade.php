@@ -465,7 +465,7 @@
                   <label for="salud_#index#_salu" class="col-sm-1 control-label">Otros Pagos</label>
                       <div class="col-sm-3">
                         <select id="salud_#index#_salu" name="id_salu[salud][#index#][salu]" class="selectSalud form-control">
-                          <option value="1">Seleccionar Salud M</option>
+                          <option value="1">Seleccionar Otros Pagos</option>
                           @foreach($salud as $sa)
                             <option value="{{$sa->id}}">
                               {{$sa->nombre}} Precio:{{$sa->precio}}
