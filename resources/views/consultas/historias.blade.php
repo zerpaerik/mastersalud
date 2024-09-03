@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>MadreTeresa | Admin</title>
+  <title>MasterSalud | Admin</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -228,13 +228,7 @@
                               Ver Historia
                           </a>
 
-                            
-                          <a class="btn btn-info btn-sm" href="historiasp-pdf-{{$anp->id}}" target="_blank">
-                              <i class="fas fa-print">
-                              </i>
-                              Ver PDF
-                          </a>
-                          
+                 
                        
                         
                   
@@ -291,12 +285,8 @@
                               Ver Historia
                           </a>
 
-                        
-                          <a class="btn btn-info btn-sm" href="historiasm-pdf-{{$anm->id}}" target="_blank">
-                              <i class="fas fa-print">
-                              </i>
-                              Ver PDF
-                          </a>
+                       
+                       
                           
                           
                         

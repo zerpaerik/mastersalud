@@ -92,7 +92,457 @@
 
                             <br>
                 @foreach($historias as $hist)
-           
+                <div class="card-body">
+                    <br>
+                   <label for="exampleInputEmail1">DATOS DE FILIACIÓN</label>
+                   <div class="row">
+                     <div class="col-md-6">
+                    <label for="exampleInputEmail1">Apellidos y Nombres</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="nombre" placeholder="">
+                   </div>
+                   <div class="col-md-6">
+                    <label for="exampleInputEmail1">Domicilio</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="domicilio" placeholder="">
+                   </div>
+               
+                 
+    
+                    </div>
+                    <br>
+                   <div class="row">
+                     <div class="col-md-4">
+                    <label for="exampleInputEmail1">Sexo</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="sexo" placeholder="">
+                   </div>
+                   <div class="col-md-4">
+                    <label for="exampleInputEmail1">Fecha de Nacimiento</label>
+                    <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="nac" placeholder="">
+                   </div>
+                   <div class="col-md-4">
+                    <label for="exampleInputEmail1">Edad</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="edad" placeholder="">
+                   </div>
+            
+                    </div>
+                    <br>
+                    <div class="row">
+                     <div class="col-md-4">
+                    <label for="exampleInputEmail1">Teléfono</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="telef" placeholder="">
+                   </div>
+                   <div class="col-md-4">
+                    <label for="exampleInputEmail1">Nombre de Madre o Padre</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="padres" placeholder="">
+                   </div>
+                 
+            
+                    </div>
+                    <br>
+                    <div class="row">
+                     <div class="col-md-12">
+                    <label for="exampleInputEmail1">Motivo de Consulta</label>
+                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="2"  name="motivo" placeholder="Motivo de Consulta"></textarea>
+
+                   </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                     <div class="col-md-12">
+                    <label for="exampleInputEmail1">Relato</label>
+                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="2"  name="relato" placeholder="Relato"></textarea>
+
+                   </div>
+                    </div>
+                    <br>
+                  
+                   <label for="exampleInputEmail1">FUNCIONES BIOLÓGICAS</label>
+                   <div class="row">
+                     <div class="col-md-2">
+                    <label for="exampleInputEmail1">Apetito</label>
+                    <select class="form-control" name="apetito">
+                    <option value="AUMENTADO">AUMENTADO</option>
+                    <option value="NORMAL">NORMAL</option>
+                    <option value="DISMINUIDO">DISMINUIDO</option>
+                    </select>
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Sed</label>
+                    <select class="form-control" name="sed">
+                    <option value="AUMENTADO">AUMENTADO</option>
+                    <option value="NORMAL">NORMAL</option>
+                    <option value="DISMINUIDO">DISMINUIDO</option>
+                        </select>                   
+                        </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Animo</label>
+                    <select class="form-control" name="animo">
+                    <option value="NORMAL">NORMAL</option>
+                    <option value="DEPRIMIDO">DEPRIMIDO</option>
+                    <option value="EUFÓRICO">EUFÓRICO</option>
+                    <option value="FREC LLANTO">FREC LLANTO</option>
+                   </select>
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Orina</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="orina" placeholder="">
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Heces</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="heces" placeholder="">
+                   </div>
+                   
+
+                    </div>
+                    <br>
+                   <label for="exampleInputEmail1">ANTECEDENTES</label>
+                   <div class="row">
+                     <div class="col-md-1">
+                    <label for="exampleInputEmail1">Ram</label>
+                    <select class="form-control" name="ram">
+                    <option value="NO">NO</option>
+                    <option value="SI">SI</option>
+                   </select>                    
+                   </div>
+                   <div class="col-md-3">
+                    <label for="exampleInputEmail1">Descrip.</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="desc_ram" placeholder="">
+                   </div>
+                   <div class="col-md-1">
+                    <label for="exampleInputEmail1">Hospitaliz.</label>
+                    <select class="form-control" name="hospi">
+                    <option value="NO">NO</option>
+                    <option value="SI">SI</option>
+                   </select>                    
+                   </div>
+                   <div class="col-md-3">
+                    <label for="exampleInputEmail1">Descrip.</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="desc_hosp" placeholder="">
+                   </div>
+                   <div class="col-md-1">
+                    <label for="exampleInputEmail1">Cirugias</label>
+                    <select class="form-control" name="cir">
+                    <option value="NO">NO</option>
+                    <option value="SI">SI</option>
+                   </select>                    
+                   </div>
+                   <div class="col-md-3">
+                    <label for="exampleInputEmail1">Descrip.</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="desc_cir" placeholder="">
+                   </div>
+                
+    
+                    </div>
+                    <br>
+                    <div class="row">
+                     <div class="col-md-1">
+                    <label for="exampleInputEmail1">Vacunas</label>
+                    <select class="form-control" name="vac">
+                    <option value="NO">NO</option>
+                    <option value="SI">SI</option>
+                   </select>                    
+                   </div>
+                   <div class="col-md-3">
+                    <label for="exampleInputEmail1">Descrip.</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="desc_vac" placeholder="">
+                   </div>
+                  
+                   <div class="col-md-8">
+                    <label for="exampleInputEmail1">Antecedentes patológicos y edpidemiológicos.</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="ant_pat" placeholder="">
+                   </div>
+                
+    
+                    </div>
+                    <br>
+                    <label for="exampleInputEmail1">EXAMEN FÍSICO</label>
+                   <div class="row">
+                     <div class="col-md-2">
+                    <label for="exampleInputEmail1">Peso</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"  class="form-control" id="nombre" name="peso" placeholder="">
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Talla</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="talla" placeholder="">
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">T</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="t" placeholder="">
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">PA</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="pa" placeholder="">
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">SAT</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="sat" placeholder="">
+                   </div>
+                 
+    
+                    </div>
+                    
+                
+                    <br>
+
+                    <div class="row">
+                     <div class="col-md-3">
+                        <label for="exampleInputEmail1">Aspecto General</label>
+                        <select class="form-control" name="aspg">
+                            <option value="NORMAL">NORMAL</option>
+                            <option value="ANORMAL">ANORMAL</option>
+                        </select>  
+                    
+                   </div>
+                   <div class="col-md-3">
+                        <label for="exampleInputEmail1">Cabeza</label>
+                        <select class="form-control" name="cab">
+                            <option value="NORMAL">NORMAL</option>
+                            <option value="ANORMAL">ANORMAL</option>
+                        </select>  
+                    
+                   </div>
+                   <div class="col-md-3">
+                        <label for="exampleInputEmail1">Aparato Digestivo</label>
+                        <select class="form-control" name="dig">
+                            <option value="NORMAL">NORMAL</option>
+                            <option value="ANORMAL">ANORMAL</option>
+                        </select>  
+                    
+                   </div>
+                   <div class="col-md-3">
+                        <label for="exampleInputEmail1">Sistema neurológico</label>
+                        <select class="form-control" name="neuro">
+                            <option value="NORMAL">NORMAL</option>
+                            <option value="ANORMAL">ANORMAL</option>
+                        </select>  
+                    
+                   </div>
+                 
+                 
+    
+                    </div>
+
+                    <br>
+                    <div class="row">
+                     <div class="col-md-3">
+                        <label for="exampleInputEmail1">Piel</label>
+                        <select class="form-control" name="piell">
+                            <option value="NORMAL">NORMAL</option>
+                            <option value="ANORMAL">ANORMAL</option>
+                        </select>  
+                    
+                   </div>
+                   <div class="col-md-3">
+                        <label for="exampleInputEmail1">Torax/Sist Resp.</label>
+                        <select class="form-control" name="tor_resp">
+                            <option value="NORMAL">NORMAL</option>
+                            <option value="ANORMAL">ANORMAL</option>
+                        </select>  
+                    
+                   </div>
+                   <div class="col-md-3">
+                        <label for="exampleInputEmail1">Sistema Circulatorio</label>
+                        <select class="form-control" name="circ">
+                            <option value="NORMAL">NORMAL</option>
+                            <option value="ANORMAL">ANORMAL</option>
+                        </select>  
+                    
+                   </div>
+                   <div class="col-md-3">
+                        <label for="exampleInputEmail1">Sistema Genitourinario</label>
+                        <select class="form-control" name="genito">
+                            <option value="NORMAL">NORMAL</option>
+                            <option value="ANORMAL">ANORMAL</option>
+                        </select>  
+                    
+                   </div>
+                 
+                 
+    
+                    </div>
+
+                    <br>
+                    <div class="row">
+                     <div class="col-md-3">
+                        <label for="exampleInputEmail1">Aparato Locomotor</label>
+                        <select class="form-control" name="locomo">
+                            <option value="NORMAL">NORMAL</option>
+                            <option value="ANORMAL">ANORMAL</option>
+                        </select>  
+                    
+                   </div>
+                 
+                
+                    </div>
+
+                    <br>
+                   
+                    <div class="row">
+                     <div class="col-md-12">
+                    <label for="exampleInputEmail1">Hallazgos</label>
+                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="3"  name="hallazg" placeholder="Describir obligatoriamente los hallazgos descritos anormales."></textarea>
+                  </div>
+                    </div>
+                   <br>
+                   <div class="row">
+                     <div class="col-md-12">
+                    <label for="exampleInputEmail1">Diagnóstico</label>
+                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="3"  name="diag" placeholder="Diagnóstico"></textarea>
+                   </div>
+                    </div>
+                    <br>
+                   <div class="row">
+                     <div class="col-md-12">
+                    <label for="exampleInputEmail1">Plan de Tratamiento</label>
+                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="3"  name="plan" placeholder="Plan de Tratamiento"></textarea>
+
+                  </div>
+                    </div>
+                    <br>
+
+                    <label for="exampleInputEmail1">DATOS DE ACOMPAÑANTE</label>
+                    <br>
+                    <label for="exampleInputEmail1">EXAMEN FÍSICO</label>
+
+                   <div class="row">
+                     <div class="col-md-2">
+                    <label for="exampleInputEmail1">MAT</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"  class="form-control" id="nombre" name="mat_a" placeholder="">
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Edad</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="edad_a" placeholder="">
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Peso</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="peso_a" placeholder="">
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Talla</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="talla_a" placeholder="">
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">T</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="t_a" placeholder="">
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">PA</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="pa_a" placeholder="">
+                   </div>
+                 
+                 
+    
+                    </div>
+                    
+                
+                    <br>
+
+                        <div class="row">
+                        <div class="col-md-3">
+                            <label for="exampleInputEmail1">Aspecto General</label>
+                            <select class="form-control" name="ag_a">
+                                <option value="NORMAL">NORMAL</option>
+                                <option value="ANORMAL">ANORMAL</option>
+                            </select>  
+
+                        </div>
+                        <div class="col-md-3">
+                            <label for="exampleInputEmail1">Cabeza</label>
+                            <select class="form-control" name="cab_a">
+                                <option value="NORMAL">NORMAL</option>
+                                <option value="ANORMAL">ANORMAL</option>
+                            </select>  
+
+                        </div>
+                        <div class="col-md-3">
+                            <label for="exampleInputEmail1">Aparato Digestivo</label>
+                            <select class="form-control" name="dig_a">
+                                <option value="NORMAL">NORMAL</option>
+                                <option value="ANORMAL">ANORMAL</option>
+                            </select>  
+
+                        </div>
+                        <div class="col-md-3">
+                            <label for="exampleInputEmail1">Sistema neurológico</label>
+                            <select class="form-control" name="neuro_a">
+                                <option value="NORMAL">NORMAL</option>
+                                <option value="ANORMAL">ANORMAL</option>
+                            </select>  
+
+                        </div>
+
+
+
+                        </div>
+
+                        <br>
+                        <div class="row">
+                        <div class="col-md-3">
+                            <label for="exampleInputEmail1">Piel</label>
+                            <select class="form-control" name="piell_a">
+                                <option value="NORMAL">NORMAL</option>
+                                <option value="ANORMAL">ANORMAL</option>
+                            </select>  
+
+                        </div>
+                        <div class="col-md-3">
+                            <label for="exampleInputEmail1">Torax/Sist Resp.</label>
+                            <select class="form-control" name="tor_resp_a">
+                                <option value="NORMAL">NORMAL</option>
+                                <option value="ANORMAL">ANORMAL</option>
+                            </select>  
+
+                        </div>
+                        <div class="col-md-3">
+                            <label for="exampleInputEmail1">Sistema Circulatorio</label>
+                            <select class="form-control" name="circ_a">
+                                <option value="NORMAL">NORMAL</option>
+                                <option value="ANORMAL">ANORMAL</option>
+                            </select>  
+
+                        </div>
+                        <div class="col-md-3">
+                            <label for="exampleInputEmail1">Sistema Genitourinario</label>
+                            <select class="form-control" name="genito_a">
+                                <option value="NORMAL">NORMAL</option>
+                                <option value="ANORMAL">ANORMAL</option>
+                            </select>  
+
+                        </div>
+
+
+
+                        </div>
+
+                        <br>
+                        <div class="row">
+                        <div class="col-md-3">
+                            <label for="exampleInputEmail1">Aparato Locomotor</label>
+                            <select class="form-control" name="locomo_a">
+                                <option value="NORMAL">NORMAL</option>
+                                <option value="ANORMAL">ANORMAL</option>
+                            </select>  
+
+                        </div>
+
+
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-12">
+                            <label for="exampleInputEmail1">Examenes Auxiliares</label>
+                            <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="2"  name="ex_aux_a" placeholder="Examenes Auxiliares"></textarea>
+                        </div>
+                            </div>
+                            <br>
+                        <div class="row">
+                            <div class="col-md-12">
+                            <label for="exampleInputEmail1">Plan de Tratamiento</label>
+                            <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="2"  name="plan_a" placeholder="Plan de Tratamiento"></textarea>
+
+                        </div>
+                            </div>
+                            <br>
+
               
             
                 @endforeach

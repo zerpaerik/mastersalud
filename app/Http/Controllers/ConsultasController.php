@@ -156,28 +156,6 @@ class ConsultasController extends Controller
 
     }
 
-    public function ver_historiasm($id)
-    {
-
-
-        // $hist = Historia::where('id','=',$id)->first();
-
-         $hist = DB::table('historia_medicina as a')
-         ->select('a.*','u.name','u.lastname')
-         ->join('users as u','u.id','a.usuario')
-         ->where('a.id', '=',$id)
-         ->first(); 
-
-
-
-         $historias_base = HistoriaBM::where('id_paciente','=',$hist->id_paciente)->first();
-
-         $paciente = Pacientes::where('id','=',$hist->id_paciente)->first();
-
-        return view('consultas.historiasm_ver', compact('hist','historias_base','paciente'));
-
-
-    }
 
     public function historiam_crear($consulta)
 
@@ -194,6 +172,34 @@ class ConsultasController extends Controller
 
         return view('consultas.historiam',compact('cie','cie1','consulta','hist','historias','paciente'));
     }
+
+    
+    public function ver_historiasm($consulta)
+    {
+
+        $historias = HistoriaMedicina::where('id','=',$consulta)->first();
+        $hist = HistoriaBase::where('id_paciente','=',$historias->id_paciente)->first();
+        $paciente = Pacientes::where('id','=',$historias->id_paciente)->first();
+
+        return view('consultas.historiam_ver',compact('hist','historias','paciente'));
+    }
+
+    public function historiap_ver($consulta)
+
+    {
+
+
+      $cie = Ciexes::all();
+      $cie1 = Ciexes::all();
+      $consulta = Consultas::where('id','=',$consulta)->first();
+      $hist = HistoriaBase::where('id_paciente','=',$consulta->id_paciente)->first();
+      $historias = HistoriaPediatria::where('id_paciente','=',$consulta->id_paciente)->get();
+
+      $paciente = Pacientes::where('id','=',$consulta->id_paciente)->first();
+
+        return view('consultas.historiap_ver',compact('cie','cie1','consulta','hist','historias','paciente'));
+    }
+
 
     
     public function control_crear($consulta)

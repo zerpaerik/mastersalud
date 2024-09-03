@@ -92,13 +92,12 @@
                     </div>
 
                             <br>
-
               <div class="card-body">
               
-              @if($hist)
-
+                    
                    <label for="exampleInputEmail1" style="margin-left:15px;">HISTORIAL BASE</label>
 
+                   
                    <div class="row" style="margin-left:10px;">
                 
                    <div class="col-md-4">
@@ -118,78 +117,21 @@
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled name="per" value="{{$hist->sex}}">
                    </div>
                     </div>
-
-                    @else
-
-                    <div class="row" style = "margin-bottom: -20px;">
-
-                    <div class="col-md-12" style="margin-left: 20px; color: red;">
-                    <label for="exampleInputEmail1">NO TIENE HISTORIAL BASE, DEBE PROCEDER A CREARLO</label>
-                    </div>
-
-                    </div>
-                    <br>
-                    
-                    <form role="form" method="post" action="historiab/guardar">
-                {{ csrf_field() }}  
-                      <div class="row" style="margin-left:10px;">
-
-                      <div class="col-md-4">
-                      <label for="exampleInputEmail1">Antecedentes Personales</label>
-                      <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre"  name="per">
-                      </div>
-                      <div class="col-md-4">
-                      <label for="exampleInputEmail1">Antecedentes Familiares</label>
-                      <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre"  name="fam">
-                      </div>
-                      <div class="col-md-4">
-                      <label for="exampleInputEmail1">Antecedentes Quirurgicos</label>
-                      <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre"  name="pat">
-                      </div>
-                      <div class="col-md-4">
-                      <label for="exampleInputEmail1">Otros</label>
-                      <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre"  name="sexo">
-                      </div>
-                      </div>
-
-                      <input type="hidden" name="consulta" value="{{$consulta->id}}">
-
-                 
-                                                      
-
-                  <br>
-                  <input type="hidden" name="control" value="">
-
-               
-
-                
-                 
-                </div>
-                <!-- /.card-body -->
-
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Guardar</button>
-                </div>
-              </form>
-
-                    @endif
-
               
-                    @foreach($historias as $hist)
-
+              
               <div class="card-body">
-                    <label for="exampleInputEmail1">Fecha: {{$hist->created_at}}</label>
+                    <label for="exampleInputEmail1">Fecha: {{$historias->created_at}}</label>
                     <br>
 
                     <label for="exampleInputEmail1">Examen Físico y Clínico</label>
                    <div class="row">
                      <div class="col-md-6">
                     <label for="exampleInputEmail1">Piel/Mucosas</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"  class="form-control" id="nombre" name="piel" placeholder="" disabled value="{{$hist->piel}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"  class="form-control" id="nombre" name="piel" placeholder="" disabled value="{{$historias->piel}}">
                    </div>
                    <div class="col-md-6">
                     <label for="exampleInputEmail1">Torax</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="torax" placeholder="" disabled value="{{$hist->torax}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="torax" placeholder="" disabled value="{{$historias->torax}}">
                    </div>
                   
                     </div>
@@ -197,11 +139,11 @@
                     <div class="row">
                     <div class="col-md-6">
                     <label for="exampleInputEmail1">Corazon</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="corazon" placeholder="" disabled value="{{$hist->corazon}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="corazon" placeholder="" disabled value="{{$historias->corazon}}">
                    </div>
                      <div class="col-md-6">
                     <label for="exampleInputEmail1">Abdomen</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"  class="form-control" id="nombre" name="abdomen" placeholder="" disabled value="{{$hist->abdomen}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"  class="form-control" id="nombre" name="abdomen" placeholder="" disabled value="{{$historias->abdomen}}">
                    </div>
             
                     </div>
@@ -210,7 +152,7 @@
                     <div class="row">
                     <div class="col-md-6">
                     <label for="exampleInputEmail1">Otros</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="otros" placeholder="" disabled value="{{$hist->otros}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="otros" placeholder="" disabled value="{{$historias->otros}}">
                    </div>
                   
             
@@ -220,7 +162,7 @@
                     <div class="row">
                      <div class="col-md-12">
                     <label for="exampleInputEmail1">Examen Auxiliar</label>
-                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="3"  name="ex_aux" placeholder="Examen Auxiliar" disabled>{{$hist->ex_aux}}</textarea>
+                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="3"  name="ex_aux" placeholder="Examen Auxiliar" disabled>{{$historias->ex_aux}}</textarea>
                   </div>
                     </div>
  
@@ -229,146 +171,46 @@
                     <div class="row">
                      <div class="col-md-6">
                     <label for="exampleInputEmail1">Diagnóstico</label>
-                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="2"  name="diag_fin" placeholder="Diagnóstico Final" disabled>{{$hist->diag_fin}}</textarea>
+                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="2"  name="diag_fin" placeholder="Diagnóstico Final" disabled>{{$historias->diag_fin}}</textarea>
 
                    </div>
                    <div class="col-md-6">
                     <label for="exampleInputEmail1">CIE X</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="otros" placeholder="" disabled value="{{$hist->cie_df}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="otros" placeholder="" disabled value="{{$historias->cie_df}}">
          
                     </div>
                 
                     </div>
                     <br>
-                 
-                   <div class="row">
+                    <div class="row">
                      <div class="col-md-12">
-                    <label for="exampleInputEmail1">Plan de Tratamiento</label>
-                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="3"  name="plan" placeholder="Plan de Tratamiento" disabled>{{$hist->plan}}</textarea>
-
+                    <label for="exampleInputEmail1">Plan de tratamiento</label>
+                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="3"  name="ex_aux" placeholder="Examen Auxiliar" disabled>{{$historias->plan}}</textarea>
                   </div>
                     </div>
+ 
                     <br>
-                   <div class="row">
+
+                    <div class="row">
                      <div class="col-md-12">
                     <label for="exampleInputEmail1">Observaciones</label>
-                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="3"  name="observaciones" placeholder="Observaciones" disabled>{{$hist->observaciones}}</textarea>
-                   </div>
+                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="3"  name="ex_aux" placeholder="Observaciones" disabled>{{$historias->observaciones}}</textarea>
+                  </div>
                     </div>
+ 
+                    <br>
+                 
+                 
                     <br>
                    
 
 
                 </div>
-                @endforeach
                 <!-- /.card-body -->
 
             </div>
             
 
-              <form role="form" method="post" action="historiamm/guardar">
-              {{ csrf_field() }}                
-
-                    <div class="card-body" style="margin-left:15px;">
-                  
-                  
-                    <label for="exampleInputEmail1">Examen Físico y Clínico</label>
-                   <div class="row">
-                     <div class="col-md-6">
-                    <label for="exampleInputEmail1">Piel/Mucosas</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"  class="form-control" id="nombre" name="piel" placeholder="">
-                   </div>
-                   <div class="col-md-6">
-                    <label for="exampleInputEmail1">Torax</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="torax" placeholder="">
-                   </div>
-                  
-                    </div>
-                    <br>
-                    <div class="row">
-                    <div class="col-md-6">
-                    <label for="exampleInputEmail1">Corazon</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="corazon" placeholder="">
-                   </div>
-                     <div class="col-md-6">
-                    <label for="exampleInputEmail1">Abdomen</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"  class="form-control" id="nombre" name="abdomen" placeholder="">
-                   </div>
-            
-                    </div>
-                    <br>
-
-                    <div class="row">
-                    <div class="col-md-6">
-                    <label for="exampleInputEmail1">Otros</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="otros" placeholder="">
-                   </div>
-                  
-            
-                    </div>
-
-                    <br>
-                    <div class="row">
-                     <div class="col-md-12">
-                    <label for="exampleInputEmail1">Examen Auxiliar</label>
-                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="3"  name="ex_aux" placeholder="Examen Auxiliar"></textarea>
-                  </div>
-                    </div>
- 
-                    <br>
-                  
-                    <div class="row">
-                     <div class="col-md-6">
-                    <label for="exampleInputEmail1">Diagnóstico</label>
-                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="2"  name="diag_fin" placeholder="Diagnóstico Final"></textarea>
-
-                   </div>
-                   <div class="col-md-6">
-                    <label for="exampleInputEmail1">CIE X</label>
-                    <select class="form-control select2" name="cie_df">
-                                       </select>           
-                    </div>
-                
-                    </div>
-                    <br>
-                 
-                   <div class="row">
-                     <div class="col-md-12">
-                    <label for="exampleInputEmail1">Plan de Tratamiento</label>
-                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="3"  name="plan" placeholder="Plan de Tratamiento"></textarea>
-
-                  </div>
-                    </div>
-                    <br>
-                   <div class="row">
-                     <div class="col-md-12">
-                    <label for="exampleInputEmail1">Observaciones</label>
-                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="3"  name="observaciones" placeholder="Observaciones"></textarea>
-                   </div>
-                    </div>
-                    <br>
-                 
-
-
-                 
-                                                      
-
-                  <br>
-                  <input type="hidden" name="consulta" value="{{$consulta->id}}">
-
-
-               
-
-                
-                 
-                </div>
-                <!-- /.card-body -->
-
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Guardar</button>
-                </div>
-              </form>
-            </div>
             <!-- /.card -->
 
          

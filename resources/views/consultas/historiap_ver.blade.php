@@ -82,21 +82,210 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <div class="row" style="margin-left:25px;">
+              <div class="row" style="margin-left:10px;">
                      <div class="col-md-3">
                     <label for="exampleInputEmail1">PACIENTE</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" value="{{$paciente->apellidos}} {{$paciente->nombres}}" name="gestas" placeholder="">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" value="MEZA LA ROSA JOSE LUIS " name="gestas" placeholder="">
                    </div>
                   
                     </div>
 
-                            <br>
-                @foreach($historias as $hist)
-           
+    
               
-            
-                @endforeach
+              <div class="card-body">
+                    <label for="exampleInputEmail1">Fecha: 2024-09-03 10:07:09</label>
+                    <div class="row">
+                     <div class="col-md-12">
+                    <label for="exampleInputEmail1">Motivo de Consulta</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled  name="sexo" value="">
 
+                   </div>
+                    </div>
+                   <label for="exampleInputEmail1">Funciones Vitales</label>
+                   <div class="row">
+                     <div class="col-md-2">
+                    <label for="exampleInputEmail1">P/A</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled  id="nombre" name="pa" placeholder="" value="HGFHG">
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Pulso</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="pulso" placeholder="" value="">
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Temp</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="temp" placeholder="" value="">
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Peso</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="peso" placeholder="" value="GFHFh">
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Talla</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="talla" placeholder="" value="GHFGHgf">
+                   </div>
+    
+                    </div>
+                   <label for="exampleInputEmail1">Funciones Biológicas</label>
+                   <div class="row">
+                     <div class="col-md-2">
+                    <label for="exampleInputEmail1">Apetito</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="talla" placeholder="" value="AUMENTADO">
+
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Sed</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="talla" placeholder="" value="AUMENTADO">
+                 
+                        </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Animo</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="talla" placeholder="" value="NORMAL">
+
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Frec.Mic</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="mic" placeholder="" value="">
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">R/C</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="rc" placeholder="" value="">
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Frec.Dep</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="dep" placeholder="" value="">
+                   </div>
+
+                    </div>
+                   <label for="exampleInputEmail1">Antecedentes</label>
+                   <div class="row">
+                     <div class="col-md-2">
+                    <label for="exampleInputEmail1">FUR</label>
+                    <input type="text"  class="form-control" id="nombre" name="fur" placeholder="" disabled  value="">
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">PAP</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="pap" placeholder=""  value="">
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">MAC</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="mac" placeholder=""  value="">
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Andria</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="andria" placeholder=""  value="">
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">G</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="g" placeholder=""  value="">
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">P</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="p" placeholder=""  value="">
+                   </div>
+    
+                    </div>
+                    <label for="exampleInputEmail1">Examen Físico y Regional</label>
+                   <div class="row">
+                     <div class="col-md-4">
+                    <label for="exampleInputEmail1">Piel/Mucosas</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"  class="form-control" disabled id="nombre" name="piel" placeholder=""  value="">
+                   </div>
+                   <div class="col-md-4">
+                    <label for="exampleInputEmail1">Mamas</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="mamas" placeholder=""  value="">
+                   </div>
+                   <div class="col-md-4">
+                    <label for="exampleInputEmail1">Abdomen</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="abdomen" placeholder=""  value="">
+                   </div>
+                 
+    
+                    </div>
+                    <div class="row">
+                     <div class="col-md-4">
+                    <label for="exampleInputEmail1">Genitales Externos</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"  class="form-control" disabled id="nombre" name="gen_ext" placeholder=""  value="">
+                   </div>
+                   <div class="col-md-4">
+                    <label for="exampleInputEmail1">Genitales Internos</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="gen_int" placeholder=""  value="">
+                   </div>
+                   <div class="col-md-4">
+                    <label for="exampleInputEmail1">Miembros Inferiores</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="miem_inf" placeholder=""  value="">
+                   </div>
+    
+                    </div>
+                    <div class="row">
+                     <div class="col-md-6">
+                    <label for="exampleInputEmail1">Evolución de Enfermedad</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="miem_inf" placeholder=""  value="">
+
+                   </div>
+                   <div class="col-md-6">
+                    <label for="exampleInputEmail1">Tipo de Enfermedad</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="miem_inf" placeholder=""  value="">
+      
+                         </div>
+                
+                    </div>
+                    <br>
+                    <div class="row">
+                     <div class="col-md-6">
+                    <label for="exampleInputEmail1">Presunción Diagnóstica</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled  name="sexo" value="">
+
+                   </div>
+                   <div class="col-md-6">
+                    <label for="exampleInputEmail1">CIE X</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="miem_inf" placeholder=""  value="">
+                   
+                   </select>           
+                    </div>
+                
+                    </div>
+                    <div class="row">
+                     <div class="col-md-6">
+                    <label for="exampleInputEmail1">Diagnóstico Final</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled  name="sexo" value="">
+
+                   </div>
+                   <div class="col-md-6">
+                    <label for="exampleInputEmail1">CIE X</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="miem_inf" placeholder=""  value="">
+          
+                    </div>
+                
+                    </div>
+                    <div class="row">
+                     <div class="col-md-12">
+                    <label for="exampleInputEmail1">Examen Auxiliar</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled  name="sexo" value="">
+                  </div>
+                    </div>
+                   <div class="row">
+                     <div class="col-md-12">
+                    <label for="exampleInputEmail1">Plan de Tratamiento</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled  name="sexo" value="GFHFDgh">
+
+                  </div>
+                    </div>
+                   <div class="row">
+                     <div class="col-md-12">
+                    <label for="exampleInputEmail1">Observaciones</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled  name="sexo" value="">
+                   </div>
+                    </div>
+                   <div class="row">
+                     <div class="col-md-3">
+                    <label for="exampleInputEmail1">Próxima Consulta</label>
+                    <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="prox" placeholder="Observaciones" value="">
+                   </div>
+                    </div>
+
+
+
+                </div>
                 <!-- /.card-body -->
 
             </div>
@@ -104,7 +293,7 @@
 
 
               <form role="form" method="post" action="historiapp/guardar">
-              {{ csrf_field() }}     
+					<input type="hidden" name="_token" value="Dwf6fblUu6zA4XBpb4fMi1I8rR9AVpwznaLw5nYt">                
                     <div class="card-body">
                     <br>
                    <label for="exampleInputEmail1">DATOS DE FILIACIÓN</label>
@@ -561,7 +750,7 @@
                                                       
 
                   <br>
-                  <input type="hidden" name="consulta" value="{{$consulta->id}}">
+                  <input type="hidden" name="consulta" value="19748">
 
 
                
