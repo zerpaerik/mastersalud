@@ -14,6 +14,8 @@ use App\Consultas;
 use App\Metodos;
 use App\Ciexes;
 use App\Historia;
+use App\HistoriaMedicina;
+use App\HistoriaPediatria;
 use App\AntecedentesObstetricos;
 use App\Control;
 use App\HistoriaBase;
@@ -40,7 +42,7 @@ class ConsultasController extends Controller
         $f2 = $request->fin;
 
         $consultas = DB::table('consultas as a')
-        ->select('a.id','a.id_paciente','a.id_atencion','a.usuario','a.historia','a.id_especialista','a.tipo','a.sede','a.created_at','a.estatus','a.monto','b.nombres','b.apellidos','c.name as nameo','c.lastname as lasto','e.name as namee','e.lastname as laste','at.created_at as fecha')
+        ->select('a.id','a.id_paciente','a.id_atencion','a.usuario','a.historia','a.tipo_consulta','a.id_especialista','a.tipo','a.sede','a.created_at','a.estatus','a.monto','b.nombres','b.apellidos','c.name as nameo','c.lastname as lasto','e.name as namee','e.lastname as laste','at.created_at as fecha')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.usuario')
         ->join('users as e','e.id','a.id_especialista')
@@ -57,7 +59,7 @@ class ConsultasController extends Controller
         $f2 = date('Y-m-d');
 
         $consultas = DB::table('consultas as a')
-        ->select('a.id','a.id_paciente','a.id_atencion','a.usuario','a.historia','a.id_especialista','a.tipo','a.sede','a.created_at','a.estatus','a.monto','b.nombres','b.apellidos','c.name as nameo','c.lastname as lasto','e.name as namee','e.lastname as laste','at.created_at as fecha')
+        ->select('a.id','a.id_paciente','a.id_atencion','a.tipo_consulta','a.usuario','a.historia','a.id_especialista','a.tipo','a.sede','a.created_at','a.estatus','a.monto','b.nombres','b.apellidos','c.name as nameo','c.lastname as lasto','e.name as namee','e.lastname as laste','at.created_at as fecha')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.usuario')
         ->join('users as e','e.id','a.id_especialista')
@@ -112,12 +114,85 @@ class ConsultasController extends Controller
 
       $paciente = Pacientes::where('id','=',$consulta->id_paciente)->first();
 
-
-
-
-
-
         return view('consultas.historia',compact('cie','cie1','consulta','hist','historias','paciente'));
+    }
+
+    public function historiap_crear($consulta)
+
+    {
+
+
+      $cie = Ciexes::all();
+      $cie1 = Ciexes::all();
+      $consulta = Consultas::where('id','=',$consulta)->first();
+      $hist = HistoriaBase::where('id_paciente','=',$consulta->id_paciente)->first();
+      $historias = HistoriaPediatria::where('id_paciente','=',$consulta->id_paciente)->get();
+
+      $paciente = Pacientes::where('id','=',$consulta->id_paciente)->first();
+
+        return view('consultas.historiap',compact('cie','cie1','consulta','hist','historias','paciente'));
+    }
+
+    public function ver_historiasp($id)
+    {
+
+
+        // $hist = Historia::where('id','=',$id)->first();
+
+         $hist = DB::table('historia_pediatrica as a')
+         ->select('a.*','u.name','u.lastname')
+         ->join('users as u','u.id','a.usuario')
+         ->where('a.id', '=',$id)
+         ->first(); 
+
+
+
+         $historias_base = HistoriaBaseP::where('id_paciente','=',$hist->id_paciente)->first();
+
+         $paciente = Pacientes::where('id','=',$hist->id_paciente)->first();
+
+        return view('consultas.historiasp_ver', compact('hist','historias_base','paciente'));
+
+
+    }
+
+    public function ver_historiasm($id)
+    {
+
+
+        // $hist = Historia::where('id','=',$id)->first();
+
+         $hist = DB::table('historia_medicina as a')
+         ->select('a.*','u.name','u.lastname')
+         ->join('users as u','u.id','a.usuario')
+         ->where('a.id', '=',$id)
+         ->first(); 
+
+
+
+         $historias_base = HistoriaBM::where('id_paciente','=',$hist->id_paciente)->first();
+
+         $paciente = Pacientes::where('id','=',$hist->id_paciente)->first();
+
+        return view('consultas.historiasm_ver', compact('hist','historias_base','paciente'));
+
+
+    }
+
+    public function historiam_crear($consulta)
+
+    {
+
+
+      $cie = Ciexes::all();
+      $cie1 = Ciexes::all();
+      $consulta = Consultas::where('id','=',$consulta)->first();
+      $hist = HistoriaBase::where('id_paciente','=',$consulta->id_paciente)->first();
+      $historias = HistoriaMedicina::where('id_paciente','=',$consulta->id_paciente)->get();
+
+      $paciente = Pacientes::where('id','=',$consulta->id_paciente)->first();
+
+        return view('consultas.historiam',compact('cie','cie1','consulta','hist','historias','paciente'));
     }
 
     
@@ -208,6 +283,44 @@ class ConsultasController extends Controller
 
     }
 
+    public function guardar_historiam(Request $request){
+
+
+
+      $consultaf = Consultas::where('id','=',$request->consulta)->first();
+
+      $con = new HistoriaBase();
+      $con->id_paciente =  $consultaf->id_paciente;
+      $con->alergias = $request->alerg;
+      $con->ant_pat = $request->pat;
+      $con->ant_per = $request->per;
+      $con->ant_fam = $request->fam;
+      $con->sex = $request->sexo;
+      $con->save();
+
+      return back();
+
+    }
+
+    public function guardar_historiap(Request $request){
+
+
+
+      $consultaf = Consultas::where('id','=',$request->consulta)->first();
+
+      $con = new HistoriaBase();
+      $con->id_paciente =  $consultaf->id_paciente;
+      $con->alergias = $request->alerg;
+      $con->ant_pat = $request->pat;
+      $con->ant_per = $request->per;
+      $con->ant_fam = $request->fam;
+      $con->sex = $request->sexo;
+      $con->save();
+
+      return back();
+
+    }
+
     public function guardar_historia(Request $request)
 
     {
@@ -276,6 +389,152 @@ class ConsultasController extends Controller
 
 
     }
+
+    public function guardar_historiamm(Request $request)
+
+
+    {
+      $consultaf = Consultas::where('id','=',$request->consulta)->first();
+
+      $con = new HistoriaMedicina();
+      $con->id_paciente =  $consultaf->id_paciente;
+      $con->id_consulta = $consultaf->id;
+      $con->piel = $request->piel;
+      $con->torax = $request->torax;
+      $con->corazon = $request->corazon;
+      $con->abdomen = $request->abdomen;
+      $con->otros = $request->otros;
+      $con->ex_aux = $request->ex_aux;
+      $con->diag_fin = $request->diag_fin;
+      $con->cie_df = $request->cie_df;
+      $con->plan = $request->plan;
+      $con->observaciones = $request->observaciones;
+      $con->usuario = Auth::user()->id;
+      $con->save();
+
+      $con_fin = Consultas::where('id','=',$request->consulta)->first();
+      $con_fin->historia = 2;
+      $con_fin->atendido = Auth::user()->id;
+      $con_fin->save();
+
+      $usuario = DB::table('users')
+      ->select('*')
+      ->where('id','=', Auth::user()->id)
+      ->first();  
+
+
+      $at_fin = Atenciones::where('id','=',$consultaf->id_atencion)->first();
+      $at_fin->atendido = 2;
+      $at_fin->atendido_por = $usuario->lastname.' '.$usuario->name;
+      $at_fin->save();
+
+      return redirect()->action('ConsultasController@index')
+      ->with('success','Creado Exitosamente!');
+
+
+
+
+
+    }
+
+    public function guardar_historiapp(Request $request)
+
+
+    {
+      $consultaf = Consultas::where('id','=',$request->consulta)->first();
+
+      $con = new HistoriaPediatria();
+      $con->id_paciente =  $consultaf->id_paciente;
+      $con->id_consulta = $consultaf->id;
+      $con->nombre = $request->nombre;
+      $con->domicilio = $request->domicilio;
+      $con->sexo = $request->sexo;
+      $con->nac = $request->nac;
+      $con->edad = $request->edad;
+      $con->telef = $request->telef;
+      $con->padres = $request->padres;
+      $con->relato = $request->relato;
+      $con->motivo = $request->motivo;
+      $con->apetito = $request->apetito;
+      $con->sed = $request->sed;
+      $con->animo = $request->animo;
+      $con->orina = $request->orina;
+      $con->heces = $request->heces;
+      $con->ram = $request->ram;
+      $con->desc_ram = $request->desc_ram;
+      $con->hospi = $request->hospi;
+      $con->desc_hosp = $request->desc_hosp;
+      $con->cir = $request->cir;
+      $con->desc_cir = $request->desc_cir;
+      $con->vac = $request->vac;
+      $con->desc_vac = $request->desc_vac;
+      $con->ant_pat = $request->ant_pat;
+      $con->peso = $request->peso;
+      $con->talla = $request->talla;
+      $con->t	 = $request->t;
+      $con->pa = $request->pa;
+      $con->sat = $request->sat;
+      $con->aspg = $request->aspg;
+      $con->cab = $request->cab;
+      $con->dig = $request->dig;
+      $con->neuro = $request->neuro;
+      $con->tor_resp = $request->tor_resp;
+      $con->circ = $request->circ;
+      $con->genito = $request->genito;
+      $con->locomo = $request->locomo;
+      $con->hallazg = $request->hallazg;
+      $con->diag = $request->diag;
+      $con->plan = $request->plan;
+      $con->mat_a = $request->mat_a;
+      $con->edad_a = $request->edad_a;
+      $con->peso_a = $request->peso_a;
+      $con->talla_a = $request->talla_a;
+      $con->t_a = $request->t_a;
+      $con->pa_a = $request->pa_a;
+      $con->ag_a = $request->ag_a;
+      $con->cab_a = $request->cab_a;
+      $con->dig_a = $request->dig_a;
+      $con->neuro_a = $request->neuro_a;
+      $con->piell_a = $request->piell_a;
+      $con->tor_resp_a = $request->tor_resp_a;
+      $con->circ_a = $request->circ_a;
+      $con->genito_a = $request->genito_a;
+      $con->locomo_a = $request->locomo_a;
+      $con->ex_aux_a = $request->ex_aux_a;
+      $con->plan_a = $request->plan_a;
+      $con->genito_a = $request->genito_a;
+      $con->locomo_a = $request->locomo_a;
+      $con->ex_aux_a = $request->ex_aux_a;
+      $con->usuario = Auth::user()->id;
+      $con->save();
+
+      $con_fin = Consultas::where('id','=',$request->consulta)->first();
+      $con_fin->historia = 2;
+      $con_fin->atendido = Auth::user()->id;
+      $con_fin->save();
+
+      $usuario = DB::table('users')
+      ->select('*')
+      ->where('id','=', Auth::user()->id)
+      ->first();  
+
+
+      $at_fin = Atenciones::where('id','=',$consultaf->id_atencion)->first();
+      $at_fin->atendido = 2;
+      $at_fin->atendido_por = $usuario->lastname.' '.$usuario->name;
+      $at_fin->save();
+
+      return redirect()->action('ConsultasController@index')
+      ->with('success','Creado Exitosamente!');
+
+
+
+
+
+    }
+
+
+
 
     public function guardar_control(Request $request){
 
@@ -379,12 +638,40 @@ class ConsultasController extends Controller
           ->join('pacientes as b','b.id','a.id_paciente')
           ->where('a.id_paciente', '=',$request->id_paciente)
           ->get(); 
+
+          
+          $historias_m = DB::table('historia_medicina as a')
+          ->select('a.id_paciente','a.id','a.created_at','b.nombres','b.apellidos','b.dni','b.fechanac','b.telefono','b.gradoinstruccion')
+          ->join('pacientes as b','b.id','a.id_paciente')
+          ->where('a.id_paciente', '=',$request->id_paciente)
+          ->orderBy('a.created_at','ASC')
+          ->get(); 
+
+          $historias_p = DB::table('historia_pediatrica as a')
+          ->select('a.id_paciente','a.id','a.created_at','b.nombres','b.apellidos','b.dni','b.fechanac','b.telefono','b.gradoinstruccion')
+          ->join('pacientes as b','b.id','a.id_paciente')
+          ->where('a.id_paciente', '=',$request->id_paciente)
+          ->orderBy('a.created_at','ASC')
+          ->get(); 
   
         } else {
           //$historias = Historias::where('id_paciente','=',77777777777)->get();
 
           $historias = DB::table('historia as a')
           ->select('a.id_paciente','a.id','a.created_at','a.reevalua','a.observacion','a.usuario_reevalua','b.nombres','b.apellidos','b.dni','b.fechanac','b.telefono','b.gradoinstruccion')
+          ->join('pacientes as b','b.id','a.id_paciente')
+          ->where('a.id_paciente', '=',77777777777)
+          ->get(); 
+
+          
+          $historias_m = DB::table('historia_medicina as a')
+          ->select('a.id_paciente','a.id','a.created_at','b.nombres','b.apellidos','b.dni','b.fechanac','b.telefono','b.gradoinstruccion')
+          ->join('pacientes as b','b.id','a.id_paciente')
+          ->where('a.id_paciente', '=',77777777777)
+          ->get(); 
+
+          $historias_p = DB::table('historia_pediatrica as a')
+          ->select('a.id_paciente','a.id','a.created_at','b.nombres','b.apellidos','b.dni','b.fechanac','b.telefono','b.gradoinstruccion')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->where('a.id_paciente', '=',77777777777)
           ->get(); 
@@ -399,7 +686,7 @@ class ConsultasController extends Controller
 
 
 
-        return view('consultas.historias', compact('pacientes','historias'));
+        return view('consultas.historias', compact('pacientes','historias', 'historias_m', 'historias_p'));
 
 
     }

@@ -349,13 +349,24 @@ Route::get('historias', 'ConsultasController@historias')->name('historias.index'
 Route::get('historia/reevaluar/{id}', 'ConsultasController@reevaluar');
 Route::post('historia/reevaluar', 'ConsultasController@reevaluarPost');
 Route::get('historias-ver-{id}', 'ConsultasController@ver_historias');
+Route::get('historiasp-ver-{id}', 'ConsultasController@ver_historiasp');
+Route::get('historiasm-ver-{id}', 'ConsultasController@ver_historiasm');
+Route::get('historiasm-pdf-{id}', 'ConsultasController@ver_historiasm_pdf');
+Route::get('historiasp-pdf-{id}', 'ConsultasController@ver_historiasp_pdf');
 Route::get('historias-pdf-{id}', 'ConsultasController@ver_historias_pdf');
 Route::get('controles', 'ConsultasController@controles')->name('controles.index');
 Route::get('controles-ver-{id}', 'ConsultasController@ver_controles');
 Route::get('historia-crear-{id}', 'ConsultasController@historia_crear');
+Route::get('historiap-crear-{id}', 'ConsultasController@historiap_crear');
+Route::get('historiam-crear-{id}', 'ConsultasController@historiam_crear');
 Route::get('control-crear-{id}', 'ConsultasController@control_crear');
 Route::post('historia/guardar', 'ConsultasController@guardar_historia');
 Route::post('historiab/guardar', 'ConsultasController@guardar_historiab');
+Route::post('historiap/guardar', 'ConsultasController@guardar_historiap');
+Route::post('historiam/guardar', 'ConsultasController@guardar_historiam');
+
+Route::post('historiapp/guardar', 'ConsultasController@guardar_historiapp');
+Route::post('historiamm/guardar', 'ConsultasController@guardar_historiamm');
 Route::post('control/guardar', 'ConsultasController@guardar_control');
 Route::post('controlh/guardar', 'ConsultasController@guardar_controlh');
 

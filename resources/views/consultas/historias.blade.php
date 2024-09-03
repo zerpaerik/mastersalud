@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>MasterSalud | Admin</title>
+  <title>MadreTeresa | Admin</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -114,7 +114,28 @@
                   </form>
               
               </div>
-              <!-- /.card-header -->
+
+              <br>
+
+
+              <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <a class="nav-link active" data-toggle="tab" href="#gin">Ginecológica</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#ped">Pediatrica</a>
+                  
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#med">Medicina General</a>
+                </li>
+              
+              </ul>
+
+              <div class="tab-content">
+
+
+              <div class="tab-pane container active" id="gin">
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
@@ -176,6 +197,142 @@
 
                 </table>
               </div>
+              </div>
+
+              <div class="tab-pane container" id="ped">
+
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                   <th>Fecha</th>
+                    <th>Paciente</th>
+                    <th>DNI</th>
+                    <th>Acciones</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+
+                  
+                  @foreach($historias_p as $anp)
+                  <tr>
+                    <td>{{date('d-M-y H:i', strtotime($anp->created_at))}}</td>
+                    <td>{{$anp->apellidos}} {{$anp->nombres}}</td>
+                    <td>{{$anp->dni}}</td>
+                
+                   
+                    <td>
+                    <a class="btn btn-primary btn-sm" href="historiasp-ver-{{$anp->id}}">
+                              <i class="fas fa-eye">
+                              </i>
+                              Ver Historia
+                          </a>
+
+                            
+                          <a class="btn btn-info btn-sm" href="historiasp-pdf-{{$anp->id}}" target="_blank">
+                              <i class="fas fa-print">
+                              </i>
+                              Ver PDF
+                          </a>
+                          
+                       
+                        
+                  
+                    </td>
+                  
+                  </tr>
+                  @endforeach
+                 
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                  <th>Fecha</th>
+                    <th>Paciente</th>
+                    <th>DNI</th>
+                
+                    <th>Acciones</th>
+                  </tr>
+                  </tr>
+                 
+                  </tfoot>
+
+                </table>
+              </div>
+              
+              </div>
+
+              
+              <div class="tab-pane container" id="med">
+
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                   <th>Fecha</th>
+                    <th>Paciente</th>
+                    <th>DNI</th>
+                    <th>Acciones</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+
+                  
+                  @foreach($historias_m as $anm)
+                  <tr>
+                    <td>{{date('d-M-y H:i', strtotime($anm->created_at))}}</td>
+                    <td>{{$anm->apellidos}} {{$anm->nombres}}</td>
+                    <td>{{$anm->dni}}</td>
+                
+                   
+                    <td>
+                    <a class="btn btn-primary btn-sm" href="historiasm-ver-{{$anm->id}}">
+                              <i class="fas fa-eye">
+                              </i>
+                              Ver Historia
+                          </a>
+
+                        
+                          <a class="btn btn-info btn-sm" href="historiasm-pdf-{{$anm->id}}" target="_blank">
+                              <i class="fas fa-print">
+                              </i>
+                              Ver PDF
+                          </a>
+                          
+                          
+                        
+                        
+                  
+                    </td>
+                  
+                  </tr>
+                  @endforeach
+                 
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                  <th>Fecha</th>
+                    <th>Paciente</th>
+                    <th>DNI</th>
+                
+                    <th>Acciones</th>
+                  </tr>
+                  </tr>
+                 
+                  </tfoot>
+
+                </table>
+              </div>
+              
+              
+              </div>
+
+            </div>
+
+
+
+            
+              <!-- /.card-header -->
+             
               <!-- /.card-body -->
             </div>
             <!-- /.card -->

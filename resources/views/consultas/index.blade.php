@@ -118,11 +118,19 @@
                   @foreach($consultas as $an)
                   <tr>
                     <td>{{$an->id}}</td>
-                    <td>{{date('d-M-y H:i', strtotime($an->fecha))}}</td>
+                    <td>{{date('d-M-y H:i', strtotime($an->created_at))}}</td>
                     <td>{{$an->nombres}} {{$an->apellidos}}</td>
                     <td>{{$an->namee}} {{$an->laste}}</td>
                     @if($an->tipo == 1)
-                    <td><span class="badge bg-success">CONSULTA</span></td>
+                    <td>
+                    <span class="badge bg-success">CONSULTA</span>
+                    @if($an->tipo_consulta == 6)
+                    <span class="badge bg-success">PEDIATRIA</span>
+                    @elseif($an->tipo_consulta == 13)
+                    <span class="badge bg-success">MED GENERAL</span>
+                    @else
+                    @endif
+                    </td>
                   
                     @else
                     <td><span class="badge bg-success">CONTROL</span></td>
@@ -133,11 +141,27 @@
                     @if($an->historia == 0)
                     @if($an->tipo == 1)
 
+                    @if($an->tipo_consulta == 6)
+                    <a class="btn btn-danger btn-sm" href="historiap-crear-{{$an->id}}">
+                              <i class="fas fa-pencil-alt">
+                              </i>
+                              Historia Pediatria
+                          </a>                   
+                    @elseif($an->tipo_consulta == 13)
+                    <a class="btn btn-danger btn-sm" href="historiam-crear-{{$an->id}}">
+                              <i class="fas fa-pencil-alt">
+                              </i>
+                              Historia Med General
+                          </a>                   
+                    @else
                     <a class="btn btn-danger btn-sm" href="historia-crear-{{$an->id}}">
                               <i class="fas fa-pencil-alt">
                               </i>
                               Historia
                           </a>
+                    @endif
+
+                  
                     @else
                     <a class="btn btn-danger btn-sm" href="control-crear-{{$an->id}}">
                               <i class="fas fa-pencil-alt">

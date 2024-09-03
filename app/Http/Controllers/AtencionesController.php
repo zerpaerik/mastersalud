@@ -778,6 +778,7 @@ return view('atenciones.particular');
                   $con->id_atencion =  $lab->id;
                   $con->id_especialista =  $request->esp_con;
                   $con->tipo =  $request->tipo_con;
+                  $con->tipo_consulta =  $request->tipo_consulta;
                   $con->monto = $request->precio_con;
                   $con->usuario = Auth::user()->id;
                   $con->sede = $request->session()->get('sede');
