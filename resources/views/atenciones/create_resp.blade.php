@@ -196,7 +196,7 @@
     <a class="nav-link" data-toggle="tab" href="#ray">Rayos X</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#sal">Salud Mental</a>
+    <a class="nav-link" data-toggle="tab" href="#sal">Otros Pagos</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" data-toggle="tab" href="#lab">Laboratorios</a>
@@ -427,7 +427,7 @@
                   <!-- Form template-->
                   <div id="salud_template" class="template row">
   
-                  <label for="salud_#index#_salu" class="col-sm-1 control-label">Salud Mental</label>
+                  <label for="salud_#index#_salu" class="col-sm-1 control-label">Otros Pagos</label>
                       <div class="col-sm-3">
                         <select id="salud_#index#_salu" name="id_salu[salud][#index#][salu]" class="selectSalud form-control">
                           <option value="">Seleccionar Salud M</option>

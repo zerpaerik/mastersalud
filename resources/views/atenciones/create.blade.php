@@ -200,7 +200,7 @@
   </li>
 
   <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#sal">Salud Mental</a>
+    <a class="nav-link" data-toggle="tab" href="#sal">Otros Pagos</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" data-toggle="tab" href="#lab">Laboratorios</a>
@@ -472,14 +472,14 @@
 
   <div class="tab-pane container fade" id="sal">
     <div class="row">
-              <label class="col-sm-6 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Salud M Seleccionadas</label>
+              <label class="col-sm-6 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Otros P Seleccionadas</label>
               <!-- sheepIt Form -->
               <div id="salud" class="embed ">
               
                   <!-- Form template-->
                   <div id="salud_template" class="template row">
   
-                  <label for="salud_#index#_salu" class="col-sm-1 control-label">Salud Mental</label>
+                  <label for="salud_#index#_salu" class="col-sm-1 control-label">Otros Pagos</label>
                       <div class="col-sm-3">
                         <select id="salud_#index#_salu" name="id_salu[salud][#index#][salu]" class="selectSalud form-control">
                           <option value="1">Seleccionar Salud M</option>
@@ -548,7 +548,7 @@
                   
                   <!-- Controls -->
                   <div id="salud_controls" class="controls col-sm-11 col-sm-offset-1">
-                      <div id="salud_add" class="btn btn-default form add"><a><span><i class="fa fa-plus-circle"></i> Agregar SaludM</span></a></div>
+                      <div id="salud_add" class="btn btn-default form add"><a><span><i class="fa fa-plus-circle"></i> Agregar OtrosP</span></a></div>
                   </div>
                   <!-- /Controls -->
                   

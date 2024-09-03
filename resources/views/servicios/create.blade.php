@@ -122,7 +122,7 @@
                     <select class="form-control" name="tipo" id="el2">
 						              	<option value="ECOGRAFIA">ECOGRAFIA</option>
                             <option value="RAYOS">RAYOS X</option>
-                            <option value="SALUD">SALUD MENTAL</option>
+                            <option value="SALUD">Otros Pagos</option>
                             <option value="OTROS">OTROS</option>
                         </select>
                   </div>

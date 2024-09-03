@@ -556,7 +556,7 @@ class AtencionesController extends Controller
         $ecografias = Servicios::where('estatus','=',1)->where('tipo','=','ECOGRAFIA')->orderBy('nombre','ASC')->get();
         $rayos = Servicios::where('estatus','=',1)->where('tipo','=','RAYOS')->orderBy('nombre','ASC')->get();
         $otros = Servicios::where('estatus','=',1)->where('tipo','=','OTROS')->orderBy('nombre','ASC')->get();
-        $salud = Servicios::where('estatus','=',1)->where('tipo','=','SALUD')->orderBy('nombre','ASC')->get();
+        $salud = Servicios::where('estatus','=',1)->where('tipo','=','OTROS')->orderBy('nombre','ASC')->get();
         $analisis = Analisis::where('estatus','=',1)->orderBy('nombre','ASC')->get();
         $paquetes = Paquetes::where('estatus','=',1)->orderBy('nombre','ASC')->get();
 
@@ -1025,7 +1025,7 @@ return view('atenciones.particular');
                   }
               }
 
-            //GUARDANDO SALUD MENTAL
+            //GUARDANDO Otros Pagos
 
             //dd($request->all());
 
