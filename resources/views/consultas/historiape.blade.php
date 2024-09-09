@@ -162,19 +162,19 @@
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">Talla</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="talla" placeholder="" disabled value="{{$hist->talla}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="talla" placeholder="" disabled value="{{$triaje->talla}}">
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">T</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="t" placeholder="" disabled value="{{$hist->t}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="t" placeholder="" disabled value="{{$triaje->t}}">
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">PA</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="pa" placeholder="" disabled  value="{{$hist->pa}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="pa" placeholder="" disabled  value="{{$triaje->pa}}">
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">SAT</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="sat" placeholder="" disabled value="{{$hist->sat}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="sat" placeholder="" disabled value="{{$triaje->sat}}">
                    </div>
                  
     
@@ -427,149 +427,6 @@
                     </div>
                     <br>
 
-                    <label for="exampleInputEmail1">DATOS DE ACOMPAÑANTE</label>
-                    <br>
-                    <label for="exampleInputEmail1">EXAMEN FÍSICO</label>
-
-                   <div class="row">
-                     <div class="col-md-2">
-                    <label for="exampleInputEmail1">MAT</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"  class="form-control" id="nombre" name="mat_a" placeholder="">
-                   </div>
-                   <div class="col-md-2">
-                    <label for="exampleInputEmail1">Edad</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="edad_a" placeholder="">
-                   </div>
-                   <div class="col-md-2">
-                    <label for="exampleInputEmail1">Peso</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="peso_a" placeholder="">
-                   </div>
-                   <div class="col-md-2">
-                    <label for="exampleInputEmail1">Talla</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="talla_a" placeholder="">
-                   </div>
-                   <div class="col-md-2">
-                    <label for="exampleInputEmail1">T</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="t_a" placeholder="">
-                   </div>
-                   <div class="col-md-2">
-                    <label for="exampleInputEmail1">PA</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="pa_a" placeholder="">
-                   </div>
-                 
-                 
-    
-                    </div>
-                    
-                
-                    <br>
-
-                        <div class="row">
-                        <div class="col-md-3">
-                            <label for="exampleInputEmail1">Aspecto General</label>
-                            <select class="form-control" name="ag_a">
-                                <option value="NORMAL">NORMAL</option>
-                                <option value="ANORMAL">ANORMAL</option>
-                            </select>  
-
-                        </div>
-                        <div class="col-md-3">
-                            <label for="exampleInputEmail1">Cabeza</label>
-                            <select class="form-control" name="cab_a">
-                                <option value="NORMAL">NORMAL</option>
-                                <option value="ANORMAL">ANORMAL</option>
-                            </select>  
-
-                        </div>
-                        <div class="col-md-3">
-                            <label for="exampleInputEmail1">Aparato Digestivo</label>
-                            <select class="form-control" name="dig_a">
-                                <option value="NORMAL">NORMAL</option>
-                                <option value="ANORMAL">ANORMAL</option>
-                            </select>  
-
-                        </div>
-                        <div class="col-md-3">
-                            <label for="exampleInputEmail1">Sistema neurológico</label>
-                            <select class="form-control" name="neuro_a">
-                                <option value="NORMAL">NORMAL</option>
-                                <option value="ANORMAL">ANORMAL</option>
-                            </select>  
-
-                        </div>
-
-
-
-                        </div>
-
-                        <br>
-                        <div class="row">
-                        <div class="col-md-3">
-                            <label for="exampleInputEmail1">Piel</label>
-                            <select class="form-control" name="piell_a">
-                                <option value="NORMAL">NORMAL</option>
-                                <option value="ANORMAL">ANORMAL</option>
-                            </select>  
-
-                        </div>
-                        <div class="col-md-3">
-                            <label for="exampleInputEmail1">Torax/Sist Resp.</label>
-                            <select class="form-control" name="tor_resp_a">
-                                <option value="NORMAL">NORMAL</option>
-                                <option value="ANORMAL">ANORMAL</option>
-                            </select>  
-
-                        </div>
-                        <div class="col-md-3">
-                            <label for="exampleInputEmail1">Sistema Circulatorio</label>
-                            <select class="form-control" name="circ_a">
-                                <option value="NORMAL">NORMAL</option>
-                                <option value="ANORMAL">ANORMAL</option>
-                            </select>  
-
-                        </div>
-                        <div class="col-md-3">
-                            <label for="exampleInputEmail1">Sistema Genitourinario</label>
-                            <select class="form-control" name="genito_a">
-                                <option value="NORMAL">NORMAL</option>
-                                <option value="ANORMAL">ANORMAL</option>
-                            </select>  
-
-                        </div>
-
-
-
-                        </div>
-
-                        <br>
-                        <div class="row">
-                        <div class="col-md-3">
-                            <label for="exampleInputEmail1">Aparato Locomotor</label>
-                            <select class="form-control" name="locomo_a">
-                                <option value="NORMAL">NORMAL</option>
-                                <option value="ANORMAL">ANORMAL</option>
-                            </select>  
-
-                        </div>
-
-
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-md-12">
-                            <label for="exampleInputEmail1">Examenes Auxiliares</label>
-                            <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="2"  name="ex_aux_a" placeholder="Examenes Auxiliares"></textarea>
-                        </div>
-                            </div>
-                            <br>
-                        <div class="row">
-                            <div class="col-md-12">
-                            <label for="exampleInputEmail1">Plan de Tratamiento</label>
-                            <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="2"  name="plan_a" placeholder="Plan de Tratamiento"></textarea>
-
-                        </div>
-                            </div>
-                            <br>
             
 
                  

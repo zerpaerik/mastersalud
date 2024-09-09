@@ -402,6 +402,13 @@
                     <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="3"  name="plan" placeholder="Plan de Tratamiento" disabled> {{$hist->plan}}</textarea>
 
                   </div>
+                  <br>
+                   <div class="row">
+                     <div class="col-md-12">
+                    <label for="exampleInputEmail1">Examenes Auxiliares</label>
+                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="3"  name="plan" placeholder="Plan de Tratamiento" disabled> {{$hist->ex_aux}}</textarea>
+
+                  </div>
                     </div>
                     <br>
 
