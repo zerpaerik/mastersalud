@@ -72,12 +72,12 @@ class MetodosController extends Controller
           $f2 = $request->fin;
 
           $metodos = DB::table('metodos as a')
-        ->select('a.id', 'a.id_paciente', 'a.usuario','a.usuario_llama', 'a.id_producto','a.prox_aplica', 'a.sede', 'a.created_at', 'a.estatus', 'a.monto','a.aplicado_por','a.usuario_aplica','b.nombres', 'b.apellidos', 'b.telefono','c.name as nameo', 'c.lastname as lasto', 'mp.nombre as producto')
+        ->select('a.id', 'a.id_paciente','a.fecha','a.usuario','a.usuario_llama', 'a.id_producto','a.prox_aplica', 'a.sede', 'a.created_at', 'a.estatus', 'a.monto','a.aplicado_por','a.usuario_aplica','b.nombres', 'b.apellidos', 'b.telefono','c.name as nameo', 'c.lastname as lasto', 'mp.nombre as producto')
         ->join('pacientes as b', 'b.id', 'a.id_paciente')
         ->join('users as c', 'c.id', 'a.usuario')
         ->join('meto_pro as mp', 'mp.id', 'a.id_producto')
         ->where('a.sede', '=', $request->session()->get('sede'))
-        ->whereBetween('a.prox_aplica', [date('Y-m-d', strtotime($f1)), date('Y-m-d', strtotime($f2))])
+        ->whereBetween('a.fecha', [date('Y-m-d', strtotime($f1)), date('Y-m-d', strtotime($f2))])
         ->get();
       } else {
 
@@ -85,11 +85,11 @@ class MetodosController extends Controller
         $f2 = date('Y-m-d');
 
         $metodos = DB::table('metodos as a')
-        ->select('a.id', 'a.id_paciente', 'a.usuario', 'a.usuario_llama','a.id_producto','a.prox_aplica', 'a.sede', 'a.created_at', 'a.estatus', 'a.monto','a.aplicado_por','a.usuario_aplica', 'b.nombres', 'b.apellidos','b.telefono', 'c.name as nameo', 'c.lastname as lasto', 'mp.nombre as producto')
+        ->select('a.id', 'a.id_paciente','a.fecha','a.usuario', 'a.usuario_llama','a.id_producto','a.prox_aplica', 'a.sede', 'a.created_at', 'a.estatus', 'a.monto','a.aplicado_por','a.usuario_aplica', 'b.nombres', 'b.apellidos','b.telefono', 'c.name as nameo', 'c.lastname as lasto', 'mp.nombre as producto')
         ->join('pacientes as b', 'b.id', 'a.id_paciente')
         ->join('users as c', 'c.id', 'a.usuario')
         ->join('meto_pro as mp', 'mp.id', 'a.id_producto')
-        ->where('a.prox_aplica','=', date('Y-m-d'))
+        ->where('a.fecha','=', date('Y-m-d'))
         ->where('a.sede', '=', $request->session()->get('sede'))
         ->get();
 
@@ -256,6 +256,7 @@ class MetodosController extends Controller
       $p->observacion =$request->observacion;
       $p->usuario_aplica =$user->lastname.' '.$user->name;
       $p->fecha_aplica = date('Y-m-d');
+      $p->fecha = $request->fecha;
       $p->prox_aplica = date("Y-m-d",strtotime(date('Y-m-d')."+ 30 days"));
       $p->estatus = 2;
       $res = $p->update();
@@ -264,6 +265,7 @@ class MetodosController extends Controller
         $apli->metodo =$request->id;
         $apli->talla =$request->talla;
         $apli->peso =$request->peso;
+        $apli->fecha =$request->fecha;
         $apli->observacion =$request->observacion;
         $apli->paciente =$m->id_paciente;
         $apli->usuario = $user->lastname.' '.$user->name;

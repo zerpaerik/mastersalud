@@ -383,6 +383,37 @@
 
 
              
+            @if($triaje)
+            <br>
+                    <label for="exampleInputEmail1">EXAMEN FÍSICO</label>
+                   <div class="row">
+                     <div class="col-md-2">
+                    <label for="exampleInputEmail1">Peso</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"  class="form-control" id="nombre" name="peso" placeholder="" disabled value="{{$triaje->peso}}">
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Talla</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="talla" placeholder="" disabled value="{{$hist->talla}}">
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">T</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="t" placeholder="" disabled value="{{$hist->t}}">
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">PA</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="pa" placeholder="" disabled  value="{{$hist->pa}}">
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">SAT</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="sat" placeholder="" disabled value="{{$hist->sat}}">
+                   </div>
+                 
+    
+                    </div>
+                    
+                
+
+            @endif
               
 
               <form role="form" method="post" action="historia/guardar">

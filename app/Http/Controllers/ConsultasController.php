@@ -13,6 +13,7 @@ use App\Atenciones;
 use App\Consultas;
 use App\Metodos;
 use App\Ciexes;
+use App\Triaje;
 use App\Historia;
 use App\HistoriaMedicina;
 use App\HistoriaPediatria;
@@ -42,7 +43,7 @@ class ConsultasController extends Controller
         $f2 = $request->fin;
 
         $consultas = DB::table('consultas as a')
-        ->select('a.id','a.id_paciente','a.id_atencion','a.usuario','a.historia','a.tipo_consulta','a.id_especialista','a.tipo','a.sede','a.created_at','a.estatus','a.monto','b.nombres','b.apellidos','c.name as nameo','c.lastname as lasto','e.name as namee','e.lastname as laste','at.created_at as fecha')
+        ->select('a.id','a.id_paciente','a.id_atencion','a.triaje','a.usuario','a.historia','a.tipo_consulta','a.id_especialista','a.tipo','a.sede','a.created_at','a.estatus','a.monto','b.nombres','b.apellidos','c.name as nameo','c.lastname as lasto','e.name as namee','e.lastname as laste','at.created_at as fecha')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.usuario')
         ->join('users as e','e.id','a.id_especialista')
@@ -59,7 +60,7 @@ class ConsultasController extends Controller
         $f2 = date('Y-m-d');
 
         $consultas = DB::table('consultas as a')
-        ->select('a.id','a.id_paciente','a.id_atencion','a.tipo_consulta','a.usuario','a.historia','a.id_especialista','a.tipo','a.sede','a.created_at','a.estatus','a.monto','b.nombres','b.apellidos','c.name as nameo','c.lastname as lasto','e.name as namee','e.lastname as laste','at.created_at as fecha')
+        ->select('a.id','a.id_paciente','a.id_atencion','a.triaje','a.tipo_consulta','a.usuario','a.historia','a.id_especialista','a.tipo','a.sede','a.created_at','a.estatus','a.monto','b.nombres','b.apellidos','c.name as nameo','c.lastname as lasto','e.name as namee','e.lastname as laste','at.created_at as fecha')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.usuario')
         ->join('users as e','e.id','a.id_especialista')
@@ -101,39 +102,57 @@ class ConsultasController extends Controller
         return view('atenciones.create', compact('ecografias','rayos','otros','analisis','paciente','res'));
     }
 
-    public function historia_crear($consulta)
+    public function historia_crear($id)
 
     {
 
 
       $cie = Ciexes::all();
       $cie1 = Ciexes::all();
-      $consulta = Consultas::where('id','=',$consulta)->first();
+      $consulta = Consultas::where('id','=',$id)->first();
       $hist = HistoriaBase::where('id_paciente','=',$consulta->id_paciente)->first();
       $historias = Historia::where('id_paciente','=',$consulta->id_paciente)->get();
+      $triaje = Triaje::where('id_consulta','=',$id)->first();
+
 
       $paciente = Pacientes::where('id','=',$consulta->id_paciente)->first();
 
-        return view('consultas.historia',compact('cie','cie1','consulta','hist','historias','paciente'));
+        return view('consultas.historia',compact('cie','cie1','consulta','hist','historias','paciente','triaje'));
     }
 
-    public function historiape_crear($consulta)
+    public function historiape_crear($id)
 
     {
 
+       $cie = Ciexes::all();
+       $cie1 = Ciexes::all();
+       $consulta = Consultas::where('id','=',$id)->first();
 
-      $cie = Ciexes::all();
-      $cie1 = Ciexes::all();
-      $consulta = Consultas::where('id','=',$consulta)->first();
-      $hist = HistoriaBase::where('id_paciente','=',$consulta->id_paciente)->first();
-      $historias = HistoriaPediatria::where('id_paciente','=',$consulta->id_paciente)->get();
+
+       $triaje = Triaje::where('id_consulta','=',$id)->first();
+
+       $hist = HistoriaBase::where('id_paciente','=',$consulta->id_paciente)->first();
+       $historias = HistoriaPediatria::where('id_paciente','=',$consulta->id_paciente)->get();
 
        $paciente = Pacientes::where('id','=',$consulta->id_paciente)->first();
        $edad = Carbon::parse($paciente->fechanac)->age;
 
 
-        return view('consultas.historiape',compact('cie','cie1','consulta','hist','historias','paciente','edad'));
+        return view('consultas.historiape',compact('cie','cie1','consulta','hist','historias','paciente','edad','triaje'));
     }
+
+    public function triaje($consulta)
+
+    {
+
+
+       $consulta = Consultas::where('id','=',$consulta)->first();
+       $paciente = Pacientes::where('id','=',$consulta->id_paciente)->first();
+       $edad = Carbon::parse($paciente->fechanac)->age;
+
+        return view('consultas.triaje',compact('consulta','paciente','edad'));
+    }
+
 
     public function ver_historiasp($id)
     {
@@ -395,6 +414,39 @@ class ConsultasController extends Controller
 
     }
 
+    public function storeTriaje(Request $request)
+
+    {
+
+  
+
+      $t = new Triaje();
+      $t->id_consulta = $request->consulta;
+      $t->peso = $request->peso;
+      $t->talla = $request->talla;
+      $t->pa = $request->pa;
+      $t->t = $request->t;
+      $t->sat = $request->sat;
+      $t->usuario = Auth::user()->id;
+      $t->save();
+    
+
+      $con_fin = Consultas::where('id','=',$request->consulta)->first();
+      $con_fin->triaje = 1;
+      $con_fin->atendido = Auth::user()->id;
+      $con_fin->save();
+
+      $usuario = DB::table('users')
+      ->select('*')
+      ->where('id','=', Auth::user()->id)
+      ->first();  
+
+      return redirect()->action('ConsultasController@index')
+      ->with('success','Creado Exitosamente!');
+
+
+    }
+
     public function guardar_historiamm(Request $request)
 
 
@@ -510,6 +562,7 @@ class ConsultasController extends Controller
       $con->genito_a = $request->genito_a;
       $con->locomo_a = $request->locomo_a;
       $con->ex_aux_a = $request->ex_aux_a;
+      $con->ex_aux = $request->ex_aux;
       $con->usuario = Auth::user()->id;
       $con->save();
 

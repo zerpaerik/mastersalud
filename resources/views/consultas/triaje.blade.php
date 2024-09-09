@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>MasterSalud | Admin</title>
+  <title>Historia Clínica | Admin</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -24,20 +24,13 @@
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
-  <!-- summernote -->
-  <link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.css">
-  <!-- Select2 -->
-  <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
-  <link rel="stylesheet" href="../../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 <!-- DataTables -->
 <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-<link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css"> 
-
-
-
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -51,8 +44,8 @@
 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    @include('layouts.sidebar')
+  @include('layouts.sidebar')
+ 
     <!-- /.sidebar -->
   </aside>
 
@@ -63,12 +56,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Servicios</h1>
+            <h1 class="m-0 text-dark">Historia de Paciente</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Servicios</li>
+              <li class="breadcrumb-item active">Triaje</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -89,55 +82,70 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form method="post" action="servicios/create" accept-charset="UTF-8" enctype="multipart/form-data">					
-              {{ csrf_field() }}                
-                    <div class="card-body">
-                    <div class="row">
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Nombre</label>
-                    <input onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" id="name" name="nombre" placeholder="Nombre de Servicio" required>
-                  </div>
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Precio</label>
-                    <input type="float" class="form-control" id="email" name="precio" placeholder="Precio" required>
-                  </div>
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Porcentaje Pers</label>
-                    <input type="float" class="form-control" id="name" name="porcentaje" placeholder="Porcentaje Personal" required>
-                  </div>
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Porcentaje Prof</label>
-                    <input type="float" class="form-control" id="email" name="porcentaje1" placeholder="Porcentaje Profesional" required>
-                  </div>
-                 
-                  </div>
-                  <div class="row">
+              <div class="row" style="margin-left:25px;">
+                     <div class="col-md-3">
+                    <label for="exampleInputEmail1">PACIENTE</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" value="{{$paciente->apellidos}} {{$paciente->nombres}}" name="gestas" placeholder="">
+                   </div>
                   
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Porcentaje Tecn</label>
-                    <input type="float" class="form-control" id="email" name="porcentaje2" placeholder="Porcentaje Tecnólogo" required>
-                  </div>
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Tipo de Servicio</label>
-                    <select class="form-control" name="tipo" id="el2">
-						              	<option value="ECOGRAFIA">ECOGRAFIA</option>
-                            <option value="RAYOS">RAYOS X</option>
-                            <option value="OtrosP">OTROS PAGOS</option>
-                            <option value="OTROS">OTROS</option>
-                        </select>
-                  </div>
-                  <div class="col-md-4" id="sesiones">
-                  </div>
+                    </div>
+                    <br>
 
-                 
-                  </div>
-                  <br>
-                  
-                  
+
+                <!-- /.card-body -->
+
+            </div>
             
 
+
+              <form role="form" method="post" action="consultas/triaje">
+              {{ csrf_field() }}     
+                    <div class="card-body">
+                    <br>
+                 
+                    <label for="exampleInputEmail1">EXAMEN FÍSICO</label>
+                   <div class="row">
+                     <div class="col-md-2">
+                    <label for="exampleInputEmail1">Peso</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"  class="form-control" id="nombre" name="peso" placeholder="">
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Talla</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="talla" placeholder="">
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">T</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="t" placeholder="">
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">PA</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="pa" placeholder="">
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">SAT</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="sat" placeholder="">
+                   </div>
+                 
+    
+                    </div>
+                    
+                
+                    <br>
+
+                
+
+                 
+                                                      
+
+                  <br>
+                  <input type="hidden" name="consulta" value="{{$consulta->id}}">
+
+
                
-        
+
+                
+                 
+                </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
@@ -164,6 +172,22 @@
           <!--/.col (right) -->
         </div>
         <!-- /.row -->
+      </div>
+      <div class="modal fade" id="viewTicket">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            </div>
+           
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
       </div><!-- /.container-fluid -->
     </section>
     
@@ -190,6 +214,9 @@
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- ChartJS -->
 <script src="plugins/chart.js/Chart.min.js"></script>
+
+<script src="plugins/select2/js/select2.full.min.js"></script>
+
 <!-- Sparkline -->
 <script src="plugins/sparklines/sparkline.js"></script>
 <!-- JQVMap -->
@@ -218,49 +245,44 @@
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="../../plugins/select2/js/select2.full.min.js"></script>
-
-<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
-
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
-<!-- page script -->
-<!-- Summernote -->
-<script src="../../plugins/summernote/summernote-bs4.min.js"></script>
+
+<script language="javascript">
+
+function disableEnterKey(e) 
+{ 
+  var key; 
+  if(window.event) 
+     key = window.event.keyCode; 
+   else key = e.which; //firefox 
+   return (key != 13); 
+  }
+
+</script>
 
 <script type="text/javascript">
-      $(document).ready(function(){
-        $('#el2').on('change',function(){
-          var link;
-          if ($(this).val() == 'SALUD') {
-            link = '/servicios/sesiones/';
-          } else {
-		    link = '/servicios/nada/';
-		  }
+		function viewh(e){
+		    var id = $(e).attr('id');
+		    
+		    $.ajax({
+		        type: "GET",
+		        url: "/historia/reevaluar/"+id,
+		        success: function (data) {
+		            $("#viewTicket .modal-body").html(data);
+		            $('#viewTicket').modal('show');
+		        },
+		        error: function (data) {
+		            console.log('Error:', data);
+		        }
+		    });
+		}
 
-          $.ajax({
-                 type: "get",
-                 url:  link,
-                 success: function(a) {
-                    $('#sesiones').html(a);
-                 }
-          });
+	
+	</script>
 
-        });
-        
-
-      });
-       
-    </script>
-<script>
-  $(function () {
-    // Summernote
-    $('.textarea').summernote()
-  })
-</script>
 <script>
   $(function () {
     //Initialize Select2 Elements
@@ -334,6 +356,7 @@
 
   })
 </script>
+<!-- page script -->
 
 </body>
 </html>

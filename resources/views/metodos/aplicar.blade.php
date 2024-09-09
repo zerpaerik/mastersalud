@@ -55,13 +55,18 @@
 				          	</span>
                     <div class="row">
                    
-                  <div class="col-md-6">
+                  <div class="col-md-4">
                     <label for="exampleInputEmail1">Peso</label>
                     <input type="float"  class="form-control" name="peso" placeholder="Peso Actual">
                   </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                     <label for="exampleInputEmail1">Talla</label>
                     <input type="float" class="form-control"  name="talla" placeholder="Talla">
+                  </div>
+
+                  <div class="col-md-4">
+                    <label for="exampleInputEmail1">Fecha</label>
+                    <input type="date" class="form-control"  name="fecha" placeholder="Talla">
                   </div>
                 
                   </div>

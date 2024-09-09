@@ -734,7 +734,7 @@
                     <select class="form-control" name="tipo_consulta">
                       <option value="">Seleccione</option>
                       @foreach($tipo_consultas as $tp)
-                      <option value="{{$tp->id}}">{{$tp->detalle}} Precio:{{$tp->precio}}</option>
+                      <option value="{{$tp->id}}">{{$tp->detalle}}</option>
                       @endforeach
                     </select>
               </div>

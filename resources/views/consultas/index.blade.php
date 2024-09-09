@@ -142,6 +142,15 @@
                     @if($an->tipo == 1)
 
                     @if($an->tipo_consulta == 6)
+                    @if($an->triaje == 0)
+
+                    <a class="btn btn-secondary btn-sm" href="consultas-triaje-{{$an->id}}">
+                              <i class="fas fa-pencil-alt">
+                              </i>
+                              Triaje
+                          </a>  
+                          @endif
+
                     <a class="btn btn-danger btn-sm" href="historiape-crear-{{$an->id}}">
                               <i class="fas fa-pencil-alt">
                               </i>
@@ -154,6 +163,14 @@
                               Historia Med General
                           </a>                   
                     @else
+                    @if($an->triaje == 0)
+
+                <a class="btn btn-secondary btn-sm" href="consultas-triaje-{{$an->id}}">
+                          <i class="fas fa-pencil-alt">
+                          </i>
+                          Triaje
+                      </a>  
+                      @endif  
                     <a class="btn btn-danger btn-sm" href="historia-crear-{{$an->id}}">
                               <i class="fas fa-pencil-alt">
                               </i>

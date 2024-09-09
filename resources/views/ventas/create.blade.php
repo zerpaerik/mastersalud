@@ -96,11 +96,7 @@
                   <br>
                   <div class="row">
 
-                  <div class="col-md-2">
-                    <label for="exampleInputEmail1">Total Productos</label>
-
-                    <input type="text" name="total" class="number form-control" value="0.00" id="total_a" readonly="readonly" style="width: 150px">
-                    </div>
+               
                     
                   <div class="col-md-2">
                     <label for="exampleInputEmail1">Total Ventas</label>
