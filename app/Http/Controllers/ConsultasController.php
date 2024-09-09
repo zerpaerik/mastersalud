@@ -168,8 +168,10 @@ class ConsultasController extends Controller
 
 
          $paciente = Pacientes::where('id','=',$hist->id_paciente)->first();
+         $edad = Carbon::parse($paciente->fechanac)->age;
 
-        return view('consultas.historiap_ver', compact('hist','paciente'));
+
+        return view('consultas.historiap_ver', compact('hist','paciente','edad'));
 
 
     }

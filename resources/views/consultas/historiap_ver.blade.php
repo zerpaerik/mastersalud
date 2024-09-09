@@ -104,11 +104,11 @@
                    <div class="row">
                      <div class="col-md-6">
                     <label for="exampleInputEmail1">Apellidos y Nombres</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="nombre" placeholder="" disabled value="{{$hist->nombre}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="nombre" placeholder="" disabled value="{{$paciente->nombres}} {{$paciente->apellidos}}">
                    </div>
                    <div class="col-md-6">
                     <label for="exampleInputEmail1">Domicilio</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="domicilio" placeholder="" disabled value="{{$hist->domicilio}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="domicilio" placeholder="" disabled value="{{$paciente->direccion}}">
                    </div>
                
                  
@@ -118,15 +118,15 @@
                    <div class="row">
                      <div class="col-md-4">
                     <label for="exampleInputEmail1">Sexo</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="sexo" placeholder="" disabled value="{{$hist->sexo}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="sexo" placeholder="" disabled value="{{$paciente->sexo}}">
                    </div>
                    <div class="col-md-4">
                     <label for="exampleInputEmail1">Fecha de Nacimiento</label>
-                    <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="nac" placeholder="" disabled value="{{$hist->nac}}">
+                    <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="nac" placeholder="" disabled value="{{$paciente->fechanac}}">
                    </div>
                    <div class="col-md-4">
                     <label for="exampleInputEmail1">Edad</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="edad" placeholder="" disabled value="{{$hist->edad}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="edad" placeholder="" disabled value="{{$edad}}">
                    </div>
             
                     </div>
@@ -134,7 +134,7 @@
                     <div class="row">
                      <div class="col-md-4">
                     <label for="exampleInputEmail1">Teléfono</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="telef" placeholder="" disabled value="{{$hist->telef}}">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="telef" placeholder="" disabled value="{{$paciente->telefono}}">
                    </div>
                    <div class="col-md-4">
                     <label for="exampleInputEmail1">Nombre de Madre o Padre</label>
@@ -165,28 +165,17 @@
                    <div class="row">
                      <div class="col-md-2">
                     <label for="exampleInputEmail1">Apetito</label>
-                    <select class="form-control" name="apetito">
-                    <option value="AUMENTADO">AUMENTADO</option>
-                    <option value="NORMAL">NORMAL</option>
-                    <option value="DISMINUIDO">DISMINUIDO</option>
-                    </select>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="nombre" placeholder="" disabled value="{{$hist->apetito}}">
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">Sed</label>
-                    <select class="form-control" name="sed">
-                    <option value="AUMENTADO">AUMENTADO</option>
-                    <option value="NORMAL">NORMAL</option>
-                    <option value="DISMINUIDO">DISMINUIDO</option>
-                        </select>                   
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="nombre" placeholder="" disabled value="{{$hist->sed}}">
+                
                         </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">Animo</label>
-                    <select class="form-control" name="animo">
-                    <option value="NORMAL">NORMAL</option>
-                    <option value="DEPRIMIDO">DEPRIMIDO</option>
-                    <option value="EUFÓRICO">EUFÓRICO</option>
-                    <option value="FREC LLANTO">FREC LLANTO</option>
-                   </select>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="nombre" placeholder="" disabled value="{{$hist->animo}}">
+
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">Orina</label>
@@ -204,10 +193,8 @@
                    <div class="row">
                      <div class="col-md-1">
                     <label for="exampleInputEmail1">Ram</label>
-                    <select class="form-control" name="ram">
-                    <option value="NO">NO</option>
-                    <option value="SI">SI</option>
-                   </select>                    
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="nombre" placeholder="" disabled value="{{$hist->ram}}">
+                  
                    </div>
                    <div class="col-md-3">
                     <label for="exampleInputEmail1">Descrip.</label>
@@ -215,10 +202,8 @@
                    </div>
                    <div class="col-md-1">
                     <label for="exampleInputEmail1">Hospitaliz.</label>
-                    <select class="form-control" name="hospi">
-                    <option value="NO">NO</option>
-                    <option value="SI">SI</option>
-                   </select>                    
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="nombre" placeholder="" disabled value="{{$hist->hospi}}">
+                 
                    </div>
                    <div class="col-md-3">
                     <label for="exampleInputEmail1">Descrip.</label>
@@ -226,10 +211,8 @@
                    </div>
                    <div class="col-md-1">
                     <label for="exampleInputEmail1">Cirugias</label>
-                    <select class="form-control" name="cir">
-                    <option value="NO">NO</option>
-                    <option value="SI">SI</option>
-                   </select>                    
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="nombre" placeholder="" disabled value="{{$hist->cir}}">
+                  
                    </div>
                    <div class="col-md-3">
                     <label for="exampleInputEmail1">Descrip.</label>
@@ -242,10 +225,8 @@
                     <div class="row">
                      <div class="col-md-1">
                     <label for="exampleInputEmail1">Vacunas</label>
-                    <select class="form-control" name="vac">
-                    <option value="NO">NO</option>
-                    <option value="SI">SI</option>
-                   </select>                    
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="nombre" placeholder="" disabled value="{{$hist->vac}}">
+                    
                    </div>
                    <div class="col-md-3">
                     <label for="exampleInputEmail1">Descrip.</label>
@@ -292,34 +273,25 @@
                     <div class="row">
                      <div class="col-md-3">
                         <label for="exampleInputEmail1">Aspecto General</label>
-                        <select class="form-control" name="aspg">
-                            <option value="NORMAL">NORMAL</option>
-                            <option value="ANORMAL">ANORMAL</option>
-                        </select>  
+                        <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="nombre" placeholder="" disabled value="{{$hist->aspg}}">
+
                     
                    </div>
                    <div class="col-md-3">
                         <label for="exampleInputEmail1">Cabeza</label>
-                        <select class="form-control" name="cab">
-                            <option value="NORMAL">NORMAL</option>
-                            <option value="ANORMAL">ANORMAL</option>
-                        </select>  
+                        <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="nombre" placeholder="" disabled value="{{$hist->cab}}">
+
                     
                    </div>
                    <div class="col-md-3">
                         <label for="exampleInputEmail1">Aparato Digestivo</label>
-                        <select class="form-control" name="dig">
-                            <option value="NORMAL">NORMAL</option>
-                            <option value="ANORMAL">ANORMAL</option>
-                        </select>  
-                    
+                        <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="nombre" placeholder="" disabled value="{{$hist->dig}}">
+
                    </div>
                    <div class="col-md-3">
                         <label for="exampleInputEmail1">Sistema neurológico</label>
-                        <select class="form-control" name="neuro">
-                            <option value="NORMAL">NORMAL</option>
-                            <option value="ANORMAL">ANORMAL</option>
-                        </select>  
+                        <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="nombre" placeholder="" disabled value="{{$hist->neuro}}">
+
                     
                    </div>
                  
@@ -329,36 +301,29 @@
 
                     <br>
                     <div class="row">
-                     <div class="col-md-3">
-                        <label for="exampleInputEmail1">Piel</label>
-                        <select class="form-control" name="piell">
-                            <option value="NORMAL">NORMAL</option>
-                            <option value="ANORMAL">ANORMAL</option>
-                        </select>  
-                    
-                   </div>
+                 
                    <div class="col-md-3">
                         <label for="exampleInputEmail1">Torax/Sist Resp.</label>
-                        <select class="form-control" name="tor_resp">
-                            <option value="NORMAL">NORMAL</option>
-                            <option value="ANORMAL">ANORMAL</option>
-                        </select>  
+                        <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="nombre" placeholder="" disabled value="{{$hist->tor_resp}}">
+
                     
                    </div>
                    <div class="col-md-3">
                         <label for="exampleInputEmail1">Sistema Circulatorio</label>
-                        <select class="form-control" name="circ">
-                            <option value="NORMAL">NORMAL</option>
-                            <option value="ANORMAL">ANORMAL</option>
-                        </select>  
+                        <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="nombre" placeholder="" disabled value="{{$hist->circ}}">
+
                     
                    </div>
                    <div class="col-md-3">
                         <label for="exampleInputEmail1">Sistema Genitourinario</label>
-                        <select class="form-control" name="genito">
-                            <option value="NORMAL">NORMAL</option>
-                            <option value="ANORMAL">ANORMAL</option>
-                        </select>  
+                        <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="nombre" placeholder="" disabled value="{{$hist->genito}}">
+
+                    
+                   </div>
+                   <div class="col-md-3">
+                        <label for="exampleInputEmail1">Aparato Locomotor</label>
+                        <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="nombre" placeholder="" disabled value="{{$hist->locomo}}">
+
                     
                    </div>
                  
@@ -368,14 +333,7 @@
 
                     <br>
                     <div class="row">
-                     <div class="col-md-3">
-                        <label for="exampleInputEmail1">Aparato Locomotor</label>
-                        <select class="form-control" name="locomo">
-                            <option value="NORMAL">NORMAL</option>
-                            <option value="ANORMAL">ANORMAL</option>
-                        </select>  
                     
-                   </div>
                  
                 
                     </div>
@@ -412,150 +370,6 @@
                     </div>
                     <br>
 
-                    <label for="exampleInputEmail1">DATOS DE ACOMPAÑANTE</label>
-                    <br>
-                    <label for="exampleInputEmail1">EXAMEN FÍSICO</label>
-
-                   <div class="row">
-                     <div class="col-md-2">
-                    <label for="exampleInputEmail1">MAT</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();"  class="form-control" id="nombre" name="mat_a" placeholder="" disabled value="{{$hist->mat_a}}">
-                   </div>
-                   <div class="col-md-2">
-                    <label for="exampleInputEmail1">Edad</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="edad_a" placeholder="" disabled value="{{$hist->edad_a}}">
-                   </div>
-                   <div class="col-md-2">
-                    <label for="exampleInputEmail1">Peso</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="peso_a" placeholder="" disabled value="{{$hist->peso_a}}">
-                   </div>
-                   <div class="col-md-2">
-                    <label for="exampleInputEmail1">Talla</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="talla_a" placeholder="" disabled value="{{$hist->talla_a}}">
-                   </div>
-                   <div class="col-md-2">
-                    <label for="exampleInputEmail1">T</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="t_a" placeholder="" disabled value="{{$hist->t_a}}">
-                   </div>
-                   <div class="col-md-2">
-                    <label for="exampleInputEmail1">PA</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="pa_a" placeholder="" disabled value="{{$hist->pa_a}}">
-                   </div>
-                 
-                 
-    
-                    </div>
-                    
-                
-                    <br>
-
-                        <div class="row">
-                        <div class="col-md-3">
-                            <label for="exampleInputEmail1">Aspecto General</label>
-                            <select class="form-control" name="ag_a">
-                                <option value="NORMAL">NORMAL</option>
-                                <option value="ANORMAL">ANORMAL</option>
-                            </select>  
-
-                        </div>
-                        <div class="col-md-3">
-                            <label for="exampleInputEmail1">Cabeza</label>
-                            <select class="form-control" name="cab_a">
-                                <option value="NORMAL">NORMAL</option>
-                                <option value="ANORMAL">ANORMAL</option>
-                            </select>  
-
-                        </div>
-                        <div class="col-md-3">
-                            <label for="exampleInputEmail1">Aparato Digestivo</label>
-                            <select class="form-control" name="dig_a">
-                                <option value="NORMAL">NORMAL</option>
-                                <option value="ANORMAL">ANORMAL</option>
-                            </select>  
-
-                        </div>
-                        <div class="col-md-3">
-                            <label for="exampleInputEmail1">Sistema neurológico</label>
-                            <select class="form-control" name="neuro_a">
-                                <option value="NORMAL">NORMAL</option>
-                                <option value="ANORMAL">ANORMAL</option>
-                            </select>  
-
-                        </div>
-
-
-
-                        </div>
-
-                        <br>
-                        <div class="row">
-                        <div class="col-md-3">
-                            <label for="exampleInputEmail1">Piel</label>
-                            <select class="form-control" name="piell_a">
-                                <option value="NORMAL">NORMAL</option>
-                                <option value="ANORMAL">ANORMAL</option>
-                            </select>  
-
-                        </div>
-                        <div class="col-md-3">
-                            <label for="exampleInputEmail1">Torax/Sist Resp.</label>
-                            <select class="form-control" name="tor_resp_a">
-                                <option value="NORMAL">NORMAL</option>
-                                <option value="ANORMAL">ANORMAL</option>
-                            </select>  
-
-                        </div>
-                        <div class="col-md-3">
-                            <label for="exampleInputEmail1">Sistema Circulatorio</label>
-                            <select class="form-control" name="circ_a">
-                                <option value="NORMAL">NORMAL</option>
-                                <option value="ANORMAL">ANORMAL</option>
-                            </select>  
-
-                        </div>
-                        <div class="col-md-3">
-                            <label for="exampleInputEmail1">Sistema Genitourinario</label>
-                            <select class="form-control" name="genito_a">
-                                <option value="NORMAL">NORMAL</option>
-                                <option value="ANORMAL">ANORMAL</option>
-                            </select>  
-
-                        </div>
-
-
-
-                        </div>
-
-                        <br>
-                        <div class="row">
-                        <div class="col-md-3">
-                            <label for="exampleInputEmail1">Aparato Locomotor</label>
-                            <select class="form-control" name="locomo_a">
-                                <option value="NORMAL">NORMAL</option>
-                                <option value="ANORMAL">ANORMAL</option>
-                            </select>  
-
-                        </div>
-
-
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-md-12">
-                            <label for="exampleInputEmail1">Examenes Auxiliares</label>
-                            <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="2"  name="ex_aux_a" placeholder="Examenes Auxiliares" disabled>{{$hist->ex_aux_a}}</textarea>
-                        </div>
-                            </div>
-                            <br>
-                        <div class="row">
-                            <div class="col-md-12">
-                            <label for="exampleInputEmail1">Plan de Tratamiento</label>
-                            <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="2"  name="plan_a" placeholder="Plan de Tratamiento" disabled>{{$hist->plan_a}}</textarea>
-
-                        </div>
-                            </div>
-                            <br>
-            
 
                  
                                                       
