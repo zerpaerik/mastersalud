@@ -105,6 +105,24 @@
                   <button type="submit" class="btn btn-primary">Buscar</button>
 
                   </div>
+                  <div class="col-md-2">
+                    <label for="exampleInputEmail1">Total</label>
+
+                    <input class="number form-control" type="text" name="total" id="total" readonly="readonly" value="0.00">
+                    </div>
+                    
+                  <div class="col-md-2">
+                    <label for="exampleInputEmail1">Abono</label>
+
+                    <input class="form-control" type="text" name="abono" id="abono" readonly="readonly" value="0.00">
+                    </div>
+
+                    <div class="col-md-2">
+                      <label for="exampleInputEmail1">Resta</label>
+  
+                      <input class="form-control" type="text" name="resta" id="resta" readonly="readonly" value="0.00">
+                    </div>
+                      
                   
 
               
@@ -182,9 +200,7 @@
     
   </li>
 
-  <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#sal">Otros Pagos</a>
-  </li>
+ 
   <li class="nav-item">
     <a class="nav-link" data-toggle="tab" href="#lab">Laboratorios</a>
   </li>
@@ -196,6 +212,9 @@
   </li>
   <li class="nav-item">
     <a class="nav-link" data-toggle="tab" href="#met">Métodos Anticonceptivos</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#op">Otros Pagos</a>
   </li>
 </ul>
 
@@ -734,7 +753,7 @@
                     <select class="form-control" name="tipo_consulta">
                       <option value="">Seleccione</option>
                       @foreach($tipo_consultas as $tp)
-                      <option value="{{$tp->id}}">{{$tp->detalle}}</option>
+                      <option value="{{$tp->id}}">{{$tp->detalle}} </option>
                       @endforeach
                     </select>
               </div>
@@ -787,8 +806,8 @@
                   </div>
                   </div>
   <div class="tab-pane container fade" id="met"> <div class="card-body">
-                    <div class="row">
-                    <div class="col-md-4">
+              <div class="row">
+                  <div class="col-md-4">
                   <label>Producto</label>
                   <select class="form-control" name="metodo">
                     <option value="">Seleccione</option>
@@ -835,12 +854,101 @@
 
 
 
-                  </div>
+                </div>
                  
 
                  
                   </div>
+                  
                   </div>
+                  <div class="tab-pane container fade" id="op">
+    <div class="row">
+              <label class="col-sm-6 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Otros P Seleccionadas</label>
+              <!-- sheepIt Form -->
+              <div id="salud" class="embed ">
+              
+                  <!-- Form template-->
+                  <div id="salud_template" class="template row">
+  
+                  <label for="salud_#index#_salu" class="col-sm-1 control-label">Otros Pagos</label>
+                      <div class="col-sm-3">
+                        <select id="salud_#index#_salu" name="id_salu[salud][#index#][salu]" class="selectSalud form-control">
+                          <option value="1">Seleccionar Otros Pagos</option>
+                          @foreach($salud as $sa)
+                            <option value="{{$sa->id}}">
+                              {{$sa->nombre}} Precio:{{$sa->precio}}
+                            </option>
+                          @endforeach
+                        </select>
+                      </div>
+  
+                      <label for="salud_#index#_monto" class="col-sm-1 control-label">Monto</label>
+                      <div class="col-sm-1" style="margin-left:-40px;">
+                        <input id="salud_#index#_montoHidden" name="monto_h[salud][#index#][montoHidden]" class="text" type="hidden" value="">
+  
+                        <input id="salud_#index#_monto" name="monto_s[salud][#index#][monto]" type="text" class="number form-control monto" onchange="sumar();" placeholder="Precio" data-toggle="tooltip" data-placement="bottom" title="Precio">
+                      </div>
+
+                      <label for="salud_#index#_abonoL" class="col-sm-1 control-label">Abono.</label>
+                      <div class="col-sm-1" style="margin-left:-40px;">
+  
+                        <input id="salud_#index#_abonoL" name="monto_abol[salud][#index#][abono]" type="float" class="number form-control abonoL abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
+                      </div>
+  
+                      <label for="salud_#index#_tipop" class="col-sm-1 control-label">TPago</label>
+                      <div class="col-sm-1" style="margin-left:-40px;">
+                        <select id="salud_#index#_salu" name="id_pago[salud][#index#][tipop]" class="form-control">
+                        <option value="" disabled>Seleccione</option>
+                          <option value="EF">EF</option>
+                          <option value="TJ">TJ</option>
+                          <option value="DP">DP</option>
+                          <option value="YP">YP</option>
+  
+                        </select>
+                      </div>
+
+                      <label for="salud_#index#_abonoL" class="col-sm-1 control-label">Abono.</label>
+                      <div class="col-sm-1" style="margin-left:-40px;">
+  
+                        <input id="salud_#index#_abonoL" name="monto_abol[salud][#index#][abono1]" type="float" class="number form-control abonoL abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
+                      </div>
+  
+                      <label for="salud_#index#_tipop" class="col-sm-1 control-label">TPago</label>
+                      <div class="col-sm-1" style="margin-left:-40px;">
+                        <select id="salud_#index#_salu" name="id_pago[salud][#index#][tipop1]" class="form-control">
+                        <option value="" disabled>Seleccione</option>
+                          <option value="EF">EF</option>
+                          <option value="TJ">TJ</option>
+                          <option value="DP">DP</option>
+                          <option value="YP">YP</option>
+  
+                        </select>
+                      </div>
+  
+                    
+  
+                     
+  
+                      <a id="salud_remove_current" style="cursor: pointer;"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+                  </div>
+                  <!-- /Form template-->
+                  
+                  <!-- No forms template -->
+                  <div id="salud_noforms_template" class="noItems col-sm-12 text-center">Ningún Producto</div>
+                  <!-- /No forms template-->
+                  
+                  <!-- Controls -->
+                  <div id="salud_controls" class="controls col-sm-11 col-sm-offset-1">
+                      <div id="salud_add" class="btn btn-default form add"><a><span><i class="fa fa-plus-circle"></i> Agregar OtrosP</span></a></div>
+                  </div>
+                  <!-- /Controls -->
+                  
+              </div>
+              <!-- /sheepIt Form --> 
+            </div>
+  
+    </div>
+
 
 
 </div>
