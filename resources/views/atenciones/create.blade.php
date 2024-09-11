@@ -214,7 +214,7 @@
     <a class="nav-link" data-toggle="tab" href="#met">Métodos Anticonceptivos</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#op">Otros Pagos</a>
+    <a class="nav-link" data-toggle="tab" href="#sal">Otros Pagos</a>
   </li>
 </ul>
 

@@ -651,10 +651,7 @@ return view('atenciones.particular');
         ->where('id','=', $request->origen_usuario)
         ->first();  
 
-
-
-
-
+      
         /*if($validator->fails()) {
           $request->session()->flash('error', 'El Personal ya está REGISTRADO - DNI y EMAIL deben ser únicos.');
           return redirect()->action('PersonalController@create', ['errors' => $validator->errors()]);
