@@ -50,7 +50,6 @@ class ResultadosController extends Controller
         ->where('b.estatus', '=', 1)
        // ->where('b.resta', '=', 0)
         ->where('a.estatus', '=', 1)
-        ->where('b.sede', '=', $request->session()->get('sede'))
         ->whereBetween('a.created_at', [$f1, $f2])
         ->orderBy('a.id','DESC')
         //->where('a.monto', '!=', '0')
@@ -70,7 +69,6 @@ class ResultadosController extends Controller
             ->where('b.estatus', '=', 1)
             ->where('a.estatus', '=', 1)
             //->where('b.resta', '=', 0)
-            ->where('b.sede', '=', $request->session()->get('sede'))
             ->where('a.created_at', '=', date('Y-m-d'))
             ->orderBy('a.id','DESC')
             ->get();
@@ -101,7 +99,6 @@ class ResultadosController extends Controller
         ->where('b.estatus', '=', 1)
         ->where('a.estatus', '=', 1)
        // ->where('b.resta', '=', 0)
-        ->where('b.sede', '=', $request->session()->get('sede'))
         ->whereBetween('a.created_at', [$f1, $f2])
         ->orderBy('a.id','DESC')
         ->get();
@@ -120,7 +117,6 @@ class ResultadosController extends Controller
             ->where('b.estatus', '=', 1)
             ->where('a.estatus', '=', 1)
            // ->where('b.resta', '=', 0)
-            ->where('b.sede', '=', $request->session()->get('sede'))
             ->where('a.created_at', '=', date('Y-m-d'))
             ->orderBy('a.id','DESC')
             ->get();
@@ -148,7 +144,6 @@ class ResultadosController extends Controller
         ->join('servicios as s', 's.id', 'a.id_servicio')
         ->where('b.estatus', '=', 1)
         ->where('a.estatus', '=', 3)
-        ->where('b.sede', '=', $request->session()->get('sede'))
         ->where('b.id_paciente', '=', $request->id_paciente)
         ->get();
         } else {
@@ -160,7 +155,6 @@ class ResultadosController extends Controller
           ->join('servicios as s', 's.id', 'a.id_servicio')
           ->where('b.estatus', '=', 1)
           ->where('a.estatus', '=', 999)
-          ->where('b.sede', '=', $request->session()->get('sede'))
           ->where('a.created_at', '=', date('Y-m-d'))
           ->get();
 
@@ -192,7 +186,6 @@ class ResultadosController extends Controller
         ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
         ->join('analisis as s', 's.id', 'a.id_laboratorio')
         ->where('a.estatus', '=', 3)
-        ->where('b.sede', '=', $request->session()->get('sede'))
         ->where('b.id_paciente', '=', $request->id_paciente)
         ->get();
         } else {
@@ -206,7 +199,6 @@ class ResultadosController extends Controller
             ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
             ->join('analisis as s', 's.id', 'a.id_laboratorio')
             ->where('a.estatus', '=', 999)
-            ->where('b.sede', '=', $request->session()->get('sede'))
             ->where('a.created_at', '=', date('Y-m-d'))
             ->get();
 
