@@ -118,7 +118,8 @@
                     <td>{{$p->sexo}}</td>
                     <td>{{$p->telefono}}</td>
 
-                    <td><a class="btn btn-primary btn-sm" id="{{$p->id}}" onclick="viewh(this)">
+                    <td>
+                      <a class="btn btn-primary btn-sm" id="{{$p->id}}" onclick="viewh(this)">
                               <i class="fas fa-eye">
                               </i>
                               Ver
@@ -137,6 +138,11 @@
                               Eliminar
                           </a>
                           @endif
+                          <a class="btn btn-warning btn-sm" href="pacientes-archivos-{{$p->id}}">
+                              <i class="fas fa-add">
+                              </i>
+                              Archivos
+                          </a>
                           </td>
                   </tr>
                   @endforeach

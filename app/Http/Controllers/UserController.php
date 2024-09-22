@@ -83,6 +83,13 @@ class UserController extends Controller
     public function store(Request $request)
     {
 
+        if($request->rol == 10){
+            $tipo = 'ProfSalud';
+
+        } else {
+            $tipo = 'Otro';
+        }
+
         $validator = \Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users',
@@ -94,6 +101,8 @@ class UserController extends Controller
             $user->name =$request->name;
             $user->email =$request->email;
             $user->rol =$request->rol;
+            $user->tipo_personal =$tipo;
+            $user->tipo = 1;
             $user->password =Hash::make($request['password']);
             $user->save();
 
@@ -136,13 +145,23 @@ class UserController extends Controller
      */
     public function update(Request $request, Clientes $Clientes)
     {
-          
+
+
+                if($request->rol == 10){
+                    $tipo = 'ProfSalud';
+
+                } else {
+                    $tipo = 'Otro';
+                }
+                
 
             $p = User::find($request->id);
             $p->name =$request->name;
             $p->email =$request->email;
             $p->rol =$request->rol;
             $p->empresa =$request->empresa;
+            $p->tipo_personal =$tipo;
+            $p->tipo = 1;
             $p->password =Hash::make($request['password']);
             $res = $p->update();
       return redirect()->action('UserController@index');

@@ -154,6 +154,10 @@ Route::get('pacientes-delete-{id}', 'PacientesController@delete')->middleware('a
 Route::get('pacientes-edit-{id}', 'PacientesController@edit')->name('pacientes.edit');
 Route::get('pacientes/ver/{id}', 'PacientesController@ver');
 Route::post('pacientes/edit', 'PacientesController@update');
+Route::get('pacientes-archivos-{id}', 'PacientesController@archivos')->middleware('auth');
+Route::post('pacientes_archivos', 'PacientesController@storeArchivos')->middleware('auth');
+
+
 
 Route::get('productos_usados', 'ProductosUsadosController@index')->name('productosu.index');
 Route::get('productos_usados1', 'ProductosUsadosController@index1')->name('productosu.index1');
@@ -320,6 +324,8 @@ Route::get('laboratorios-reversar-check-{id}', 'LaboratoriosCheckController@reve
 Route::post('checkmultiple', 'LaboratoriosCheckController@checkmultiple');
 Route::post('pagarmultiplelab', 'LaboratoriosCheckController@pagarmultiplelab');
 Route::get('reporte/labpagadas', 'LaboratoriosCheckController@reporte_pagadas');
+Route::get('analisis/enviar/{id}', 'LaboratoriosCheckController@enviar');
+Route::post('analisis/enviar', 'LaboratoriosCheckController@enviarPost');
 
 
 
@@ -571,6 +577,25 @@ Route::get('download2/{filename}', function($filename)
         exit('Requested file does not exist on our server!');
     }
 })->name('descargar2');
+
+Route::get('descargar/{filename}', function($filename)
+{
+    // Check if file exists in 
+    $file_path = public_path(). $filename;
+    if (file_exists($file_path))
+    {
+        // Send Download
+        return Response::download($file_path, $filename, [
+            'Content-Length: '. filesize($file_path),
+            'Content-Type: ' . mime_content_type($file_path)
+        ]);
+    }
+    else
+    {
+        // Error
+        exit('Requested file does not exist on our server!');
+    }
+})->name('descargar_paciente');
 
 
 

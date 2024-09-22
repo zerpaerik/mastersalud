@@ -7,6 +7,7 @@ use App\Clientes;
 use App\Tiempo;
 use App\Material;
 use App\Pacientes;
+use App\ArchivosPaciente;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -66,6 +67,37 @@ class PacientesController extends Controller
        
         return view('pacientes.create2');
     }
+
+
+      public function archivos($id)
+      {
+        $archivos = ArchivosPaciente::where('id_paciente','=',$id)->get();
+        return view('pacientes.archivos', compact('archivos', 'id'));
+      }
+
+      
+      public function storeArchivos(Request $request)
+      {
+
+        /*$archivos = ArchivosPaciente::where('id_paciente','=',$id)->get();
+        return back();*/
+
+        $arch_pac = new ArchivosPaciente();
+        $img = $request->file('archivo');
+        $nombre_imagen=$img->getClientOriginalName();
+        $arch_pac->nombre= $request->nombre;
+        $arch_pac->archivo=$nombre_imagen;
+        $arch_pac->id_paciente= $request->id_paciente;
+        if ($arch_pac->save()) {
+            \Storage::disk('public')->put($nombre_imagen, \File::get($img));
+        }
+        \DB::commit();
+
+        return back();
+
+      }
+
+
 
     /**
      * Store a newly created resource in storage.

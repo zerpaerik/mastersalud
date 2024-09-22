@@ -213,36 +213,7 @@
             </ul>
           </li>
 
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-money-check-alt"></i>
-              <p>
-                Sesiones
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-
-
-            <li class="nav-item">
-                <a href="{{route('sesiones.index')}}" class="nav-link">
-                  <i class="fas fa-hand-holding-usd nav-icon"></i>
-                  <p>Por Atender</p>
-                </a>
-              </li>
-
-
-              <li class="nav-item">
-                <a href="{{route('sesiones1.index')}}" class="nav-link">
-                  <i class="fas fa-cart-arrow-down nav-icon"></i>
-                  <p>Atendidos</p>
-                </a>
-              </li>
-
-            
-              
-            </ul>
-          </li>
+         
 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
@@ -327,6 +298,27 @@
               
             </ul>
           </li>
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-money-check-alt"></i>
+              <p>
+                Laboratorios por enviar
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+            
+
+            <li class="nav-item">
+                <a href="{{route('labcheck.index')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Lista</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
@@ -547,12 +539,7 @@
                 </a>
               </li> 
 
-              <li class="nav-item">
-                <a href="{{route('prod_ses.index')}}" class="nav-link">
-                  <i class="fas fa-hand-holding-usd nav-icon"></i>
-                  <p>Producción Sesiones</p>
-                </a>
-              </li> 
+           
               
             </ul>
           </li>
@@ -849,36 +836,7 @@
             </ul>
           </li>
 
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-money-check-alt"></i>
-              <p>
-                Sesiones
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-
-
-            <li class="nav-item">
-                <a href="{{route('sesiones.index')}}" class="nav-link">
-                  <i class="fas fa-hand-holding-usd nav-icon"></i>
-                  <p>Por Atender</p>
-                </a>
-              </li>
-
-
-              <li class="nav-item">
-                <a href="{{route('sesiones1.index')}}" class="nav-link">
-                  <i class="fas fa-cart-arrow-down nav-icon"></i>
-                  <p>Atendidos</p>
-                </a>
-              </li>
-
-            
-              
-            </ul>
-          </li>
+      
 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
@@ -1241,38 +1199,6 @@
             </ul>
           </li>
 
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-money-check-alt"></i>
-              <p>
-                Sesiones
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-
-
-            <li class="nav-item">
-                <a href="{{route('sesiones.index')}}" class="nav-link">
-                  <i class="fas fa-hand-holding-usd nav-icon"></i>
-                  <p>Por Atender</p>
-                </a>
-              </li>
-
-
-              <li class="nav-item">
-                <a href="{{route('sesiones1.index')}}" class="nav-link">
-                  <i class="fas fa-cart-arrow-down nav-icon"></i>
-                  <p>Atendidos</p>
-                </a>
-              </li>
-
-            
-              
-            </ul>
-          </li>
-
-         
 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
@@ -1343,8 +1269,6 @@
 
 
           
-
-              
             <li class="nav-item">
                 <a href="{{route('historias.index')}}" class="nav-link">
                   <i class="fas fa-hand-holding-usd nav-icon"></i>
@@ -1607,36 +1531,8 @@
             </ul>
           </li>
 
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-money-check-alt"></i>
-              <p>
-                Sesiones
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-
-
-            <li class="nav-item">
-                <a href="{{route('sesiones.index')}}" class="nav-link">
-                  <i class="fas fa-hand-holding-usd nav-icon"></i>
-                  <p>Por Atender</p>
-                </a>
-              </li>
-
-
-              <li class="nav-item">
-                <a href="{{route('sesiones1.index')}}" class="nav-link">
-                  <i class="fas fa-cart-arrow-down nav-icon"></i>
-                  <p>Atendidos</p>
-                </a>
-              </li>
-
-            
-              
-            </ul>
-          </li>
+        
+         
 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">

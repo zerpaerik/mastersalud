@@ -975,10 +975,10 @@ return view('atenciones.particular');
                             }
 
                        
-                          /*  $rs = new ResultadosServicios();
+                            $rs = new ResultadosServicios();
                             $rs->id_atencion =  $lab->id;
                             $rs->id_servicio = $serv['servicio'];
-                            $rs->save();*/
+                            $rs->save();
 
                           if ($request->monto_s['servicios'][$key]['monto'] > $request->monto_abol['servicios'][$key]['abono']) {
                               $cb = new Cobrar();
@@ -1107,21 +1107,7 @@ return view('atenciones.particular');
 
 
                     
-                       //VERIFICAR SESIONES
-
-                       $contador=0;
-                      
-                       if ($servicio->sesiones != 0) {
-                           while ($contador < $servicio->sesiones) {
-                               $ses = new Sesiones();
-                               $ses->id_paciente =   $request->paciente;
-                               $ses->id_atencion =  $lab->id;
-                               $ses->monto = '50';
-                               $ses->save();
-
-                               $contador++;
-                           }
-                       }
+                       
 
                       
 
@@ -1595,6 +1581,14 @@ return view('atenciones.particular');
                           $lab->observaciones = $request->observaciones;
                           $lab->id_atec =  $atec->id;
                           $lab->save();
+
+
+                          
+                       
+                          $rs = new ResultadosServicios();
+                          $rs->id_atencion =  $lab->id;
+                          $rs->id_servicio = $eco['ecografia'];
+                          $rs->save();
 
                 
                           $cre = new Creditos();

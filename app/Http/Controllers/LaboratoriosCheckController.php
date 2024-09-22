@@ -7,6 +7,7 @@ use App\Creditos;
 use App\Debitos;
 use App\Analisis;
 use App\Atenciones;
+use App\Laboratorio;
 use App\LaboratoriosCheck;
 use App\Sedes;
 use DB;
@@ -243,18 +244,28 @@ class LaboratoriosCheckController extends Controller
   
       return back();
     }
+    
+    public function enviar($id){
+
+      $labs = LaboratoriosCheck::where('id','=',$id)->first();
+
+
+      $centros = Laboratorio::where('estatus', '=', 1)->get();
+
+      
+      return view('labs-check.enviar',compact('centros','labs'));
+    }
 
 
 
-    public function chequear($id)
+    public function enviarPost(Request $request)
     {
 
       
-      $p = LaboratoriosCheck::find($id);
-      $p->estatus =1;
+      $p = LaboratoriosCheck::find($request->id);
+      $p->centro = $request->laboratorio;
       $p->fecha_check = date('Y-m-d');
       $res = $p->update();
-    
       return back();
 
         //
