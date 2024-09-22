@@ -41,6 +41,13 @@
               </li>
 
               <li class="nav-item">
+                <a href="{{route('laboratorio.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Laboratorios</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
                 <a href="{{route('profesionales.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Profesionales</p>
