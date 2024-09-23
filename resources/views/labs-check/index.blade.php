@@ -125,7 +125,7 @@
                     <td>
 
                     @if($an->fecha_check == null)
-                    <a class="btn btn-primary btn-sm" id="{{$an->id}}" onclick="viewh(this)">
+                    <a class="btn btn-primary btn-sm" id="{{$an->id_lab}}" onclick="viewh(this)">
                               <i class="fas fa-save">
                               </i>
                               Enviar

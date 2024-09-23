@@ -38,7 +38,7 @@ class LaboratoriosCheckController extends Controller
         $f2 = $request->fin;
 
         $labs = DB::table('laboratorios_check as  a')
-        ->select('a.*','a.created_at as fecha','a.id as lab','b.*','c.*')
+        ->select('a.id as id_lab','a.analisis','a.centro','a.fecha_check','a.paciente','a.created_at as fecha','a.id as lab','b.*','c.*')
         ->join('analisis as b','b.id','a.analisis')
         ->join('pacientes as c','c.id','a.paciente')
         ->where('a.estatus', '=', 0)
@@ -48,7 +48,7 @@ class LaboratoriosCheckController extends Controller
 
       } else {
         $labs = DB::table('laboratorios_check as  a')
-        ->select('a.*','a.created_at as fecha','a.id as lab','b.*','c.*')
+        ->select('a.id as id_lab','a.analisis','a.centro','a.fecha_check','a.paciente','a.created_at as fecha','a.id as lab','b.*','c.*')
         ->join('analisis as b','b.id','a.analisis')
         ->join('pacientes as c','c.id','a.paciente')
         ->where('a.estatus', '=', 0)
@@ -57,6 +57,7 @@ class LaboratoriosCheckController extends Controller
 
         $f1 = date('Y-m-d');
         $f2 = date('Y-m-d');
+
 
       }
 
@@ -249,7 +250,6 @@ class LaboratoriosCheckController extends Controller
 
       $labs = LaboratoriosCheck::where('id','=',$id)->first();
 
-
       $centros = Laboratorio::where('estatus', '=', 1)->get();
 
       
@@ -261,14 +261,18 @@ class LaboratoriosCheckController extends Controller
     public function enviarPost(Request $request)
     {
 
-      
+ 
+
+    
+
       $p = LaboratoriosCheck::find($request->id);
       $p->centro = $request->laboratorio;
       $p->fecha_check = date('Y-m-d');
       $res = $p->update();
+
       return back();
 
-        //
+
     }
 
     
