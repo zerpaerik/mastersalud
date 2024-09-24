@@ -576,7 +576,7 @@ class AtencionesController extends Controller
             $res = 'NO';
             }
 
-        return view('atenciones.create', compact('paquetes','personal','ecografias','rayos','otros','analisis','paciente','res','met','salud','tipo_consultas'));
+        return view('atenciones.create', compact('paquetes','personal','ecografias','rayos','otros','analisis','paciente','res','met','salud','tipo_consultas','otrosp'));
     }
 
     public function getServicio($id)
