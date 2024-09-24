@@ -485,9 +485,9 @@
                       <div class="col-sm-3">
                         <select id="salud_#index#_salu" name="id_salu[salud][#index#][salu]" class="selectSalud form-control">
                           <option value="1">Seleccionar Otros Pagos</option>
-                          @foreach($salud as $sa)
-                            <option value="{{$sa->id}}">
-                              {{$sa->nombre}} Precio:{{$sa->precio}}
+                          @foreach($otros as $op)
+                            <option value="{{$op->id}}">
+                              {{$op->nombre}} Precio:{{$op->precio}}
                             </option>
                           @endforeach
                         </select>

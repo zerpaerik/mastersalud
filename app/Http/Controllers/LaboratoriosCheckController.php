@@ -261,18 +261,12 @@ class LaboratoriosCheckController extends Controller
     public function enviarPost(Request $request)
     {
 
- 
-
-    
-
       $p = LaboratoriosCheck::find($request->id);
       $p->centro = $request->laboratorio;
       $p->fecha_check = date('Y-m-d');
       $res = $p->update();
 
       return back();
-
-
     }
 
     
@@ -287,7 +281,6 @@ class LaboratoriosCheckController extends Controller
     
       return back();
 
-        //
     }
 
     public function reversar_pago($id)
