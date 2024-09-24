@@ -233,9 +233,9 @@
                     <div class="col-sm-2">
                       <select id="servicios_#index#_servicio" name="id_servicio[servicios][#index#][servicio]" class="selectServ form-control">
                       <option value="1">Seleccionar Procedimiento</option>
-                        @foreach($otrosp as $otp)
+                        @foreach($otros as $ot)
                           <option value="{{$ot->id}}">
-                            {{$otp->nombre}} Precio:{{$otp->precio}}
+                            {{$ot->nombre}} Precio:{{$ot->precio}}
                           </option>
                         @endforeach
                       </select>
@@ -485,9 +485,9 @@
                       <div class="col-sm-3">
                         <select id="salud_#index#_salu" name="id_salu[salud][#index#][salu]" class="selectSalud form-control">
                           <option value="1">Seleccionar Otros Pagos</option>
-                          @foreach($otros as $op)
-                            <option value="{{$op->id}}">
-                              {{$op->nombre}} Precio:{{$op->precio}}
+                          @foreach($otrosp as $opa)
+                            <option value="{{$opa->id}}">
+                              {{$opa->nombre}} Precio:{{$opa->precio}}
                             </option>
                           @endforeach
                         </select>
