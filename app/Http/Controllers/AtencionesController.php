@@ -1033,9 +1033,8 @@ return view('atenciones.particular');
                       $servicio = Servicios::where('id', '=', $serv['salu'])->first();
                       $totalabono = (float)$request->monto_abol['salud'][$key]['abono'] + (float)$request->monto_abol['salud'][$key]['abono1'];
 
-
-
-                      //TIPO ATENCION SERVICIOS= 1
+                      if($serv['salu'] != 1){
+                          //TIPO ATENCION SERVICIOS= 1
                       $lab = new Atenciones();
                       $lab->tipo_origen =  $request->origen;
                       if ($request->origen == 3) {
@@ -1106,15 +1105,6 @@ return view('atenciones.particular');
 
                         }
 
-
-                    
-                       
-
-                      
-
-
-                  
-
                       if ($request->monto_s['salud'][$key]['monto'] > $request->monto_abol['salud'][$key]['abono']) {
                           $cb = new Cobrar();
                           $cb->id_atencion =  $lab->id;
@@ -1149,15 +1139,12 @@ return view('atenciones.particular');
                           $com->save();
                       } else {
 
-            /* $com = new Comisiones();
-              $com->id_atencion =  $lab->id;
-              $com->porcentaje = $servicio->porcentaje2;
-              $com->detalle =  $servicio->nombre;
-              $com->monto = (float)$request->monto_s['servicios'][$key]['monto'] * $servicio->porcentaje2 / 100;
-              $com->estatus = 1;
-              $com->usuario = Auth::user()->id;
-              $com->save();*/
+          
                       }
+
+                      }
+
+                    
                   }
               }
           }
