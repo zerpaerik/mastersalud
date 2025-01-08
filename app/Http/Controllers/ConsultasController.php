@@ -50,6 +50,7 @@ class ConsultasController extends Controller
         ->join('atenciones as at','at.id','a.id_atencion')
         ->where('a.estatus', '=', 1)
         ->where('a.sede', '=', $request->session()->get('sede'))
+        ->where('a.id_especialista', '=', Auth::user()->id)
         ->whereBetween('a.created_at', [$f1, $f2])
         ->orderBy('a.id','DESC')
         ->get(); 
@@ -67,6 +68,7 @@ class ConsultasController extends Controller
         ->join('atenciones as at','at.id','a.id_atencion')
         ->where('a.estatus', '=', 1)
         ->where('a.sede', '=', $request->session()->get('sede'))
+        ->where('a.id_especialista', '=', Auth::user()->id)
         ->where('a.created_at', '=', date('Y-m-d'))
         ->orderBy('a.id','DESC')
         ->get(); 

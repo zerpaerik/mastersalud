@@ -143,7 +143,7 @@
                     <th>Cliente</th>
                     <th>Producto</th>
                     <th>Monto Total</th>
-                    <th>Tipo de Pago</th>
+                    <th>Abono / Tipo de Pago</th>
                     <th>Fecha</th>
                     <th>Acciones</th>
                   </tr>
@@ -155,7 +155,7 @@
                     <td>{{$an->cliente}}</td>
                     <td>{{$ventass->selectProductos($an->id)}}</td>
                     <td>{{$an->total}}</td>
-                    <td>{{$an->tipop}}</td>
+                    <td>{{$ventass->detallePago($an->id_detalle)}}</td>
                     <td>{{$an->created_at}}</td>
 
                     <td>
@@ -197,7 +197,7 @@
                   <th>Cliente</th>
                     <th>Producto</th>
                     <th>Monto Total</th>
-                    <th>Tipo de Pago</th>
+                    <th>Abono / Tipo de Pago</th>
                     <th>Acciones</th>
                   </tr>
                   </tfoot>

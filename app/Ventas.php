@@ -44,6 +44,30 @@ class Ventas extends Model
               //  return $id;
 }
 
+
+public function detallePago($id)
+{
+
+    $array='';
+    $data = \DB::table('creditos')
+    ->select('*')
+               // ->where('estatus','=','1')
+    ->where('id_venta_detalle', $id)
+    ->get();
+    $descripcion='';
+    
+    
+    foreach ($data as $key => $value) {
+      $descripcion.= $value->monto.'-'.$value->tipopago.', ';
+   }
+
+return substr($descripcion, 0, -1);
+          //  return $id;
+}
+
+
+
+
   
 
     
