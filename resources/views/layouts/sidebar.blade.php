@@ -281,7 +281,7 @@
 
 
             <li class="nav-item">
-                <a href="{{route('consultas.index')}}" class="nav-link">
+                <a href="{{route('consultas.index1')}}" class="nav-link">
                   <i class="fas fa-hand-holding-usd nav-icon"></i>
                   <p>Lista de Consultas</p>
                 </a>

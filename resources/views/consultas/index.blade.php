@@ -142,13 +142,16 @@
                     @if($an->tipo == 1)
 
                     @if($an->tipo_consulta == 6)
-                    @if($an->triaje == 0)
+                          @if($an->triaje == 0)
 
-                    <a class="btn btn-secondary btn-sm" href="consultas-triaje-{{$an->id}}">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Triaje
-                          </a>  
+                             @if(Auth::user()->rol == 1 || Auth::user()->rol == 7)
+                             <a class="btn btn-secondary btn-sm" href="consultas-triaje-{{$an->id}}">
+                                  <i class="fas fa-pencil-alt">
+                                  </i>
+                                  Triaje
+                              </a>  
+
+                              @endif
                           @endif
 
                     <a class="btn btn-danger btn-sm" href="historiape-crear-{{$an->id}}">

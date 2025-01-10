@@ -50,6 +50,51 @@ class ConsultasController extends Controller
         ->join('atenciones as at','at.id','a.id_atencion')
         ->where('a.estatus', '=', 1)
         ->where('a.sede', '=', $request->session()->get('sede'))
+        ->where('a.id_especialista', '=', Auth::user()->id)
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->orderBy('a.id','DESC')
+        ->get(); 
+
+      } else {
+
+        $f1 = date('Y-m-d');
+        $f2 = date('Y-m-d');
+
+        $consultas = DB::table('consultas as a')
+        ->select('a.id','a.id_paciente','a.id_atencion','a.triaje','a.tipo_consulta','a.usuario','a.historia','a.id_especialista','a.tipo','a.sede','a.created_at','a.estatus','a.monto','b.nombres','b.apellidos','c.name as nameo','c.lastname as lasto','e.name as namee','e.lastname as laste','at.created_at as fecha')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('users as c','c.id','a.usuario')
+        ->join('users as e','e.id','a.id_especialista')
+        ->join('atenciones as at','at.id','a.id_atencion')
+        ->where('a.estatus', '=', 1)
+        ->where('a.sede', '=', $request->session()->get('sede'))
+        ->where('a.id_especialista', '=', Auth::user()->id)
+        ->where('a.created_at', '=', date('Y-m-d'))
+        ->orderBy('a.id','DESC')
+        ->get(); 
+
+      }
+
+        return view('consultas.index', compact('consultas','f1','f2'));
+        //
+    }
+
+    public function index1(Request $request)
+    {
+
+      
+      if ($request->inicio) {
+        $f1 = $request->inicio;
+        $f2 = $request->fin;
+
+        $consultas = DB::table('consultas as a')
+        ->select('a.id','a.id_paciente','a.id_atencion','a.triaje','a.usuario','a.historia','a.tipo_consulta','a.id_especialista','a.tipo','a.sede','a.created_at','a.estatus','a.monto','b.nombres','b.apellidos','c.name as nameo','c.lastname as lasto','e.name as namee','e.lastname as laste','at.created_at as fecha')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('users as c','c.id','a.usuario')
+        ->join('users as e','e.id','a.id_especialista')
+        ->join('atenciones as at','at.id','a.id_atencion')
+        ->where('a.estatus', '=', 1)
+        ->where('a.sede', '=', $request->session()->get('sede'))
         //->where('a.id_especialista', '=', Auth::user()->id)
         ->whereBetween('a.created_at', [$f1, $f2])
         ->orderBy('a.id','DESC')
@@ -78,6 +123,7 @@ class ConsultasController extends Controller
         return view('consultas.index', compact('consultas','f1','f2'));
         //
     }
+
 
 
 
