@@ -357,8 +357,14 @@ Route::get('historias', 'ConsultasController@historias')->name('historias.index'
 Route::get('historia/reevaluar/{id}', 'ConsultasController@reevaluar');
 Route::post('historia/reevaluar', 'ConsultasController@reevaluarPost');
 Route::get('historias-ver-{id}', 'ConsultasController@ver_historias');
+Route::get('historias-editar-{id}', 'ConsultasController@editar_historias');
+Route::post('historias/edit', 'ConsultasController@updateHistoria');
 Route::get('historiasp-ver-{id}', 'ConsultasController@ver_historiasp');
+Route::get('historiasp-editar-{id}', 'ConsultasController@editar_historiasp');
+Route::post('historiasp/edit', 'ConsultasController@updateHistoriap');
 Route::get('historiasm-ver-{id}', 'ConsultasController@ver_historiasm');
+Route::get('historiasm-editar-{id}', 'ConsultasController@editar_historiasm');
+Route::post('historiasm/edit', 'ConsultasController@updateHistoriam');
 Route::get('historiasm-pdf-{id}', 'ConsultasController@ver_historiasm_pdf');
 Route::get('historiasp-pdf-{id}', 'ConsultasController@ver_historiasp_pdf');
 Route::get('historias-pdf-{id}', 'ConsultasController@ver_historias_pdf');

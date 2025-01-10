@@ -50,7 +50,7 @@ class ConsultasController extends Controller
         ->join('atenciones as at','at.id','a.id_atencion')
         ->where('a.estatus', '=', 1)
         ->where('a.sede', '=', $request->session()->get('sede'))
-        ->where('a.id_especialista', '=', Auth::user()->id)
+        //->where('a.id_especialista', '=', Auth::user()->id)
         ->whereBetween('a.created_at', [$f1, $f2])
         ->orderBy('a.id','DESC')
         ->get(); 
@@ -68,7 +68,7 @@ class ConsultasController extends Controller
         ->join('atenciones as at','at.id','a.id_atencion')
         ->where('a.estatus', '=', 1)
         ->where('a.sede', '=', $request->session()->get('sede'))
-        ->where('a.id_especialista', '=', Auth::user()->id)
+        //->where('a.id_especialista', '=', Auth::user()->id)
         ->where('a.created_at', '=', date('Y-m-d'))
         ->orderBy('a.id','DESC')
         ->get(); 
@@ -178,6 +178,29 @@ class ConsultasController extends Controller
 
     }
 
+    
+    public function editar_historiasp($id)
+    {
+
+
+        // $hist = Historia::where('id','=',$id)->first();
+
+         $hist = DB::table('historia_pediatrica as a')
+         ->select('a.*','u.name','u.lastname')
+         ->join('users as u','u.id','a.usuario')
+         ->where('a.id', '=',$id)
+         ->first(); 
+
+
+         $paciente = Pacientes::where('id','=',$hist->id_paciente)->first();
+         $edad = Carbon::parse($paciente->fechanac)->age;
+
+
+        return view('consultas.historiap_editar', compact('hist','paciente','edad'));
+
+
+    }
+
 
     public function historiam_crear($consulta)
 
@@ -204,6 +227,16 @@ class ConsultasController extends Controller
         $paciente = Pacientes::where('id','=',$historias->id_paciente)->first();
 
         return view('consultas.historiam_ver',compact('hist','historias','paciente'));
+    }
+
+    public function editar_historiasm($consulta)
+    {
+
+        $historias = HistoriaMedicina::where('id','=',$consulta)->first();
+        $hist = HistoriaBase::where('id_paciente','=',$historias->id_paciente)->first();
+        $paciente = Pacientes::where('id','=',$historias->id_paciente)->first();
+
+        return view('consultas.historiam_editar',compact('hist','historias','paciente'));
     }
 
     public function historiap_ver($consulta)
@@ -814,6 +847,30 @@ class ConsultasController extends Controller
 
     }
 
+    
+    public function editar_historias($id)
+    {
+
+
+        // $hist = Historia::where('id','=',$id)->first();
+
+         $hist = DB::table('historia as a')
+         ->select('a.*','u.name','u.lastname')
+         ->join('users as u','u.id','a.usuario')
+         ->where('a.id', '=',$id)
+         ->first(); 
+
+
+
+         $historias_base = HistoriaBase::where('id_paciente','=',$hist->id_paciente)->first();
+
+         $paciente = Pacientes::where('id','=',$hist->id_paciente)->first();
+
+        return view('consultas.historias_editar', compact('hist','historias_base','paciente'));
+
+
+    }
+
     public function ver_controles($id)
     {
 
@@ -901,7 +958,116 @@ class ConsultasController extends Controller
 
     }
 
+    public function updateHistoria(Request $request)
+    {
 
+      $con = Historia::find($request->id);
+      $con->motivo = $request->motivo;
+      $con->pa = $request->pa;
+      $con->pulso = $request->pulso;
+      $con->temp = $request->temp;
+      $con->peso = $request->peso;
+      $con->talla = $request->talla;
+      $con->apetito = $request->apetito;
+      $con->sed = $request->sed;
+      $con->animo = $request->animo;
+      $con->mic = $request->mic;
+      $con->rc = $request->rc;
+      $con->dep = $request->dep;
+      $con->fur = $request->fur;
+      $con->pap = $request->pap;
+      $con->mac = $request->mac;
+      $con->andria = $request->andria;
+      $con->g = $request->g;
+      $con->p = $request->p;
+      $con->piel = $request->piel;
+      $con->mamas = $request->mamas;
+      $con->abdomen = $request->abdomen;
+      $con->ext = $request->ext;
+      $con->int = $request->int;
+      $con->miem = $request->miem;
+      $con->evo = $request->evo;
+      $con->tipo = $request->tipo;
+      $con->pd = $request->pre_diag;
+      $con->df = $request->diag_fin;
+      $con->cie = $request->cie;
+      $con->cie1 = $request->cie1;
+      $con->ex_aux = $request->ex_aux;
+      $con->plan = $request->plan;
+      $con->obser = $request->obser;
+      $con->prox = $request->prox;
+      $res = $con->update();
+
+    return redirect()->action('ConsultasController@historias')
+      ->with('success','Modificado Exitosamente!');
+
+    }
+
+
+    public function updateHistoriap(Request $request)
+    {
+
+      $con = HistoriaPediatria::find($request->id);
+      $con->motivo = $request->motivo;
+      $con->apetito = $request->apetito;
+      $con->sed = $request->sed;
+      $con->animo = $request->animo;
+      $con->orina = $request->orina;
+      $con->heces = $request->heces;
+      $con->ram = $request->ram;
+      $con->desc_ram = $request->desc_ram;
+      $con->hospi = $request->hospi;
+      $con->desc_hosp = $request->desc_hosp;
+      $con->cir = $request->cir;
+      $con->desc_cir = $request->desc_cir;
+      $con->vac = $request->vac;
+      $con->desc_vac = $request->desc_vac;
+      $con->ant_pat = $request->ant_pat;
+      $con->peso = $request->peso;
+      $con->talla = $request->talla;
+      $con->t	 = $request->t;
+      $con->pa = $request->pa;
+      $con->sat = $request->sat;
+      $con->aspg = $request->aspg;
+      $con->cab = $request->cab;
+      $con->dig = $request->dig;
+      $con->neuro = $request->neuro;
+      $con->tor_resp = $request->tor_resp;
+      $con->circ = $request->circ;
+      $con->genito = $request->genito;
+      $con->locomo = $request->locomo;
+      $con->hallazg = $request->hallazg;
+      $con->diag = $request->diag;
+      $con->plan = $request->plan;
+    
+      $con->ex_aux = $request->ex_aux;
+      $res = $con->update();
+
+    return redirect()->action('ConsultasController@historias')
+      ->with('success','Modificado Exitosamente!');
+
+    }
+
+    public function updateHistoriam(Request $request)
+    {
+
+      $con = HistoriaMedicina::find($request->id);
+      $con->piel = $request->piel;
+      $con->torax = $request->torax;
+      $con->corazon = $request->corazon;
+      $con->abdomen = $request->abdomen;
+      $con->otros = $request->otros;
+      $con->ex_aux = $request->ex_aux;
+      $con->diag_fin = $request->diag_fin;
+      $con->cie_df = $request->cie_df;
+      $con->plan = $request->plan;
+      $con->observaciones = $request->observaciones;
+      $res = $con->update();
+
+    return redirect()->action('ConsultasController@historias')
+      ->with('success','Modificado Exitosamente!');
+
+    }
 
 
 
