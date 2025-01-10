@@ -211,11 +211,13 @@ class VentasController extends Controller
                 $pedidos = new VentasDetalle();
                 $pedidos->id_venta =$venta->id;
                 $pedidos->id_producto =$lab['laboratorio'];
-                $pedidos->monto =$monto;
+                $pedidos->monto = $request->monto_abol1['laboratorios'][$key]['abo'];
+                $pedidos->monto1 = $request->monto_abol2['laboratorios'][$key]['abo1'];
                 $pedidos->cantidad =$request->monto_abol['laboratorios'][$key]['abono'];
                 $pedidos->total =$request->monto_abol['laboratorios'][$key]['abono'] * $monto;
                 $pedidos->cliente =$request->cliente;
-                $pedidos->tipop =$request->id_pago['laboratorios'][$key]['tipop'].' '.$request->id_pago['laboratorios'][$key]['tipop1'];
+                $pedidos->tipop =$request->id_pago['laboratorios'][$key]['tipop'];
+                $pedidos->tipop1 =$request->id_pago['laboratorios'][$key]['tipop1'];
                 $pedidos->sede = $request->session()->get('sede');
                 $pedidos->usuario =Auth::user()->id;
                 $pedidos->save();
@@ -227,6 +229,7 @@ class VentasController extends Controller
                 $cre->usuario = Auth::user()->id;
                 $cre->tipopago = $request->id_pago['laboratorios'][$key]['tipop'];
                 $cre->id_venta_detalle = $pedidos->id;
+                $cre->id_venta = $venta->id;
                 if ($request->id_pago['laboratorios'][$key]['tipop'] == 'EF') {
                     $cre->efectivo =  $request->monto_abol1['laboratorios'][$key]['abo'];
                   } elseif($request->id_pago['laboratorios'][$key]['tipop'] == 'TJ') {
@@ -248,6 +251,7 @@ class VentasController extends Controller
                   $cre1->usuario = Auth::user()->id;
                   $cre1->tipopago = $request->id_pago['laboratorios'][$key]['tipop1'];
                   $cre1->id_venta_detalle = $pedidos->id;
+                  $cre1->id_venta = $venta->id;
                   if ($request->id_pago['laboratorios'][$key]['tipop1'] == 'EF') {
                       $cre1->efectivo =  $request->monto_abol2['laboratorios'][$key]['abo1'];
                     } elseif($request->id_pago['laboratorios'][$key]['tipop1'] == 'TJ') {

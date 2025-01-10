@@ -15,7 +15,7 @@ use Carbon\Carbon;
 
 class CajaController extends Controller
 {
-    public function index(Request $request)
+   /* public function index(Request $request)
     {
 
        if(! is_null($request->fecha)) {
@@ -141,7 +141,144 @@ class CajaController extends Controller
             'fecha2' => $f2,
             'hoy' => $hoy
 	    ]);    	
+    }*/
+
+    public function index(Request $request)
+    {
+
+       if(! is_null($request->fecha)) {
+
+    $f1 = $request->fecha;
+    $f2 = $request->fecha2;  
+
+     // $caja = DB::table('cajas')->select('*')->where('sede','=',$request->session()->get('sede'))->whereBetween('fecha', [date('Y-m-d', strtotime($f1)), date('Y-m-d', strtotime($f2))])->get();
+
+      $caja = DB::table('cajas as  a')
+        ->select('a.id','a.primer_turno','a.segundo_turno','a.sede','a.estatus','a.total','a.usuario_primer','a.fecha','b.name','a.created_at')
+        ->join('users as b','b.id','a.usuario_primer')
+        ->where('a.sede','=',$request->session()->get('sede'))
+        ->whereBetween('a.fecha', [date('Y-m-d', strtotime($f1)), date('Y-m-d', strtotime($f2))])
+        ->get();
+
+
+        //dd($caja);
+
+        $aten = Creditos::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+              ->where('sede','=',$request->session()->get('sede'))
+              ->select(DB::raw('SUM(monto) as monto'))
+                            ->first();
+
+                            $deb = Debitos::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                            ->where('sede','=',$request->session()->get('sede'))
+                            ->select(DB::raw('SUM(monto) as monto'))
+                            ->first();
+      
+
+        $mensaje;                      
+
+        if (count($caja) == 0) {
+            $mensaje = 'Primer';
+        }
+
+        if(count($caja) >= 1)
+        {
+            $mensaje = 'Segundo';
+        } 
+        
+        $total = $aten->monto - $deb->monto;
+
+
+} else {
+
+
+
+        $caja = DB::table('cajas as  a')
+        ->select('a.id','a.primer_turno','a.segundo_turno','a.sede','a.estatus','a.total','a.usuario_primer','a.fecha','b.name','a.created_at')
+        ->join('users as b','b.id','a.usuario_primer')
+        ->where('a.sede','=',$request->session()->get('sede'))
+        ->where('a.fecha','=',date('Y-m-d'))
+        ->get();
+
+      
+
+
+  
+        $cajaa = DB::table('cajas')
+        ->where('sede','=',$request->session()->get('sede'))
+        ->where('fecha','=',date('Y-m-d'))
+        ->select('*')->get()->last();
+
+
+
+        if($cajaa != null){
+            
+        $aten = Creditos::where('created_at','>',$cajaa->created_at)
+        ->where('sede','=',$request->session()->get('sede'))
+        ->select(DB::raw('SUM(monto) as monto'))
+        ->first();
+
+
+        $deb = Debitos::where('created_at','>',$cajaa->created_at)
+        ->where('sede','=',$request->session()->get('sede'))
+        ->select(DB::raw('SUM(monto) as monto'))
+        ->first();
+
+        $total = $aten->monto - $deb->monto;
+
+
+        } else {
+
+
+        $aten = Creditos::select(DB::raw('SUM(monto) as monto'))
+        ->where('sede','=',$request->session()->get('sede'))
+        ->whereDate('fecha','=',date('Y-m-d'))
+        ->first();
+
+
+        $deb = Debitos::select(DB::raw('SUM(monto) as monto'))
+        ->whereDate('fecha','=',date('Y-m-d'))
+        ->where('sede','=',$request->session()->get('sede'))
+        ->first();
+
+        $total = $aten->monto - $deb->monto;
+
+            
+        }
+      
+
+		$mensaje;	
+
+
+
+        $f1 = date('Y-m-d');
+         $f2 = date('Y-m-d'); 
+    	
+    	
+    	if (count($caja) == 0) {
+    		$mensaje = 'Primer';
+    	}
+
+    	if(count($caja) >= 1)
+    	{
+    		$mensaje = 'Segundo';
+    	}
+
+        }
+		  $hoy =date('Y-m-d H:i:s');
+
+
+	    return view('caja.index',[
+	    	'total' => $total,
+	    	'mensaje' => $mensaje,
+	    	'caja' => $caja,
+	    	'fecha' => date('Y-m-d'),
+            'fecha1' => $f1,
+            'fecha2' => $f2,
+            'hoy' => $hoy
+	    ]);    	
     }
+
+
 
     public function ticket(Request $request,$id){
 
@@ -253,7 +390,7 @@ class CajaController extends Controller
 
 
 
-        public function create(Request $request)
+    /*    public function create(Request $request)
 
     {
 
@@ -304,6 +441,67 @@ class CajaController extends Controller
               'total' => $request->total,
               'sede' =>  $request->session()->get('sede'),
               'usuario_primer' => Auth::user()->id
+          ]);
+      
+      
+
+
+        return redirect()->action('CajaController@index')
+        ->with('success','Turno Cerrado Exitosamente!');
+    }*/
+
+    
+    public function create(Request $request)
+
+    {
+
+      $caja = DB::table('cajas')
+      ->select('*')
+      ->where('fecha','=',Carbon::now()->toDateString())
+      ->where('sede','=', $request->session()->get('sede'))
+      ->first();
+
+    
+
+      if ($caja == null) {
+          Cajas::create([
+              'primer_turno' => $request->total,
+              'segundo_turno' => 0,
+              'fecha' => Carbon::now()->toDateString(),
+              'total' => $request->total,
+              'sede' =>  $request->session()->get('sede'),
+              'usuario_primer' => Auth::user()->id,
+              'usuario_segundo' => Auth::user()->id,
+
+
+          ]);
+      } else {
+
+        Cajas::create([
+              'primer_turno' => 0,
+              'segundo_turno' => $request->total,
+              'fecha' => Carbon::now()->toDateString(),
+              'total' => $request->total,
+              'sede' =>  $request->session()->get('sede'),
+              'usuario_segundo' => Auth::user()->id,
+              'usuario_primer' => Auth::user()->id,
+          ]);
+
+      }
+
+     /* if(count($caja) == 1)
+      {
+
+        $rsf = Cajas::where('id','=',$caja->id)->first();
+        $rsf->id_servicio = $request->id_tipo;
+        $rsf->save();
+       /* Cajas::create([
+              'primer_turno' => 0,
+              'segundo_turno' => $request->total - $caja[0]->primer_turno,
+              'fecha' => Carbon::now()->toDateString(),
+              'total' => $request->total,
+              'sede' =>  $request->session()->get('sede'),
+              'usuario_primer' => Auth::user()->id
           ]);*/
       
       
@@ -313,7 +511,35 @@ class CajaController extends Controller
         ->with('success','Turno Cerrado Exitosamente!');
     }
 
-    public function cerrar($id){
+   /* public function cerrar($id){
+
+        $caja =Cajas::where('id','=',$id)->first();
+
+
+        $aten = Creditos::where('fecha','>',$caja->fecha_init)
+        ->select(DB::raw('SUM(monto) as monto'))
+        ->first();
+
+        $deb = Debitos::where('fecha','>',$caja->fecha_init)
+        ->select(DB::raw('SUM(monto) as monto'))
+        ->first();
+
+        $total = $aten->monto - $deb->monto;
+
+        $c = Cajas::find($id);
+        $c->monto_fin =$total;
+        $c->fecha_fin =date('Y-m-d H:i:s');
+        $c->usuario_fin =Auth::user()->id;
+        $c->estatus =2;
+        $res = $c->update();
+    
+    
+        return redirect()->action('CajaController@index')
+        ->with('success','Turno Cerrado Exitosamente!');    
+        
+      }*/
+
+      public function cerrar($id){
 
         $caja =Cajas::where('id','=',$id)->first();
 
@@ -340,6 +566,7 @@ class CajaController extends Controller
         ->with('success','Turno Cerrado Exitosamente!');    
         
       }
+
 
 
       public function consolidado(Request $request,$id){

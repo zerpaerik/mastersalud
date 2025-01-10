@@ -49,16 +49,16 @@ public function detallePago($id)
 {
 
     $array='';
-    $data = \DB::table('creditos')
+    $data = \DB::table('ventas_detalle')
     ->select('*')
                // ->where('estatus','=','1')
-    ->where('id_venta_detalle', $id)
+    ->where('id_venta', $id)
     ->get();
     $descripcion='';
     
     
     foreach ($data as $key => $value) {
-      $descripcion.= $value->monto.'-'.$value->tipopago.', ';
+      $descripcion.= $value->monto.'-'.$value->tipop.','.$value->monto1.'-'.$value->tipop1.' ';
    }
 
 return substr($descripcion, 0, -1);

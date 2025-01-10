@@ -155,7 +155,7 @@
                     <td>{{$an->cliente}}</td>
                     <td>{{$ventass->selectProductos($an->id)}}</td>
                     <td>{{$an->total}}</td>
-                    <td>{{$ventass->detallePago($an->id_detalle)}}</td>
+                    <td>{{$ventass->detallePago($an->id)}}</td>
                     <td>{{$an->created_at}}</td>
 
                     <td>
