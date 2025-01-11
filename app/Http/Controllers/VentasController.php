@@ -36,10 +36,9 @@ class VentasController extends Controller
         $f2 = $request->fin;
 
         $ventas = DB::table('ventas as a')
-        ->select('a.id','b.id as id_detalle','b.id_producto','b.cantidad','b.cliente','b.tipop','b.sede','b.monto',DB::raw('SUM(cred.monto) as abono'),DB::raw(' SUM(b.total) as total'),'a.created_at','an.nombre as producto')
+        ->select('a.id','b.id as id_detalle','b.id_producto','b.cantidad','b.cliente','b.tipop','b.sede','b.monto',DB::raw(' SUM(b.total) as total'),'a.created_at','an.nombre as producto')
         ->join('ventas_detalle as b','b.id_venta','a.id')
         ->join('productos as an','an.id','b.id_producto')
-        ->join('creditos as cred','cred.id_venta_detalle','a.id')
         ->where('b.sede', '=', $request->session()->get('sede'))
         ->whereBetween('a.created_at', [$f1, $f2])
         ->groupBy('b.id_venta')
@@ -89,10 +88,9 @@ class VentasController extends Controller
  
     }else {
         $ventas = DB::table('ventas as a')
-        ->select('a.id','b.id as id_detalle','b.id_producto','b.cantidad','b.cliente','b.sede','b.tipop','b.monto',DB::raw('SUM(cred.monto) as abono'),DB::raw(' SUM(b.total) as total'),'a.created_at','an.nombre as producto')
+        ->select('a.id','b.id as id_detalle','b.id_producto','b.cantidad','b.cliente','b.sede','b.tipop','b.monto',DB::raw(' SUM(b.total) as total'),'a.created_at','an.nombre as producto')
         ->join('ventas_detalle as b','b.id_venta','a.id')
         ->join('productos as an','an.id','b.id_producto')
-        ->join('creditos as cred','cred.id_venta_detalle','a.id')
         ->where('a.created_at', '=', date('Y-m-d'))
         ->where('b.sede', '=', $request->session()->get('sede'))
         ->groupBy('b.id_venta')
