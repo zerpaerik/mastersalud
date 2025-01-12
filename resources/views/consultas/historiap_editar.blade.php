@@ -82,13 +82,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <div class="row" style="margin-left:10px;">
-                     <div class="col-md-3">
-                    <label for="exampleInputEmail1">PACIENTE</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" value="MEZA LA ROSA JOSE LUIS " name="gestas" placeholder="">
-                   </div>
-                  
-                    </div>
+          
 
     
               
