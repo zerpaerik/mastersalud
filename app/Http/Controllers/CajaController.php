@@ -975,7 +975,7 @@ class CajaController extends Controller
       
 
      
-     $view = \View::make('caja.consolidado', compact('servicios', 'consultas','ventas','eco','rayos', 'cuentasXcobrar','metodos','serv','lab','paq','caja','egresos','ingresos','efectivo','tarjeta','deposito','yape','totalEgresos','totalIngresos'));
+     $view = \View::make('caja.consolidado', compact('servicios', 'consultas','ventas','eco','rayos', 'cuentasXcobrar','metodos','lab','paq','caja','egresos','ingresos','efectivo','tarjeta','deposito','yape','totalEgresos','totalIngresos'));
     
      //$view = \View::make('reportes.cierre_caja_ver')->with('caja', $caja);
      $pdf = \App::make('dompdf.wrapper');
