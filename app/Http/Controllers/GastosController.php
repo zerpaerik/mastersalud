@@ -276,19 +276,17 @@ class GastosController extends Controller
     {
 
       $p = Debitos::find($request->id);
-      $p->descripcion =$request->descripcion;
-      $p->tipo =$request->tipo;
-      $p->monto =$request->monto;
-      $p->recibido =$request->recibido;
-      $res = $p->update();
+      $p->fill($request->all());
+      $p->created_at = $p->getOriginal('created_at'); 
+      $p->save();
 
       $deb = Creditos::where('id_egreso','=',$request->id)->first();
       $deb->egreso =$request->monto;
       $res1 = $deb->update();
 
-      $deb = CreditosB::where('id_egreso','=',$request->id)->first();
+      /*$deb = CreditosB::where('id_egreso','=',$request->id)->first();
       $deb->egreso =$request->monto;
-      $res1 = $deb->update();
+      $res1 = $deb->update();*/
 
       $da = Debitos::where('id','=',$request->id)->first();
 
@@ -322,11 +320,11 @@ class GastosController extends Controller
         $debito = Creditos::where('id_egreso','=',$id)->first();
         $debito->delete();
 
-        $debb = DebitosB::where('id_gastoa','=',$id);
+      /*  $debb = DebitosB::where('id_gastoa','=',$id);
         $debb->delete();
 
         $creditosb = CreditosB::where('id_gastoa','=',$id)->first();
-        $creditosb->delete();
+        $creditosb->delete();*/
 
 
         return redirect()->action('GastosController@index');
@@ -351,4 +349,3 @@ class GastosController extends Controller
         //
     }
 }
-

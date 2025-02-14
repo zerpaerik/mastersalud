@@ -177,17 +177,7 @@ class VentasController extends Controller
     {   
 
 
-        /*$totalabono = $request->abono + $request->abono1;
-
-        if($request->esp_con == null){
-          $request->session()->flash('error', 'Debe Seleccionar un Especialista para hacer el ingreso.');
-          return back();
-
-        }*/
-
-
-
-
+     
 
         $venta = new Ventas();
         $venta->save();
@@ -212,7 +202,7 @@ class VentasController extends Controller
                 $pedidos->monto = $request->monto_abol1['laboratorios'][$key]['abo'];
                 $pedidos->monto1 = $request->monto_abol2['laboratorios'][$key]['abo1'];
                 $pedidos->cantidad =$request->monto_abol['laboratorios'][$key]['abono'];
-                $pedidos->total =$request->monto_abol['laboratorios'][$key]['abono'] * $monto;
+                $pedidos->total =$request->monto_abol['laboratorios'][$key]['abono'] * $request->monto_abol1['laboratorios'][$key]['abo'];
                 $pedidos->cliente =$request->cliente;
                 $pedidos->tipop =$request->id_pago['laboratorios'][$key]['tipop'];
                 $pedidos->tipop1 =$request->id_pago['laboratorios'][$key]['tipop1'];
@@ -314,8 +304,6 @@ class VentasController extends Controller
         $total = VentasDetalle::where('id_venta', '=',$id)
         ->select(DB::raw('SUM(total) as monto'))
         ->first();
-
-
 
 
 
