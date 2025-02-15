@@ -47,41 +47,41 @@ class VentasController extends Controller
 
         $total = VentasDetalle::whereBetween('created_at', [$f1, $f2])
         ->where('sede', '=', $request->session()->get('sede'))
-        ->select(DB::raw('COUNT(*) as cantidad, SUM(total) as monto'))
+        ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
         ->first();
 
         
         $total_ef = VentasDetalle::whereBetween('created_at', [$f1, $f2])
         ->where('sede', '=', $request->session()->get('sede'))
         ->where('tipop', '=', 'EF')
-        ->select(DB::raw('COUNT(*) as cantidad, SUM(total) as monto'))
+        ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
         ->first();
 
         
         $total_tj = VentasDetalle::whereBetween('created_at', [$f1, $f2])
         ->where('sede', '=', $request->session()->get('sede'))
         ->where('tipop', '=', 'TJ')
-        ->select(DB::raw('COUNT(*) as cantidad, SUM(total) as monto'))
+        ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
         ->first();
 
         
         $total_dp = VentasDetalle::whereBetween('created_at', [$f1, $f2])
         ->where('sede', '=', $request->session()->get('sede'))
         ->where('tipop', '=', 'DP')
-        ->select(DB::raw('COUNT(*) as cantidad, SUM(total) as monto'))
+        ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
         ->first();
 
         $total_pl = VentasDetalle::whereBetween('created_at', [$f1, $f2])
         ->where('sede', '=', $request->session()->get('sede'))
         ->where('tipop', '=', 'PL')
-        ->select(DB::raw('COUNT(*) as cantidad, SUM(total) as monto'))
+        ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
         ->first();
 
         
         $total_yp = VentasDetalle::whereBetween('created_at',  [$f1, $f2])
         ->where('sede', '=', $request->session()->get('sede'))
         ->where('tipop', '=', 'YP')
-        ->select(DB::raw('COUNT(*) as cantidad, SUM(total) as monto'))
+        ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
         ->first();
 
 
@@ -101,42 +101,42 @@ class VentasController extends Controller
 
         $total = VentasDetalle::where('created_at', '=', date('Y-m-d'))
         ->where('sede', '=', $request->session()->get('sede'))
-        ->select(DB::raw('COUNT(*) as cantidad, SUM(total) as monto'))
+        ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
         ->first();
 
         
         $total_ef = VentasDetalle::where('created_at', '=', date('Y-m-d'))
         ->where('sede', '=', $request->session()->get('sede'))
         ->where('tipop', '=', 'EF')
-        ->select(DB::raw('COUNT(*) as cantidad, SUM(total) as monto'))
+        ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
         ->first();
 
         
         $total_tj = VentasDetalle::where('created_at', '=', date('Y-m-d'))
         ->where('sede', '=', $request->session()->get('sede'))
         ->where('tipop', '=', 'TJ')
-        ->select(DB::raw('COUNT(*) as cantidad, SUM(total) as monto'))
+        ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
         ->first();
 
         
         $total_dp = VentasDetalle::where('created_at', '=', date('Y-m-d'))
         ->where('sede', '=', $request->session()->get('sede'))
         ->where('tipop', '=', 'DP')
-        ->select(DB::raw('COUNT(*) as cantidad, SUM(total) as monto'))
+        ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
         ->first();
 
           
         $total_pl = VentasDetalle::where('created_at', '=', date('Y-m-d'))
         ->where('sede', '=', $request->session()->get('sede'))
         ->where('tipop', '=', 'PL')
-        ->select(DB::raw('COUNT(*) as cantidad, SUM(total) as monto'))
+        ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
         ->first();
 
         
         $total_yp = VentasDetalle::where('created_at', '=', date('Y-m-d'))
         ->where('sede', '=', $request->session()->get('sede'))
         ->where('tipop', '=', 'YP')
-        ->select(DB::raw('COUNT(*) as cantidad, SUM(total) as monto'))
+        ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
         ->first();
 
 
