@@ -287,14 +287,14 @@ class VentasController extends Controller
 
 
         $ventas_detalle = DB::table('ventas as a')
-        ->select('a.*','b.id_venta','b.id_producto','b.cantidad','b.cliente','b.tipop','b.monto','p.nombre as producto')
+        ->select('a.*','b.id_venta','b.id_producto','b.cantidad','b.cliente','b.tipop','b.monto','p.nombre as producto','p.precio')
         ->join('ventas_detalle as b','b.id_venta','a.id')
         ->join('productos as p','p.id','b.id_producto')
         ->where('b.id_venta','=',$id)
         ->get();
 
         $ventas_detalled = DB::table('ventas as a')
-        ->select('a.*','b.id_venta','b.id_producto','b.cantidad','b.cliente','b.tipop','b.monto','p.nombre as producto')
+        ->select('a.*','b.id_venta','b.id_producto','b.cantidad','b.cliente','b.tipop','b.monto','p.nombre as producto','p.precio')
         ->join('ventas_detalle as b','b.id_venta','a.id')
         ->join('productos as p','p.id','b.id_producto')
         ->where('b.id_venta','=',$id)
@@ -302,7 +302,7 @@ class VentasController extends Controller
 
          
         $total = VentasDetalle::where('id_venta', '=',$id)
-        ->select(DB::raw('SUM(total) as monto'))
+        ->select(DB::raw('SUM(monto) as monto'))
         ->first();
 
 

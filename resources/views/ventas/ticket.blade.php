@@ -68,8 +68,8 @@
           <tr>
             <td style="font-size: 15px; line-height: 30px;" align="center">{{$line->cantidad}}</td>
             <td style="font-size: 15px; line-height: 30px;" align="center">{{$line->producto}}</td>
-            <td style="font-size: 15px; line-height: 30px;" align="center">{{$line->monto}}</td>
-            <td style="font-size: 15px; line-height: 30px;" align="center">{{$line->monto * $line->cantidad}}</td>
+            <td style="font-size: 15px; line-height: 30px;" align="center">{{$line->precio}}</td>
+            <td style="font-size: 15px; line-height: 30px;" align="center">{{$line->precio * $line->cantidad}}</td>
           </tr>
         @endforeach
       </tbody>
